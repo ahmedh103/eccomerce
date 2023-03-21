@@ -94,10 +94,10 @@
                 </a>
                 <ul class="dropdown-menu submenu list-unstyled" id="apps" data-bs-parent="#accordionExample">
                     <li>
-                        <a href="#"> Category </a>
+                        <a href="{{route('admin.category.index')}}"> Category </a>
                     </li>
                     <li>
-                        <a href="#"> Add New Category </a>
+                        <a href="{{route('admin.category.create')}}"> Add New Category </a>
                     </li>
 
                     <li>

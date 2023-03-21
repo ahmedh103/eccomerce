@@ -3,7 +3,7 @@ const example2 = new autoComplete({
     placeHolder: "Ask a question",
     data: {
         src: [
-            "How to install Cork Admin",
+            "How to install Cork admin",
             "File Structure",
             "How to use Gulp",
             "How to run Browser Sync",
@@ -54,7 +54,7 @@ const example2 = new autoComplete({
             const feedback = event.detail;
             // Prepare User's Selected Value
             const selection = feedback.selection.value;
-            
+
             // Replace Input value with the selected value
             example2.input.value = selection;
         },

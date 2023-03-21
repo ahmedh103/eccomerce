@@ -23,6 +23,12 @@ Route::group(
 
     Route::group(['prefix' => 'admin', 'as' => 'admin.'], function (){
         Route::get('/', [HomeController::class, 'index'])->name('home');
+
+        Route::group(['prefix'=>'product','as'=>'product.'],function (){
+           Route::get('/',[\App\Http\Controllers\Admin\product\ProductController::class,"index"])->name('index');
+           Route::get('create',[\App\Http\Controllers\Admin\product\ProductController::class,"create"])->name('create');
+           Route::post('store',[\App\Http\Controllers\Admin\product\ProductController::class,"store"])->name('store');
+        });
     });
 });
 

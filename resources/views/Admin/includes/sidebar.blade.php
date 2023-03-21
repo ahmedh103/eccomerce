@@ -275,7 +275,7 @@
                             <polyline points="2 17 12 22 22 17"></polyline>
                             <polyline points="2 12 12 17 22 12"></polyline>
                         </svg>
-                        <span>Tables</span>
+                        <span>Products</span>
                     </div>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -288,32 +288,15 @@
                 <ul class="dropdown-menu submenu list-unstyled" id="tables" data-bs-parent="#accordionExample">
 
                     <li>
-                        <a href="./table-basic.html"> Tables </a>
+                        <a href="{{route('admin.product.index')}}"> All Proudcts </a>
                     </li>
 
                     <li class="sub-submenu dropend">
-                        <a href="#datatable" data-bs-toggle="dropdown" aria-expanded="false"
+                        <a href="{{route('admin.product.create')}}"
                            class="dropdown-toggle collapsed"> Datatable
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                 stroke-linejoin="round" class="feather feather-chevron-right">
-                                <polyline points="9 18 15 12 9 6"></polyline>
-                            </svg>
+
+
                         </a>
-                        <ul class="dropdown-menu list-unstyled sub-submenu" id="datatable" data-bs-parent="#tables">
-                            <li>
-                                <a href="./table-datatable-basic.html"> Basic </a>
-                            </li>
-                            <li>
-                                <a href="./table-datatable-striped-table.html"> Striped </a>
-                            </li>
-                            <li>
-                                <a href="./table-datatable-custom.html"> Custom </a>
-                            </li>
-                            <li>
-                                <a href="./table-datatable-miscellaneous.html"> Miscellaneous </a>
-                            </li>
-                        </ul>
                     </li>
 
                 </ul>

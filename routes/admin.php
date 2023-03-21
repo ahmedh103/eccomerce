@@ -78,6 +78,7 @@ Route::group(
             });
 
     });
+<<<<<<< HEAD
    
 
 
@@ -89,3 +90,6 @@ Route::group(
       
 
    
+=======
+});
+>>>>>>> master

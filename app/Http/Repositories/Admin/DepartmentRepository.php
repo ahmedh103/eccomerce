@@ -37,7 +37,6 @@ class DepartmentRepository implements DepartmentInterface
 
          $this->departmentModel::create([
             'name'=>['en'=>$request->name_en,'ar'=>$request->name_ar],
-            'slug'=>['en'=>$request->slug_en,'ar'=>$request->slug_ar],
             'image'=>$departmentImage
              ]);
             toast('Department Created successfully', 'success');
@@ -59,9 +58,7 @@ class DepartmentRepository implements DepartmentInterface
 
         $department->update([
             'name'=>['en'=>$request->name_en,'ar'=>$request->name_ar],
-            'slug'=>['en'=>$request->slug_en,'ar'=>$request->slug_ar],
             'image' => $imageName ?? $department->getRawOriginal('image'),
-
         ]);
 
         toast('department updated successfully','success');

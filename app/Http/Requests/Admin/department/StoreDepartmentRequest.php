@@ -25,8 +25,6 @@ class StoreDepartmentRequest extends FormRequest
         return [
             'name_en'=>'required|unique:departments,name|max:255',
             'name_ar'=>'required|unique:departments,name|max:255',
-            'slug_en'=>'required|max:255',
-            'slug_ar'=>'required|max:255',
             'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
         ];
     }

@@ -85,33 +85,6 @@ Add Department
                                     @enderror
                                 </div>
 
-                                <div class="form-group mb-4">
-                                    <span class="input-group-text">English Slug</span>
-                                    <input type="text" class="form-control my-2" name="slug_en"
-                                        value="{{ $department->getTranslation('slug', 'en')}}" placeholder="slug Of Department In English">
-                                    @error('slug_en')
-                                    <div class="alert alert-danger mt-1" role="alert">
-                                        <h4 class="alert-heading">Alert Danger</h4>
-                                        <div class="alert-body">
-                                            {{ $message }}
-                                        </div>
-                                    </div>
-
-                                    @enderror
-                                </div>
-                                <div class="form-group mb-4">
-                                    <span class="input-group-text">Arabic Slug</span>
-                                    <input type="text" class="form-control my-2" name="slug_ar"
-                                        value="{{ $department->getTranslation('slug', 'ar')}}" placeholder="Slug Of Department In Arabic">
-                                    @error('slug_ar')
-                                    <div class="alert alert-danger mt-1" role="alert">
-                                        <h4 class="alert-heading">Alert Danger</h4>
-                                        <div class="alert-body">
-                                            {{ $message }}
-                                        </div>
-                                    </div>
-                                    @enderror
-                                </div>
                                 <input type="file" name="image">
                                 @error('image')
                                 <div class="alert alert-danger mt-1" role="alert">

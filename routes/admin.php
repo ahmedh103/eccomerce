@@ -2,6 +2,7 @@
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\AdController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -58,6 +59,24 @@ Route::group(
         Route::get('show/{article}', 'show')->name('show');
         Route::put('update/{article}', 'changeStates')->name('changeStates');
 
+
         });
+
+
+        Route::group([
+            'controller' => AdController::class,
+            'prefix' => 'ads',
+            'as' => 'ads.',
+        ], function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+
+            Route::put('update/{ad}', 'update')->name('update');
+            Route::delete('delete/{ad}', 'delete')->name('delete');
+            Route::get('/edit/{ad}', 'edit')->name('edit');
+        });
+
+
     });
 });

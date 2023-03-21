@@ -16,8 +16,8 @@ class UserSeeder extends Seeder
 
 
         $user = User::query()->create([
-            'first_name' => "Admin",
-            'last_name' => "Admin",
+            'first_name' => "admin",
+            'last_name' => "admin",
             'phone' => '0100000000',
             'email' => 'User@user.com',
             "password" => bcrypt('123456'),

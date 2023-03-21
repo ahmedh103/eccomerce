@@ -15,16 +15,16 @@ class AdminSeeder extends Seeder
     {
 
      $user = User::query()->create([
-            'first_name' => "Admin",
-            'last_name' => "Admin",
+            'first_name' => "admin",
+            'last_name' => "admin",
             'phone' => '01000000000',
-            'email' => 'Admin@admin.com',
+            'email' => 'admin@admin.com',
             "password" => bcrypt('123456'),
             'active' => 1,
         ]);
         $user->attachGroup(1);
 
-        $this->command->comment('======== Information Admin created ========');
-        $this->command->comment('======== Information Admin created ========');
+        $this->command->comment('======== Information admin created ========');
+        $this->command->comment('======== Information admin created ========');
     }
 }

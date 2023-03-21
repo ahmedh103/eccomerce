@@ -11,7 +11,7 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        /*-- Admin --*/
+        /*-- admin --*/
         $this->app->bind(
             'App\Http\Interfaces\Admin\HomeInterface',
             'App\Http\Repositories\Admin\HomeRepository',
@@ -24,7 +24,7 @@ class RepositoryServiceProvider extends ServiceProvider
 
 
 
-        /*-- End Admin --*/
+        /*-- End admin --*/
 
         /*-- EndUser --*/
         $this->app->bind(

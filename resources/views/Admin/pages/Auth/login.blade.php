@@ -1,10 +1,8 @@
 
 @include('Admin.includes.head')
-@section('title')
-
-    {{__('Admin.Auth.login.login')}}
-@endsection
-
+<title>
+    {{trans('admin/auth/login.page')}}
+</title>
     <div class="auth-container d-flex mt-5">
         <div class="container mx-auto align-self-center">
             <div class="row">
@@ -22,15 +20,20 @@
                                     <div class="col-md-12 mb-3">
 
                                         <h2>
-                                            {{__('Admin.Auth.login.login')}}
+                                            {{trans('admin/auth/login.page')}}
                                         </h2>
-                                        <p>Enter your email and password to login</p>
+                                        <p>
+                                            {{trans('admin/auth/login.enter_email')}}
+                                        </p>
 
                                     </div>
 
                                     <div class="col-md-12">
                                         <div class="mb-3">
-                                            <label class="form-label">Email</label>
+                                            <label class="form-label">
+
+                                                {{trans('admin/auth/login.email')}}
+                                            </label>
                                             <input type="email" name="email" value="{{old('email')}}" class="form-control">
                                         </div>
                                         @error('email')
@@ -45,7 +48,9 @@
 
                                     <div class="col-12">
                                         <div class="mb-4">
-                                            <label class="form-label">Password</label>
+                                            <label class="form-label">
+                                                {{trans('admin/auth/login.password')}}
+                                            </label>
                                             <input type="password" name="password" class="form-control">
                                         </div>
                                         @error('password')
@@ -60,7 +65,9 @@
 
                                     <div class="col-12">
                                         <div class="mb-4">
-                                            <button type="submit" class="btn btn-secondary w-100">SIGN IN</button>
+                                            <button type="submit" class="btn btn-secondary w-100">
+                                                {{trans('admin/auth/login.sing_in')}}
+                                            </button>
                                         </div>
                                     </div>
                         </div>

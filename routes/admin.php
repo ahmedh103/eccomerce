@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -15,13 +16,18 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
+
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-    ], function(){ //...
+    ], function(){
 
-    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function (){
+
+    Route::group(['prefix' => 'admin', 'as' => 'admin.' , 'middleware'=> 'auth' , 'isAdmin'], function (){
+        Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
         Route::get('/', [HomeController::class, 'index'])->name('home');
     });
 });

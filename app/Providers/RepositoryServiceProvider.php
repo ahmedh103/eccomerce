@@ -17,6 +17,15 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Http\Repositories\Admin\HomeRepository',
         );
 
+        $this->app->bind(
+            'App\Http\Interfaces\Admin\AuthInterface',
+            'App\Http\Repositories\Admin\AuthRepository',
+        );
+
+
+
+        /*-- End Admin --*/
+
         /*-- EndUser --*/
         $this->app->bind(
             'App\Http\Interfaces\EndUser\HomeInterface',

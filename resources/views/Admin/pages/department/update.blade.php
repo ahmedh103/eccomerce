@@ -60,7 +60,7 @@ Add Department
                             <div class="form-group mb-4">
                                 <span class="input-group-text">English Name</span>
                                 <input type="text" class="form-control my-2" name="name_en"
-                                    value="{{ $department->name}}" placeholder="Name Of Department In English">
+                                    value="{{ $department->getTranslation('name', 'en')}}" placeholder="Name Of Department In English">
 
                                 @error('name_en')
                                 <div class="alert alert-danger mt-1" role="alert">
@@ -75,7 +75,7 @@ Add Department
                             <div class="form-group mb-4">
                                 <span class="input-group-text">Arabic Name</span>
                                 <input type="text" class="form-control my-2" name="name_ar"
-                                    value="{{ $department->name}} " placeholder="Name Of Department In Arabic">
+                                    value="{{ $department->getTranslation('name', 'ar')}} " placeholder="Name Of Department In Arabic">
                                 @error('name_ar')
                                 <div class="alert alert-danger mt-1" role="alert">
                                     <h4 class="alert-heading">Alert Danger</h4>
@@ -88,7 +88,7 @@ Add Department
                                 <div class="form-group mb-4">
                                     <span class="input-group-text">English Slug</span>
                                     <input type="text" class="form-control my-2" name="slug_en"
-                                        value="{{ $department->slug}}" placeholder="slug Of Department In English">
+                                        value="{{ $department->getTranslation('slug', 'en')}}" placeholder="slug Of Department In English">
                                     @error('slug_en')
                                     <div class="alert alert-danger mt-1" role="alert">
                                         <h4 class="alert-heading">Alert Danger</h4>
@@ -102,7 +102,7 @@ Add Department
                                 <div class="form-group mb-4">
                                     <span class="input-group-text">Arabic Slug</span>
                                     <input type="text" class="form-control my-2" name="slug_ar"
-                                        value="{{ $department->slug}}" placeholder="Slug Of Department In Arabic">
+                                        value="{{ $department->getTranslation('slug', 'ar')}}" placeholder="Slug Of Department In Arabic">
                                     @error('slug_ar')
                                     <div class="alert alert-danger mt-1" role="alert">
                                         <h4 class="alert-heading">Alert Danger</h4>

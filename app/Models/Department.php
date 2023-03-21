@@ -8,8 +8,7 @@ use Spatie\Translatable\HasTranslations;
 
 class Department extends Model
 {
-    use HasFactory;
-    use HasTranslations;
+    use HasFactory,  HasTranslations;
     protected $fillable =['name','slug','image'];
     public array $translatable =['name' , 'slug'] ;
 

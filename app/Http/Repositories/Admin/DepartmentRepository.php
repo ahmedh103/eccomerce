@@ -40,7 +40,7 @@ class DepartmentRepository implements DepartmentInterface
             'slug'=>['en'=>$request->slug_en,'ar'=>$request->slug_ar],
             'image'=>$departmentImage
              ]);
-
+            toast('Department Created successfully', 'success');
           return redirect(route('admin.department.index'));
 
     }
@@ -64,7 +64,7 @@ class DepartmentRepository implements DepartmentInterface
 
         ]);
 
-        toast('department updated successfullay','success');
+        toast('department updated successfully','success');
 
         return redirect()->route('admin.department.index');
     }
@@ -73,7 +73,6 @@ class DepartmentRepository implements DepartmentInterface
     {
        $department->delete();
         toast('department Deleted Successfully', 'success');
-
         return back();
     }
 }

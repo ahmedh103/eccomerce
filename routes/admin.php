@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -16,19 +17,26 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::group(
-    [
-        'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-    ], function(){
+	[
+		'prefix'     => LaravelLocalization::setLocale(),
+		'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
+	], function () {
 
-
-    Route::group(['prefix' => 'admin', 'as' => 'admin.' , 'middleware'=> 'auth' , 'isAdmin'], function (){
-        Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-        Route::get('/', [HomeController::class, 'index'])->name('home');
-    });
+	Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth', 'isAdmin'], function () {
+		Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+		Route::get('/', [HomeController::class, 'index'])->name('home');
+		Route::group([
+			'controller' => ArticleController::class,
+			'prefix'     => 'article',
+			'as'         => 'article.',
+		], function () {
+			Route::get('/index', 'index')->name('index');
+			Route::get('/show/{article}', 'show')->name('show');
+			Route::put('/update/{article}', 'changeStates')->name('changeStates');
+		});
+	});
 });
 

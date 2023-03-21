@@ -8,9 +8,6 @@ trait ProductTrait
 {
 
 
-    private function storeProduct($request){
 
-
-    }
 
 }

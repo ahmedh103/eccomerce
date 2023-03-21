@@ -19,19 +19,23 @@ class ProductRepository implements ProductInterface
 
     public function index()
     {
-        return view('Admin.pages.products.index');
+        $products = $this->producModel::get(['id','name','slug','detalis','image','price']);
+        return view('Admin.pages.products.index',['products'=>$products]);
     }
 
     public function create()
     {
+
         return view('Admin.pages.products.create');
     }
 
     public function store($request)
     {
 
-        $imageName =  Storage::disk('local')->put($request->image, $this->producModel::PATH);
-        $this->producModel::create([
+//        $imageName =  Storage::disk('local')->put($request->image, $this->producModel::PATH);
+
+        $imageName = Storage::putFile($this->producModel::PATH,$request->image);
+      $product =  $this->producModel::create([
             'name' => ['en'=>$request->name_en,'ar'=>$request->name_ar],
             'slug' => ['en'=>$request->name_en,'ar'=>$request->name_ar],
             'detalis'=>['en'=>$request->detalis_en ,'ar'=>$request->detalis_ar],
@@ -39,21 +43,42 @@ class ProductRepository implements ProductInterface
             'image' => $imageName
         ]);
 
+        toast(' Insreted Data  successflay', 'success');
+        return redirect(route('admin.product.index'));
+
 
     }
 
     public function editForm($product)
     {
-        // TODO: Implement editForm() method.
+    $product = $this->producModel::findOrFail($product);
+
+       return view('Admin.pages.products.editForm',['product'=>$product]);
     }
 
     public function update($request, $product)
     {
-        // TODO: Implement update() method.
+
+        if($request->has("image")){
+            Storage::delete($product->image);
+            $imageName = Storage::putFile($this->producModel::PATH,$request->image);
+        }
+
+        $product->update([
+            'name' => ['en'=>$request->name_en,'ar'=>$request->name_ar],
+            'slug' => ['en'=>$request->name_en,'ar'=>$request->name_ar],
+            'detalis'=>['en'=>$request->detalis_en ,'ar'=>$request->detalis_ar],
+            'price' => $request->price,
+            'image' => $imageName ?? $product->getRawOriginal('image')
+        ]);
+        toast('Data updated successflay', 'success');
+        return redirect(route('admin.product.index'));
     }
 
     public function delete($product)
     {
-        // TODO: Implement delete() method.
+        $product->delete();
+        toast('Data Deleted successflay', 'success');
+        return back();
     }
 }

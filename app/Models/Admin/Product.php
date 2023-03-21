@@ -10,7 +10,7 @@ use Spatie\Translatable\HasTranslations;
 class Product extends Model
 {
     use HasFactory, HasTranslations;
-    public $translatable = ['name', 'detalis'];
+    public $translatable = ['name', 'detalis','slug'];
 
     const PATH = 'products';
     protected $fillable=[

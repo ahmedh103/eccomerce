@@ -275,7 +275,7 @@
                             <polyline points="2 17 12 22 22 17"></polyline>
                             <polyline points="2 12 12 17 22 12"></polyline>
                         </svg>
-                        <span>Products</span>
+                        <span>{{ __('dashboard.pageProduct') }}</span>
                     </div>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -288,12 +288,12 @@
                 <ul class="dropdown-menu submenu list-unstyled" id="tables" data-bs-parent="#accordionExample">
 
                     <li>
-                        <a href="{{route('admin.product.index')}}"> All Proudcts </a>
+                        <a href="{{route('admin.product.index')}}"> {{ __('dashboard.product') }} </a>
                     </li>
 
                     <li class="sub-submenu dropend">
                         <a href="{{route('admin.product.create')}}"
-                           class="dropdown-toggle collapsed"> Datatable
+                           class="dropdown-toggle collapsed"> {{__('dashboard.addProduct')}}
 
 
                         </a>

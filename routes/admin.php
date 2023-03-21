@@ -29,6 +29,9 @@ Route::group(
            Route::get('/',[ProductController::class,"index"])->name('index');
            Route::get('create',[ProductController::class,"create"])->name('create');
            Route::post('store',[ProductController::class,"store"])->name('store');
+           Route::get('editForm/{product}',[ProductController::class,"editForm"])->name('edit');
+           Route::put('update/{product}',[ProductController::class,"update"])->name('update');
+           Route::delete('/{product}',[ProductController::class,"delete"])->name('delete');
         });
     });
 });

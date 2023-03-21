@@ -24,9 +24,18 @@ class StoreRequest extends FormRequest
     {
         return [
             'name_en'=>'required',
+            'name_ar'=>'required',
             'detalis_en'=>'required',
+            'detalis_ar'=>'required',
             'price'=>'required',
             'image'=>'required'
         ];
     }
+
+//    public function messages()
+//    {
+//        return [
+//            'neme_en.required'=> trans('validation.required'),
+//        ];
+//    }
 }

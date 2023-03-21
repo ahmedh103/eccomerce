@@ -1,34 +1,51 @@
 @extends('Admin.includes.master')
+
+@section('title')
+    {{ __('dashboard.product') }}
+@endsection
 @section('content')
 
 
-    <div class="row layout-top-spacing d-flex  align-items-center m-auto ">
+    <div class="row layout-top-spacing d-flex  align-items-center m-auto pt-5 ">
 
         <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
-            <h2 class="text-center">All Product</h2>
+            <h2 class="text-center">{{ __('dashboard.product') }}</h2>
             <div class="widget-content widget-content-area br-8">
                 <table id="zero-config" class="table dt-table-hover" style="width:100%">
                     <thead>
+
                     <tr>
-                        <th>Name</th>
-                        <th>category</th>
-                        <th>image</th>
-                        <th>Detalis</th>
-                        <th>Salary</th>
-                        <th class="no-content">Action</th>
+                        <th>{{ __('dashboard.name') }}</th>
+                        <th>{{ __('dashboard.name') }}</th>
+                        <th>{{ __('dashboard.detalis') }}</th>
+                        <th>{{ __('dashboard.price') }}</th>
+                        <th>{{ __('dashboard.image') }}</th>
+                        <th class="no-content">{{ __('dashboard.action') }}</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
-                        <td><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle table-cancel"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></td>
-                    </tr>
+                    @foreach($products as $product)
 
+                    <tr>
+                        <td>{{$product->name}}</td>
+                        <td>{{$product->slug}}</td>
+                        <td>{{$product->detalis}}</td>
+                        <td>{{$product->price}}</td>
+                        <td>
+                            <img src="{{asset("storage/$product->image")}}" alt="" class="" style="width: 10%">
+                        </td>
+
+                       <td>
+                           <a href="{{route('admin.product.edit', $product->id)}}" class="btn btn-success">{{ __('dashboard.edit') }}</a>
+                           <form action="{{route('admin.product.delete',$product->id)}}" method="POST" style="display: inline">
+                               @method('DELETE')
+                               @csrf
+                               <button class="btn btn-danger">{{ __('dashboard.delete') }}</button>
+                           </form>
+
+                       </td>
+                    </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>

@@ -74,6 +74,8 @@ class Kernel extends HttpKernel
         'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
         'status' => CheckStatus::class ,
         'isAdmin' => \App\Http\Middleware\CheckIsAdmin::class,
+        'prevent-back-history' => \App\Http\Middleware\PreventBackHistory::class ,
+        'AdminAuth' => \App\Http\Middleware\AdminAuth::class,
 
     ];
 }

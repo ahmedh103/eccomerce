@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EndUser\AuthController;
 use App\Http\Controllers\EndUser\HomeController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -16,12 +17,20 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
+
+
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-    ], function(){ //...
+    ], function(){
+
+    Route::get('/login', [AuthController::class, 'index'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/register', [AuthController::class, 'register'])->name('register');
+
     Route::group(['prefix' => '/', 'as' => 'endUser.'], function (){
+        Route::get('logout', [AuthController::class, 'logout'])->name('logout');
         Route::get('', [HomeController::class, 'index'])->name('home');
     });
 });

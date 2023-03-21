@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -25,9 +26,9 @@ Route::group(
         Route::get('/', [HomeController::class, 'index'])->name('home');
 
         Route::group(['prefix'=>'product','as'=>'product.'],function (){
-           Route::get('/',[\App\Http\Controllers\Admin\product\ProductController::class,"index"])->name('index');
-           Route::get('create',[\App\Http\Controllers\Admin\product\ProductController::class,"create"])->name('create');
-           Route::post('store',[\App\Http\Controllers\Admin\product\ProductController::class,"store"])->name('store');
+           Route::get('/',[ProductController::class,"index"])->name('index');
+           Route::get('create',[ProductController::class,"create"])->name('create');
+           Route::post('store',[ProductController::class,"store"])->name('store');
         });
     });
 });

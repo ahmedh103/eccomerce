@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin\product;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Interfaces\Admin\Products\ProductInterface;
-use App\Http\Requests\Admin\Product\StoreRequest ;
+use App\Http\Interfaces\Admin\ProductInterface;
+use App\Http\Requests\Admin\Product\StoreRequest;
 
 
 class ProductController extends Controller
@@ -23,6 +23,6 @@ class ProductController extends Controller
     }
 
     public  function store(StoreRequest $request){
-        return $this->productInterface->store( $request);
+        return $this->productInterface->store($request);
     }
 }

@@ -17,8 +17,8 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Http\Repositories\Admin\HomeRepository',
         );
         $this->app->bind(
-            'App\Http\Interfaces\Admin\Products\ProductInterface',
-            'App\Http\Repositories\Admin\Products\ProductRepository',
+            'App\Http\Interfaces\Admin\ProductInterface',
+            'App\Http\Repositories\Admin\ProductRepository',
         );
 
 

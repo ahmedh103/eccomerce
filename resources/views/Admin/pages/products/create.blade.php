@@ -46,8 +46,8 @@
                                 <div class="form-group mb-4">
 
 
-                                    <input type="text" class="form-control my-2" name="name_en" value="{{ old('title') }}" id="exampleFormControlInput2" placeholder="title">
-                                    <input type="text" class="form-control my-2" name="name_ar" value="{{ old('title') }}" id="exampleFormControlInput2" placeholder="title">
+                                    <input type="text" class="form-control my-2" name="name_en" value="{{ old('name_en') }}" id="exampleFormControlInput2" placeholder="title">
+                                    <input type="text" class="form-control my-2" name="name_ar" value="{{ old('name_ar') }}" id="exampleFormControlInput2" placeholder="title">
 
                                     <input type="number" class="form-control my-2" name="price" value="{{ old('price') }}" id="exampleFormControlInput2" placeholder="price">
                                     <input type="file" class="form-control my-2" name="image"  id="exampleFormControlInput2" placeholder="price">

@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.8",
         "mcamara/laravel-localization": "^1.8",
         "realrashid/sweet-alert": "^6.0",
+        "spatie/laravel-sluggable": "^3.4",
         "spatie/laravel-translatable": "^6.4"
     },
     "require-dev": {

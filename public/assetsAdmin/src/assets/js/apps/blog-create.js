@@ -1,6 +1,6 @@
 /**
  * ===================================
- *    Blog Description Editor 
+ *    Blog Description Editor
  * ===================================
 */
 var quill = new Quill('#blog-description', {
@@ -18,12 +18,12 @@ var quill = new Quill('#blog-description', {
 
 /**
  * ====================
- *      File Pond 
+ *      File Pond
  * ====================
 */
 
 // We want to preview images, so we register
-// the Image Preview plugin, We also register 
+// the Image Preview plugin, We also register
 // exif orientation (to correct mobile image
 // orientation) and size validation, to prevent
 // large files from being added
@@ -34,14 +34,14 @@ FilePond.registerPlugin(
     // FilePondPluginImageEdit
 );
 
-// Select the file input and use 
+// Select the file input and use
 // create() to turn it into a pond
 var ecommerce = FilePond.create(document.querySelector('.file-upload-multiple'));
 
 
 /**
  * =====================
- *      Blog Tags 
+ *      Blog Tags
  * =====================
 */
 // The DOM element you wish to replace with Tagify
@@ -53,12 +53,12 @@ new Tagify(input)
 
 /**
  * =======================
- *      Blog Category 
+ *      Blog Category
  * =======================
 */
 var input = document.querySelector('input[name=category]');
 
 new Tagify(input, {
-    whitelist: ["Themeforest","Admin","Dashboard","Laravel","Sale","Vue","React","Cork Admin"],
+    whitelist: ["Themeforest","admin","Dashboard","Laravel","Sale","Vue","React","Cork admin"],
     userInput: false
 })

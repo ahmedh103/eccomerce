@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="exampleFormControlTextarea1">Image</label>
-                                    <img src="{{asset('images/articles/'.$article->image)}}" alt="" width="100px"
+                                    <img src="{{ $article->image }}" alt="" width="100px"
                                          height="100px">
                                 </div>
 
@@ -89,7 +89,7 @@
                                         </option>
                                     </select>
                                 </div>
-                                <form action="{{route('admin.article.changeStates',$article->id)}}" method="post">
+                                <form action="{{route('admin.article.changeStates',$article)}}" method="post">
                                     @csrf
                                     @method('PUT')
                                     <button type="submit" class="btn btn-primary mt-3">Change States</button>

@@ -28,14 +28,16 @@ Route::group(
 	Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth', 'isAdmin'], function () {
 		Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 		Route::get('/', [HomeController::class, 'index'])->name('home');
+
+        /* Article Routes */
 		Route::group([
 			'controller' => ArticleController::class,
-			'prefix'     => 'article',
+			'prefix'     => 'articles',
 			'as'         => 'article.',
 		], function () {
-			Route::get('/index', 'index')->name('index');
-			Route::get('/show/{article}', 'show')->name('show');
-			Route::put('/update/{article}', 'changeStates')->name('changeStates');
+			Route::get('index', 'index')->name('index');
+			Route::get('show/{article}', 'show')->name('show');
+			Route::put('update/{article}', 'changeStates')->name('changeStates');
 		});
 	});
 });

@@ -48,7 +48,7 @@
                             <div class="widget-header">
                                 <div class="row">
                                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                        <h4>All ِArticles</h4>
+                                        <h4>All Articles</h4>
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                                                     {{$article->title}}
                                                 </td>
                                                 <td>
-                                                    <img src="" alt="notfound" width="100px"
+                                                    <img src="{{ $article->image }}" alt="notfound" width="100px"
                                                          height="100px">
                                                 </td>
                                                 {{--                                                <td>--}}
@@ -89,7 +89,7 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="{{route('admin.article.show',$article->id)}}"
+                                                    <a href="{{route('admin.article.show',$article)}}"
                                                        class="btn btn-primary">show</a>
                                                 </td>
                                             </tr>

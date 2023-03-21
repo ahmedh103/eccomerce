@@ -8,16 +8,22 @@ use Spatie\Translatable\HasTranslations;
 
 class Article extends Model
 {
-	use HasTranslations;
-	use HasFactory;
+	use HasTranslations,  HasFactory;
 
 	public $translatable = ['title', 'description'];
 
 	protected $fillable = ['title', 'description', 'image', 'user_id', 'status'];
 
+    const PATH = 'images/articles';
+
 	public function user()
 	{
 		return $this->belongsTo(User::class);
 	}
+
+    public function getImageAttribute($value)
+    {
+        return asset(self::PATH . DIRECTORY_SEPARATOR . $value);
+    }
 
 }

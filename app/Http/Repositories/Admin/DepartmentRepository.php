@@ -5,9 +5,7 @@ namespace App\Http\Repositories\Admin;
 use App\Http\Interfaces\Admin\DepartmentInterface;
 use App\Http\Traits\ImageTrait;
 use App\Models\Department;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
+
 
 class DepartmentRepository implements DepartmentInterface
 {

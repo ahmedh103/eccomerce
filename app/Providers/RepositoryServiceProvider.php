@@ -9,9 +9,9 @@ class RepositoryServiceProvider extends ServiceProvider
     /**
      * Register services.
      */
-    public function register(): void
+    public function register():void
     {
-        /*-- Admin --*/
+        /*-- admin --*/
         $this->app->bind(
             'App\Http\Interfaces\Admin\HomeInterface',
             'App\Http\Repositories\Admin\HomeRepository',
@@ -20,6 +20,19 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Http\Interfaces\Admin\DepartmentInterface',
             'App\Http\Repositories\Admin\DepartmentRepository',
         );
+
+
+        $this->app->bind(
+            'App\Http\Interfaces\Admin\AuthInterface',
+            'App\Http\Repositories\Admin\AuthRepository',
+        );
+
+        $this->app->bind(
+            'App\Http\Interfaces\Admin\ArticleInterface',
+            'App\Http\Repositories\Admin\ArticleRepository',
+        );
+
+        /*-- End admin --*/
 
         /*-- EndUser --*/
         $this->app->bind(
@@ -31,7 +44,7 @@ class RepositoryServiceProvider extends ServiceProvider
     /**
      * Bootstrap services.
      */
-    public function boot(): void
+    public function boot():void
     {
         //
     }

@@ -38,12 +38,13 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Http\Repositories\Admin\ArticleRepository',
         );
 
-
-        /*-- End admin --*/
-
         $this->app->bind(
             'App\Http\Interfaces\Admin\AdInterface',
             'App\Http\Repositories\Admin\AdRepository',
+
+        /*-- End admin --*/
+
+
         );
 
 

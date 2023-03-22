@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\ArticleController;
 
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\AdController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\AuthController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -105,7 +105,7 @@ Route::group(
         });
 
 
-    });
+
 
 
 });

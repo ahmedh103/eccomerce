@@ -1,4 +1,8 @@
 <?php
+
+
+use App\Http\Controllers\Admin\CategoryController;
+
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\HomeController;
@@ -37,6 +41,19 @@ Route::group(
 
         Route::get('/', [HomeController::class, 'index'])->name('home');
 
+          /*  Category Routes */
+        Route::group([
+            'controller' => CategoryController::class,
+            'prefix'     => 'categories', 'as' => 'category.',
+        ], function () {
+            Route::get('index', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+            Route::get('edit/{category}', 'edit')->name('edit');
+            Route::put('update/{category}', 'update')->name('update');
+            Route::delete('delete/{category}', 'delete')->name('delete');
+        });
+        /*  Department Routes */
         Route::group(['controller' => DepartmentController::class,
         'prefix' => 'departments', 'as' => 'department.',
         ], function () {
@@ -48,16 +65,28 @@ Route::group(
         Route::delete('delete/{department}', 'delete')->name('delete');
         });
 
-    /* Article Routes */
-        Route::group([
-        'controller' => ArticleController::class,
-        'prefix' => 'articles',
-        'as' => 'article.',
-        ], function () {
-        Route::get('index', 'index')->name('index');
-        Route::get('show/{article}', 'show')->name('show');
-        Route::put('update/{article}', 'changeStates')->name('changeStates');
+         /* Article Routes */
+         Route::group([
+            'controller' => ArticleController::class,
+            'prefix' => 'articles',
+            'as' => 'article.',
+            ], function () {
+            Route::get('index', 'index')->name('index');
+            Route::get('show/{article}', 'show')->name('show');
+            Route::put('update/{article}', 'changeStates')->name('changeStates');
 
-        });
+            });
+
     });
+
+
+
+
+
+
 });
+
+
+
+
+

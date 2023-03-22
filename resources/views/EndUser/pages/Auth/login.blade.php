@@ -76,19 +76,41 @@
                 <h2>Welcome!</h2>
                 <p>Use credentials to access your account.</p>
             </div>
-            <form>
+            <form method="post" action="{{route('login')}}">
+                @csrf
                 <div class="row">
                     <div class="col-12">
+                        @if(session()->has('invalid'))
+                            <div class="alert alert-danger">
+                                {{ session()->get('invalid') }}
+                            </div>
+                        @endif
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Phone number">
-                            <small class="form-alert">Please follow this example - 01XXXXXXXXX</small>
+                            <input type="text" name="email" class="form-control" placeholder="email">
+                            <small class="form-alert">Please follow this example  example@example.com</small>
+                            @error('email')
+                            <div class="alert alert-danger mt-1" role="alert">
+                                <h4 class="alert-heading">Alert Danger</h4>
+                                <div class="alert-body">
+                                    {{ $message }}
+                                </div>
+                            </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="form-group">
-                            <input type="password" class="form-control" id="pass" placeholder="Password">
+                            <input type="password" name="password" class="form-control" id="pass" placeholder="Password">
                             <button type="button" class="form-icon"><i class="eye fas fa-eye"></i></button>
                             <small class="form-alert">Password must be 6 characters</small>
+                            @error('password')
+                            <div class="alert alert-danger mt-1" role="alert">
+                                <h4 class="alert-heading">Alert Danger</h4>
+                                <div class="alert-body">
+                                    {{ $message }}
+                                </div>
+                            </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-6">
@@ -147,24 +169,89 @@
             <div class="user-form-devider">
                 <p>or</p>
             </div>
-            <form>
+            <form method="post" action="{{route('register')}}">
+                @csrf
                 <div class="row">
+
                     <div class="col-12">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Phone number">
-                            <small class="form-alert">Please follow this example - 01XXXXXXXXX</small>
+                            <input type="text" class="form-control"  name="email" placeholder="email">
+                            <small class="form-alert">Please follow this example - example@example.com</small>
+                            @error('email')
+                            <div class="alert alert-danger mt-1" role="alert">
+                                <h4 class="alert-heading">Alert Danger</h4>
+                                <div class="alert-body">
+                                    {{ $message }}
+                                </div>
+                            </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password">
+                            <input type="text" class="form-control"  name="phone" placeholder="Phone number">
+                            <small class="form-alert">Please follow this example - 01XXXXXXXXX</small>
+                            @error('phone')
+                            <div class="alert alert-danger mt-1" role="alert">
+                                <h4 class="alert-heading">Alert Danger</h4>
+                                <div class="alert-body">
+                                    {{ $message }}
+                                </div>
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+{{--                    first_name--}}
+                    <div class="col-12">
+                        <div class="form-group">
+                            @error('first_name')
+                            <div class="alert alert-danger mt-1" role="alert">
+                                <h4 class="alert-heading">Alert Danger</h4>
+                                <div class="alert-body">
+                                    {{ $message }}
+                                </div>
+                            </div>
+                            @enderror
+                            <input type="text" class="form-control"  name="first_name" placeholder="First Name">
+                            <small class="form-alert">Please follow this example - 01XXXXXXXXX</small>
+
+                        </div>
+                    </div>
+{{--                    last_name--}}
+                    <div class="col-12">
+                        <div class="form-group">
+                            @error('last_name')
+                            <div class="alert alert-danger mt-1" role="alert">
+                                <h4 class="alert-heading">Alert Danger</h4>
+                                <div class="alert-body">
+                                    {{ $message }}
+                                </div>
+                            </div>
+                            @enderror
+
+                            <input type="text" class="form-control"  name="last_name" placeholder="Last Name">
+                            <small class="form-alert">Please follow this example - 01XXXXXXXXX</small>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            @error('password')
+                            <div class="alert alert-danger mt-1" role="alert">
+                                <h4 class="alert-heading">Alert Danger</h4>
+                                <div class="alert-body">
+                                    {{ $message }}
+                                </div>
+                            </div>
+                            @enderror
+                            <input type="password"   class="form-control" name="password" placeholder="Password">
                             <button class="form-icon"><i class="eye fas fa-eye"></i></button>
                             <small class="form-alert">Password must be 6 characters</small>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Repeat Password">
+                            <input type="password"  name="password_confirmation" class="form-control" placeholder="Repeat Password">
                             <button class="form-icon"><i class="eye fas fa-eye"></i></button>
                             <small class="form-alert">Password must be 6 characters</small>
                         </div>
@@ -172,7 +259,7 @@
                     <div class="col-12">
                         <div class="form-group">
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="signup-check">
+                                <input type="checkbox"  class="custom-control-input" id="signup-check">
                                 <label class="custom-control-label" for="signup-check">I agree to the all <a href="#">terms & consitions</a> of bebostha.</label>
                             </div>
                         </div>

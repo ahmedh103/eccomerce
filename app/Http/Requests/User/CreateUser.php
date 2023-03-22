@@ -2,7 +2,8 @@
 
 namespace App\Http\Requests\User;
 
-use Illuminate\Foundation\Auth\User;
+
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateUser extends FormRequest

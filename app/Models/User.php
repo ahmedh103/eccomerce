@@ -14,11 +14,23 @@ class User extends Authenticatable
 
 
     const PATH = 'images/users';
+    public static  array $rules = [
+        'first_name' => 'required',
+        'last_name' => 'required',
+        'email' => 'required|email|unique:users',
+        'phone' => 'required|unique:users,phone',
+        'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        'active' => 'in:1,0',
+        'password' => 'required|confirmed|min:6',
+        'password_confirmation' => 'required|min:6',
+    ];
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
+
+
     protected $fillable = [
         'first_name',
         'last_name',
@@ -28,15 +40,7 @@ class User extends Authenticatable
     ];
 
 
-    public static $rules = [
-        'first_name' => 'required',
-        'last_name' => 'required',
-        'email' => 'required|email|unique:users',
-        'phone' => 'required|unique:users,phone',
-        'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-        'active' => 'in:1,0',
-        'password' => 'required|confirmed|min:6',
-    ];
+
 
     /**
      * The attributes that should be hidden for serialization.

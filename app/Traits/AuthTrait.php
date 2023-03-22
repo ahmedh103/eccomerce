@@ -2,6 +2,8 @@
 
 namespace App\Traits;
 
+use Illuminate\Support\Facades\Auth;
+
 trait AuthTrait
 {
 
@@ -23,11 +25,10 @@ trait AuthTrait
         return  auth()->user()->user_role() == 1 ? redirect(route('admin.home')) : redirect(route('endUser.home'));
     }
 
-    public function logout()
+    public function handle_logout(): void
     {
         \session()->flush();
         Auth::logout();
-        return redirect()->route('home');
     }
 
 

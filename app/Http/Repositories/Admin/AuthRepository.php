@@ -40,9 +40,8 @@ class AuthRepository implements AuthInterface
 
     public function logout()
     {
-        \session()->flush();
-        Auth::logout();
-        return redirect(route('login'));
+        $this->handle_logout();
+        return redirect(route('admin.login'));
     }
 
 

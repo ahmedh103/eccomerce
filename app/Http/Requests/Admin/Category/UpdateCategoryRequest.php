@@ -25,8 +25,7 @@ class UpdateCategoryRequest extends FormRequest
             
             'name_en'=>'required|min:3|unique:categories,name,' . $this->category->id,
             'name_ar'=>'required|min:3|unique:categories,name,' . $this->category->id,
-            'slug_en'=>'required|min:5',
-            'slug_ar'=>'required|min:5',
+            
             'image'=>'nullable|image|mimes:jpg,png,jpeg'
         ];
     }

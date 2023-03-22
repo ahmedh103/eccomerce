@@ -73,11 +73,11 @@
                                                 <td class="text-center">
 
                                                         <span class="badge badge-light-success"><a 
-                                                                href="{{ route('admin.category.edit', $category->id) }}">
+                                                                href="{{ route('admin.category.edit', $category) }}">
                                                                 {{__('dashboard.edit')}}</a></span>
                                                     <span class="badge badge-light-success">
                                                             <form  id="delete"
-                                                                action="{{ route('admin.category.delete', $category->id) }}"
+                                                                action="{{ route('admin.category.delete', $category) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('delete')

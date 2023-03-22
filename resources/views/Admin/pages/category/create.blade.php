@@ -71,30 +71,24 @@
                                     </div>
                                     @enderror
                                 </div>
+                              
                                 <div class="form-group mb-4">
-                                    <label for="exampleFormControlInput2">{{__('dashboard.english_slug')}}</label>
-                                    <input type="text" class="form-control" name="slug_en" value="{{ old('slug_en') }}" id="exampleFormControlInput2" placeholder="English  Slug">
-                                    @error('slug_en')
-                                    <div class="alert alert-danger mt-1" role="alert">
-                                        <h4 class="alert-heading">Alert Danger</h4>
-                                        <div class="alert-body">
-                                            {{ $message }}
-                                        </div>
-                                    </div>
-                                    @enderror
+                                    <label for="exampleFormControlInput2">dashboard Name</label>
+                                    <select name="department_id" id="" class="form-control my-2">
+                                        <option value="">Select Department</option>
+                                        @foreach ( $departments as $department )
+                                            <option value="{{ $department->id }}" @selected('department_id')> {{$department->name}} </option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <div class="form-group mb-4">
-                                    <label for="exampleFormControlInput2">{{__('dashboard.arabic_slug')}}</label>
-                                    <input type="text" class="form-control" name="slug_ar" value="{{ old('slug_ar') }}" id="exampleFormControlInput2" placeholder="Arabic Slug">
-                                    @error('slug_ar')
-                                    <div class="alert alert-danger mt-1" role="alert">
-                                        <h4 class="alert-heading">Alert Danger</h4>
-                                        <div class="alert-body">
-                                            {{ $message }}
-                                        </div>
-                                    </div>
-                                    @enderror
-                                </div>
+
+
+
+
+
+
+
+
                                 <div class="form-group mb-4">
                                     <label for="exampleFormControlInput2">{{__('dashboard.image')}}</label>
                                     <input type="file" class="form-control" name="image"  id="exampleFormControlInput2" >
@@ -107,6 +101,10 @@
                                     </div>
                                     @enderror
                                 </div>
+
+
+
+                                
                                 <input type="submit" class="mt-4 mb-4 btn btn-primary">
                             </form>
                         </div>

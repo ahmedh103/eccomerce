@@ -3,6 +3,7 @@
 namespace App\Http\Repositories\Admin;
 
 use App\Http\Interfaces\Admin\CategoryInterface;
+use App\Http\Traits\CategoryTrait;
 use App\Http\Traits\ImageTrait;
 use App\Models\Category;
 use Illuminate\Contracts\View\Factory;
@@ -12,6 +13,7 @@ use Illuminate\Foundation\Application;
 class CategoryRepository implements CategoryInterface
 {
     use ImageTrait;
+    use CategoryTrait;
 
     private $categoryModel;
 
@@ -27,7 +29,9 @@ class CategoryRepository implements CategoryInterface
     }
     public  function create ()
     {
-        return view('Admin.pages.category.create');
+        $departments =  $this->getCategoryBydepartment();
+      
+        return view('Admin.pages.category.create',compact('departments'));
     }
 
 public  function store ($request)
@@ -37,9 +41,9 @@ public  function store ($request)
 
  $this->categoryModel::create([
     'name'=>['en'=>$request->name_en,'ar'=>$request->name_ar],
-    'slug'=>['en'=>$request->slug_en,'ar'=>$request->slug_ar],
-    'image'=> $categorieImage
-
+    'department_id' =>$request->department_id,
+    'image'=> $categorieImage,
+    
 
     ]);
 
@@ -51,8 +55,8 @@ public  function store ($request)
 
 public function edit($category)
 {
-    
-    return view('Admin.pages.category.update', compact('category'));
+    $departments =  $this->getCategoryBydepartment();
+    return view('Admin.pages.category.update', compact('category'),compact('departments'));
 }
 
 
@@ -64,7 +68,7 @@ public function update($request, $category)
     }
     $category->update([
         'name'=>['en'=>$request->name_en,'ar'=>$request->name_ar],
-        'slug'=>['en'=>$request->slug_en,'ar'=>$request->slug_ar],
+        'department_id' =>$request->department_id,
         'image'=> $categorieImage ?? $category->getRawOriginal('image')
     
     

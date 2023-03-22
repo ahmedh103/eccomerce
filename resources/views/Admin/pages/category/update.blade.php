@@ -48,30 +48,21 @@
                                             </div>
                                             @enderror
                                         </div>
+                                     
+
                                         <div class="form-group mb-4">
-                                            <label for="exampleFormControlInput2">{{__('dashboard.english_slug')}}</label>
-                                            <input type="text" class="form-control" name="slug_en" value="{{$category->getTranslation('slug','en')}}" id="exampleFormControlInput2" placeholder="English  Slug">
-                                            @error('slug_en')
-                                            <div class="alert alert-danger mt-1" role="alert">
-                                                <h4 class="alert-heading">Alert Danger</h4>
-                                                <div class="alert-body">
-                                                    {{ $message }}
-                                                </div>
-                                            </div>
-                                            @enderror
+                                            <label for="exampleFormControlInput2">dashboard Name</label>
+                                            <select name="department_id" id="" class="form-control my-2">
+                                                <option value="">Select Department</option>
+                                                @foreach ( $departments as $department )
+                                                    <option value="{{ $department->id }}" @selected('department_id')> {{$department->name}} </option>
+                                                @endforeach
+                                            </select>
                                         </div>
-                                        <div class="form-group mb-4">
-                                            <label for="exampleFormControlInput2">{{__('dashboard.arabic_slug')}}</label>
-                                            <input type="text" class="form-control" name="slug_ar" value="{{$category->getTranslation('slug','ar')}}" id="exampleFormControlInput2" placeholder="Arabic Slug">
-                                            @error('slug_ar')
-                                            <div class="alert alert-danger mt-1" role="alert">
-                                                <h4 class="alert-heading">Alert Danger</h4>
-                                                <div class="alert-body">
-                                                    {{ $message }}
-                                                </div>
-                                            </div>
-                                            @enderror
-                                        </div>
+
+
+
+
                                         <div class="form-group mb-4">
                                             <div class=" input-group mb-3 mt-4">
                                                 <img src="{{$category->image}}" width="100px" height="100px">
@@ -88,6 +79,15 @@
                                             @enderror
                                         </div>
                                     </div>
+
+
+                                  
+
+
+
+
+
+
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </form>
                             </div>

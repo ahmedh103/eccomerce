@@ -50,8 +50,19 @@
                 </a>
                 <a href="user-form.html" class="header-widget header-user">
                     <img src="images/user.png" alt="user">
-                    <span>join me</span>
+                    <a href="{{route('login')}}">
+                    <span>
+                        join me
+                    </span>
+                    </a>
                 </a>
+
+               @if(Auth::check())
+                    <a class="ml-2" href="{{ route('endUser.logout') }}">
+                        <span>logo out</span>
+                    </a>
+                @endif
+
                 <button type="button" class="header-widget search-btn">
                     <i class="fas fa-search"></i>
                 </button>

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
 
 use App\Http\Interfaces\Admin\AuthInterface;
 use App\Http\Requests\Admin\Auth\LoginRequest;
-use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -28,9 +29,5 @@ class AuthController extends Controller
         return $this->authInterface->logout();
     }
 
-    public function register(U $request)
-    {
-        return $this->authInterface->register($request);
-    }
 
 }

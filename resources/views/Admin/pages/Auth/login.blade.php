@@ -14,7 +14,7 @@
                                     {{ session()->get('invalid') }}
                                 </div>
                             @endif
-                            <form method="POST"  action="{{route('login')}}">
+                            <form method="POST"  action="{{route('admin.login')}}">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12 mb-3">

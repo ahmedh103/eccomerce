@@ -4,19 +4,18 @@ namespace App\Http\Repositories\Admin;
 
 use App\Http\Interfaces\Admin\AuthInterface;
 use App\Models\User;
+use App\Traits\AuthTrait;
 use Illuminate\Support\Facades\Auth;
 
 class AuthRepository implements AuthInterface
 {
+    use AuthTrait;
 
     public function index()
     {
 
-        if( \auth()->user())
-        {
-            return  auth()->user()->user_role() == 1 ? redirect(route('admin.home')) : redirect(route('endUser.home'));
-        }
-        return view('Admin.pages.Auth.login');
+      return $this->checkIsAdminAuth();
+
     }
 
     public function login($request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
@@ -28,7 +27,6 @@ class AuthRepository implements AuthInterface
             return redirect(route('admin.home'));
         }
 
-
         if ( Auth::user()  && Auth::user()->user_role() == 2)
         {
             \session()->flush();
@@ -39,21 +37,14 @@ class AuthRepository implements AuthInterface
 
     }
 
+
     public function logout()
     {
-        \session()->flush();
-        Auth::logout();
-        return redirect(route('login'));
+        $this->handle_logout();
+        return redirect(route('admin.login'));
     }
 
-    public function register($request)
-    {
-        //user registration
 
-
-
-
-    }
 
 
 }

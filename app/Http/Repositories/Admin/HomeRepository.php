@@ -12,6 +12,6 @@ class HomeRepository implements HomeInterface
 
     public function dashboard(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('admin.index');
+        return view('Admin.index');
     }
 }

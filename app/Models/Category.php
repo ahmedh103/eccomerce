@@ -10,11 +10,11 @@ use Spatie\Translatable\HasTranslations;
 
 class Category extends Model
 {
-    use HasFactory,HasTranslations,HasSlug ;
+    use HasFactory, HasTranslations, HasSlug ;
 
 
 
-public $translatable = ['name','slug'];
+public $translatable = ['name'];
 
     protected $fillable = [
         'name',
@@ -38,6 +38,9 @@ return $this->belongsTo(Department::class);
     }
 
 
+    /**
+     * @return SlugOptions
+     */
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()

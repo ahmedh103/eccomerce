@@ -41,7 +41,7 @@ Route::group(
 
         Route::get('/', [HomeController::class, 'index'])->name('home');
 
-          /*  Category Routes */ 
+          /*  Category Routes */
         Route::group([
             'controller' => CategoryController::class,
             'prefix'     => 'categories', 'as' => 'category.',
@@ -49,11 +49,11 @@ Route::group(
             Route::get('index', 'index')->name('index');
             Route::get('create', 'create')->name('create');
             Route::post('store', 'store')->name('store');
-            Route::get('update/{category}', 'edit')->name('edit');
+            Route::get('edit/{category}', 'edit')->name('edit');
             Route::put('update/{category}', 'update')->name('update');
             Route::delete('delete/{category}', 'delete')->name('delete');
         });
-        /*  Department Routes */ 
+        /*  Department Routes */
         Route::group(['controller' => DepartmentController::class,
         'prefix' => 'departments', 'as' => 'department.',
         ], function () {
@@ -74,12 +74,12 @@ Route::group(
             Route::get('index', 'index')->name('index');
             Route::get('show/{article}', 'show')->name('show');
             Route::put('update/{article}', 'changeStates')->name('changeStates');
-    
+
             });
 
     });
 
-   
+
 
 
 
@@ -87,6 +87,6 @@ Route::group(
 });
 
 
-      
 
-   
+
+

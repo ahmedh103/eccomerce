@@ -65,14 +65,14 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @forelse ($categories as $key =>  $category)
+                                        @forelse ($categories as $category)
                                             <tr>
                                                 <td>{{ $category->name }}</td>
                                                 <td>{{ $category->slug }}</td>
                                                 <td><img src=" {{ $category->image }}" width="100px" height="100px"></td>
                                                 <td class="text-center">
 
-                                                        <span class="badge badge-light-success"><a 
+                                                        <span class="badge badge-light-success"><a
                                                                 href="{{ route('admin.category.edit', $category) }}">
                                                                 {{__('dashboard.edit')}}</a></span>
                                                     <span class="badge badge-light-success">

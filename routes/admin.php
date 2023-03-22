@@ -24,11 +24,11 @@ Route::group(
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
     ], function(){
 
-    Route::group(['prefix =>admin', 'as' => 'admin.'], function (){
-
+    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function (){
+        Route::get('/login', [AuthController::class, 'index'])->name('login');
+        Route::post('/login', [AuthController::class, 'login'])->name('login');
     });
-    Route::get('/admin/login', [AuthController::class, 'index'])->name('admin.login');
-    Route::post('/admin/login', [AuthController::class, 'login'])->name('admin.login');
+
 
     Route::group(['prefix' => 'admin', 'as' => 'admin.' , 'middleware'=> ['AdminAuth' , 'isAdmin' , 'prevent-back-history'] ], function (){
         Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

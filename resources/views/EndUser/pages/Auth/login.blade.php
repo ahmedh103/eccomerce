@@ -53,7 +53,7 @@
 <section class="user-form-part">
     <div class="user-form-banner">
         <div class="user-form-content">
-            <a href="#"><img src="images/logo.png" alt="logo"></a>
+            <a href="#"><img src="{{asset('assetsEndUser/images/logo.png')}}" alt="logo"></a>
             <h1>Advertise your assets <span>Buy what are you needs.</span></h1>
             <p>Biggest Online Advertising Marketplace in the World.</p>
         </div>
@@ -61,7 +61,7 @@
 
     <div class="user-form-category">
         <div class="user-form-header">
-            <a href="#"><img src="images/logo.png" alt="logo"></a>
+            <a href="#"><img src="{{asset('assetsEndUser/images/logo.png')}}" alt="logo"></a>
             <a href="index.html"><i class="fas fa-arrow-left"></i></a>
         </div>
         <div class="user-form-category-btn">

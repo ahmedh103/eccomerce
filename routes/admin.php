@@ -50,10 +50,10 @@ Route::group(
 
         Route::get('/', [HomeController::class, 'index'])->name('home');
 
-          /*  Category Routes */
+        /*  Category Routes */
         Route::group([
             'controller' => CategoryController::class,
-            'prefix'     => 'categories', 'as' => 'category.',
+            'prefix' => 'categories', 'as' => 'category.',
         ], function () {
             Route::get('index', 'index')->name('index');
             Route::get('create', 'create')->name('create');
@@ -64,28 +64,25 @@ Route::group(
         });
         /*  Department Routes */
         Route::group(['controller' => DepartmentController::class,
-        'prefix' => 'departments', 'as' => 'department.',
+            'prefix' => 'departments', 'as' => 'department.',
         ], function () {
-        Route::get('index', 'index')->name('index');
-        Route::get('create', 'create')->name('create');
-        Route::post('store', 'store')->name('store');
-        Route::get('update/{department}', 'updateForm')->name('updateForm');
-        Route::put('update/{department}', 'update')->name('update');
-        Route::delete('delete/{department}', 'delete')->name('delete');
+            Route::get('index', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+            Route::get('update/{department}', 'updateForm')->name('updateForm');
+            Route::put('update/{department}', 'update')->name('update');
+            Route::delete('delete/{department}', 'delete')->name('delete');
         });
 
-         /* Article Routes */
-         Route::group([
+        /* Article Routes */
+        Route::group([
             'controller' => ArticleController::class,
             'prefix' => 'articles',
             'as' => 'article.',
-            ], function () {
+        ], function () {
             Route::get('index', 'index')->name('index');
             Route::get('show/{article}', 'show')->name('show');
             Route::put('update/{article}', 'changeStates')->name('changeStates');
-
-            });
-
 
         });
 
@@ -104,9 +101,7 @@ Route::group(
             Route::get('/edit/{ad}', 'edit')->name('edit');
         });
 
-
-
-
+    });
 
 });
 

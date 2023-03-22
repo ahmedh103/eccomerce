@@ -5,7 +5,6 @@ use App\Http\Controllers\Admin\AuthController;
 
 
 use App\Http\Controllers\Admin\CategoryController;
-
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\ArticleController;
 

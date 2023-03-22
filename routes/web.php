@@ -20,6 +20,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 Route::group(
+
     [
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
@@ -30,12 +31,13 @@ Route::group(
     Route::post('/register', [AuthController::class, 'register'])->name('register');
 
     Route::group(['prefix' => '/', 'as' => 'endUser.' , 'middleware'=> ['prevent-back-history'] ], function (){
-        
+
         Route::middleware(['auth' , 'status' ])->group(function () {
             Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
         });
         Route::get('', [HomeController::class, 'index'])->name('home');
     });
+
 });
 
 

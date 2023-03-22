@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Interfaces\Admin\AdInterface;
 use App\Http\Requests\AdStoreRequest;
+use App\Http\Requests\AdUpdateRequest;
 use Illuminate\Http\Request;
 use App\Models\Ads;
 
@@ -29,7 +30,7 @@ class AdController extends Controller
         return $this->adInterface->edit($ad);
     }
 
-    public function update(Ads $ad,AdStoreRequest $request){
+    public function update(Ads $ad,AdUpdateRequest $request){
         return $this->adInterface->update($ad,$request);
     }
 

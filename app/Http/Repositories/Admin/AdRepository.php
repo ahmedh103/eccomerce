@@ -21,7 +21,7 @@ class AdRepository implements AdInterface
 
     public function index()
     {
-        $ads = $this->adModel::get(['id','name','city','image']);
+        $ads = $this->adModel::get(['id','name','city','image','slug']);
         return view('Admin.ads.index', compact('ads'));
     }
 
@@ -31,9 +31,9 @@ class AdRepository implements AdInterface
         $this->adModel::create([
             'name' => ['en' => $request->name_en , 'ar' => $request->name_ar],
             'city' => $request->city,
-            'image' => $imageName,
+            'image' => $imageName
         ]);
-        toast('Add created successfully', 'success');
+        toast('Ad created successfully', 'success');
         return redirect(route('admin.ads.index'));
     }
 

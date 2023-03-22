@@ -22,6 +22,7 @@
                         <thead>
                         <tr>
                             <th scope="col">Name</th>
+                            <th scope="col">Slug</th>
                             <th scope="col">City</th>
                             <th scope="col">Image</th>
                             <th class="text-center" scope="col">Actions</th>
@@ -32,6 +33,7 @@
                         @foreach($ads as $ad)
                             <tr>
                                 <td>{{$ad->name}}</td>
+                                <td>{{$ad->slug}}</td>
                                 <td>{{$ad->city}}</td>
                                 <td><img src="{{ $ad->image}}" width="100px" height="100px"></td>
                                 <td class="text-center">

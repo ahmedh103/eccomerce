@@ -20,6 +20,7 @@
                         <th>{{ __('dashboard.detalis') }}</th>
                         <th>{{ __('dashboard.price') }}</th>
                         <th>{{ __('dashboard.image') }}</th>
+                        <th>{{__('dashboard.category')}}</th>
                         <th class="no-content">{{ __('dashboard.action') }}</th>
                     </tr>
                     </thead>
@@ -34,10 +35,12 @@
                         <td>
                             <img src="{{asset("storage/$product->image")}}" alt="" class="" style="width: 10%">
                         </td>
+                        <td>{{$product->category->name}}</td>
+
 
                        <td>
-                           <a href="{{route('admin.product.edit', $product->id)}}" class="btn btn-success">{{ __('dashboard.edit') }}</a>
-                           <form action="{{route('admin.product.delete',$product->id)}}" method="POST" style="display: inline">
+                           <a href="{{route('admin.product.edit', $product)}}" class="btn btn-success">{{ __('dashboard.edit') }}</a>
+                           <form action="{{route('admin.product.delete', $product)}}" method="POST" style="display: inline">
                                @method('DELETE')
                                @csrf
                                <button class="btn btn-danger">{{ __('dashboard.delete') }}</button>

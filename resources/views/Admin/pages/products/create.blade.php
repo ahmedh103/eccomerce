@@ -36,7 +36,7 @@
                         <div class="widget-header">
                             <div class="row">
                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                    <h4 class="text-center pt-3">{{ __('dashboard.addProduct') }}</h4>
+                                    <h4 class="text-center pt-3">{{ __('dashboard.add') }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -71,14 +71,14 @@
                                     @error('detalis_ar')
                                     <p class=" text-danger"> {{ $message }} </p>
                                     @enderror
-{{--                                    <select name="category_id" id="" class="form-control my-2">--}}
-{{--                                        <option value="">Select Category Menu</option>--}}
-
-{{--                                            <option value="" @selected('category_id')></option>--}}
-
-{{--                                    </select>--}}
+                                    <select name="category_id" id="" class="form-control my-2">
+                                        <option value="">Select Category Menu</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{$category->id}}" @selected('category_id')>{{$category->name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <input type="submit" class="mt-4 mb-4 btn btn-primary">
+                                <button type="submit" class="btn btn-outline-success">{{__('dashboard.add')}}</button>
                             </form>
                         </div>
                     </div>

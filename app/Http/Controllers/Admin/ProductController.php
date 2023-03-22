@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Interfaces\Admin\ProductInterface;
 use App\Http\Requests\Admin\Product\StoreRequest;
 use App\Http\Requests\Admin\Product\UpdateProduct;
-use App\Models\Admin\Product;
+use App\Models\Product;
 
 
 class ProductController extends Controller
@@ -27,7 +27,7 @@ class ProductController extends Controller
     public  function store(StoreRequest $request){
         return $this->productInterface->store($request);
     }
-    public  function editForm( $product){
+    public  function editForm(Product $product){
         return $this->productInterface->editForm($product);
     }
     public function update(UpdateProduct $request , Product $product){

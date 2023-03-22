@@ -41,7 +41,7 @@
                             </div>
                         </div>
                         <div class="widget-content widget-content-area">
-                            <form method="post" action="{{route("admin.product.update",$product->id)}}" enctype="multipart/form-data">
+                            <form method="post" action="{{route("admin.product.update",$product)}}" enctype="multipart/form-data">
                                 @method('PUT')
                                 @csrf
                                 <div class="form-group mb-4">
@@ -73,14 +73,14 @@
                                     @error('detalis_ar')
                                     <p class=" text-danger"> {{ $message }} </p>
                                     @enderror
-                                    {{--                                    <select name="category_id" id="" class="form-control my-2">--}}
-                                    {{--                                        <option value="">Select Category Menu</option>--}}
-
-                                    {{--                                            <option value="" @selected('category_id')></option>--}}
-
-                                    {{--                                    </select>--}}
+                                                                        <select name="category_id" id="" class="form-control my-2">
+                                                                            <option value="">Select Category Menu</option>
+                                                                            @foreach($categories as $category)
+                                                                                <option value="{{$category->id}}" @selected('category_id')>{{$category->name}}</option>
+                                                                            @endforeach
+                                                                        </select>
                                 </div>
-                                <input type="submit" class="mt-4 mb-4 btn btn-primary">
+                                <button type="submit" class="btn btn-outline-success">{{__('dashboard.editProduct')}}</button>
                             </form>
                         </div>
                     </div>

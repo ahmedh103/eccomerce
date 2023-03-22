@@ -28,14 +28,15 @@ class StoreRequest extends FormRequest
             'detalis_en'=>'required',
             'detalis_ar'=>'required',
             'price'=>'required',
-            'image'=>'required'
+            'image'=>'required',
+            'category_id'=>'required'
         ];
     }
 
-//    public function messages()
-//    {
-//        return [
-//            'neme_en.required'=> trans('validation.required'),
-//        ];
-//    }
+    public function messages()
+    {
+        return [
+            'neme_en.required'=> trans('validation.required'),
+        ];
+    }
 }

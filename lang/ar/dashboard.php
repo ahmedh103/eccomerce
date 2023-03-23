@@ -16,4 +16,6 @@ return [
     'nameProduct_ar'=>'اسم المنتج بالعربيه',
     'editProduct'=>'تعديل منتج',
     'edit'=>'تعديل',
+    'category'=>'فئه',
+    'add'=>'اضافه منتج',
 ];

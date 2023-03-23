@@ -16,4 +16,6 @@ return [
     'nameProduct_ar'=>'Product name in Arabic',
     'editProduct'=>'Update Product',
     'edit'=>'Update',
+    'category'=>'category',
+    'add'=>'Add Product'
 ];

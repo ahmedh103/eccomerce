@@ -21,9 +21,8 @@ class RegisterRepository implements RegisterInterface
     {
         $data = $request->except(['password_confirmation' , '_token' , 'password']);
         $data['password'] = bcrypt($request->password);
-        $user =   User::create($data);
-        $user->attachGroup(2);
+        User::create($data);
         toast('User Created Successfully', 'success');
-        return redirect()->route('login')->with('register', 'User Created Successfully');
+        return redirect()->route('login');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Group;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -22,7 +23,9 @@ class AdminSeeder extends Seeder
             "password" => bcrypt('123456'),
             'active' => 1,
         ]);
-        $user->attachGroup(1);
+        $group = Group::where('name', 'admin')->first();
+
+        $user->groups()->attach($group->id);
 
         $this->command->comment('======== Information admin created ========');
         $this->command->comment('======== Information admin created ========');

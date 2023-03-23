@@ -2,16 +2,20 @@
 
 return [
   'home' => 'Home',
-  'name'=>'Name',
-  'slug'=>'Slug',
-  'image'=>'Images',
-  'all_categories'=>'All Categories',
-  'action'=>'Action',
-  'no_data_found'=>'No Data Found',
-  'english_name'=>'English Name',
-  'arabic_name'=>'Arabic Name',
-  'english_slug'=>'English Slug',
-  'arabic_slug'=>'Arabic slug',
-  'edit'=>'Edit',
-  'delete'=>'Delete'
+      'product'=>'All Product',
+    'name'=>'Product Name',
+    'pageProduct'=>'Product',
+    'detalis'=>'detalis',
+    'price'=>'price',
+    'image'=>'image',
+    'action'=>'Action',
+    'edit'=>'edit',
+    'delete'=>'delete',
+    'addProduct'=>' Add Product',
+    'nameProduct_en'=>'Product name in English',
+    'nameProduct_ar'=>'Product name in Arabic',
+    'editProduct'=>'Update Product',
+    'edit'=>'Update',
+    'category'=>'category',
+    'add'=>'Add Product'
 ];

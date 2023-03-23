@@ -11,8 +11,7 @@ class AuthRepository implements AuthInterface
 {
         use AuthTrait;
 
-    public function index(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\Foundation\Application
-    {
+    public function index(){
         return $this->checkIsEndUserAuth();
 
     }
@@ -44,15 +43,5 @@ class AuthRepository implements AuthInterface
     }
 
 
-    public function register($request)
-    {
-       $data = $request->except(['password_confirmation' , '_token' , 'password']);
-       $data['password'] = bcrypt($request->password);
-        $user =   User::create($data);
-        $user->attachGroup(2);
-        toast('User Created Successfully', 'success');
-        return redirect()->route('login');
 
-
-    }
 }

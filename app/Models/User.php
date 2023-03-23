@@ -80,9 +80,14 @@ class User extends Authenticatable
     // attach user to group
     public function attachGroup($group_id): void
     {
-        $this->group()->create([
-            'group_id' => $group_id,
-        ]);
+        if($this->group !== null)
+            $this->group()->update([
+                'group_id' => $group_id,
+            ]);
+        else
+            $this->group()->create([
+                'group_id' => $group_id,
+            ]);
     }
 
 

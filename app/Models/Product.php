@@ -14,10 +14,13 @@ class Product extends Model
     use HasFactory, HasTranslations,HasSlug;
     public $translatable = ['name','detalis'];
 
-    const PATH = 'products';
-    protected $fillable=[
-        'name','slug','detalis','price','image','category_id'
-    ];
+    const PATH = 'images/products';
+    protected $fillable=[ 'name','slug','detalis','price','image','category_id' ];
+
+    public function getImageAttribute($value)
+    {
+        return self::PATH . DIRECTORY_SEPARATOR. $value;
+    }
     public function category()
     {
         return $this->belongsTo(Category::class);

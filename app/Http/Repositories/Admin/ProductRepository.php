@@ -34,14 +34,14 @@ use ProductTrait;
 
     public function store($request)
     {
-          $imageName = Storage::putFile($this->producModel::PATH,$request->image);
-          $product =  $this->producModel::create([
+        $imageName = Storage::putFile($this->producModel::PATH,$request->image);
+        $product =  $this->producModel::create([
                 'name' => ['en'=>$request->name_en,'ar'=>$request->name_ar],
                 'detalis'=>['en'=>$request->detalis_en ,'ar'=>$request->detalis_ar],
                 'price' => $request->price,
                 'category_id'=> $request->category_id,
                 'image' => $imageName
-          ]);
+        ]);
 
         toast(__('dashboard.addProduct'), 'success');
         return redirect(route('admin.product.index'));

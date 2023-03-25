@@ -8,6 +8,6 @@ interface ProductInterface
     public function create();
     public function store($request);
     public function editForm($product);
-    public function update($request,$product);
+    public function update($request, $product);
     public function delete($product);
 }

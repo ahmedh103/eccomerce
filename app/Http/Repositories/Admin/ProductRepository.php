@@ -3,14 +3,14 @@
 namespace App\Http\Repositories\Admin;
 
 use App\Http\Interfaces\Admin\ProductInterface;
-use App\Http\Traits\Products\ProductTrait;
+use App\Http\Traits\ProductTrait;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 
 class ProductRepository implements ProductInterface
 {
-use ProductTrait;
+    use ProductTrait;
     private $producModel;
 
     public function __construct(Product $product)

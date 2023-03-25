@@ -5,6 +5,7 @@ namespace App\Http\Repositories\Admin;
 use App\Http\Interfaces\Admin\ProductInterface;
 use App\Http\Traits\Products\ProductTrait;
 use App\Models\Product;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 
 class ProductRepository implements ProductInterface
@@ -33,17 +34,14 @@ use ProductTrait;
 
     public function store($request)
     {
-
-
-
-        $imageName = Storage::putFile($this->producModel::PATH,$request->image);
-      $product =  $this->producModel::create([
-            'name' => ['en'=>$request->name_en,'ar'=>$request->name_ar],
-            'detalis'=>['en'=>$request->detalis_en ,'ar'=>$request->detalis_ar],
-            'price' => $request->price,
-            'category_id'=>$request->category_id,
-            'image' => $imageName
-        ]);
+          $imageName = Storage::putFile($this->producModel::PATH,$request->image);
+          $product =  $this->producModel::create([
+                'name' => ['en'=>$request->name_en,'ar'=>$request->name_ar],
+                'detalis'=>['en'=>$request->detalis_en ,'ar'=>$request->detalis_ar],
+                'price' => $request->price,
+                'category_id'=> $request->category_id,
+                'image' => $imageName
+          ]);
 
         toast(__('dashboard.addProduct'), 'success');
         return redirect(route('admin.product.index'));
@@ -75,8 +73,9 @@ use ProductTrait;
         return redirect(route('admin.product.index'));
     }
 
-    public function delete($product)
+    public function delete($product): RedirectResponse
     {
+        Storage::delete($product->image);
         $product->delete();
         toast(__('dashboard.deleteProduct'), 'success');
         return back();

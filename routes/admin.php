@@ -63,23 +63,6 @@ Route::group(
             Route::delete('delete/{category}', 'delete')->name('delete');
         });
 
-        Route::group(
-            [
-                'prefix' => LaravelLocalization::setLocale(),
-                'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-            ], function(){ //...
-
-            /* Proudct Route */
-
-                Route::group(['prefix'=>'product','as'=>'product.'],function (){
-                    Route::get('/',[ProductController::class,"index"])->name('index');
-                    Route::get('create',[ProductController::class,"create"])->name('create');
-                    Route::post('store',[ProductController::class,"store"])->name('store');
-                    Route::get('editForm/{product}',[ProductController::class,"editForm"])->name('edit');
-                    Route::put('update/{product}',[ProductController::class,"update"])->name('update');
-                    Route::delete('/{product}',[ProductController::class,"delete"])->name('delete');
-                });
-        });
         /*  Department Routes */
         Route::group(['controller' => DepartmentController::class,
             'prefix' => 'departments', 'as' => 'department.',
@@ -104,7 +87,18 @@ Route::group(
 
         });
 
+        /* Product Route */
+
+        Route::group(['prefix'=>'product','as'=>'product.'],function (){
+            Route::get('/',[ProductController::class,"index"])->name('index');
+            Route::get('create',[ProductController::class,"create"])->name('create');
+            Route::post('store',[ProductController::class,"store"])->name('store');
+            Route::get('editForm/{product}',[ProductController::class,"editForm"])->name('edit');
+            Route::put('update/{product}',[ProductController::class,"update"])->name('update');
+            Route::delete('/{product}',[ProductController::class,"delete"])->name('delete');
         });
+
+    });
 
 
 });

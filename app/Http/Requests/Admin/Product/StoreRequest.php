@@ -23,13 +23,13 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_en'=>'required',
-            'name_ar'=>'required',
+            'name_en'=>'required|max:255',
+            'name_ar'=>'required|max:255',
             'detalis_en'=>'required',
             'detalis_ar'=>'required',
-            'price'=>'required',
-            'image'=>'required|image|png|jpg|jpeg',
-            'category_id'=>'required'
+            'price'=>'required|numeric',
+            'image'=>'required|image|mimes:png,jpg,jpeg,webp',
+            'category_id'=>'required|exists:categories,id'
         ];
     }
 

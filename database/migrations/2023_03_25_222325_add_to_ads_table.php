@@ -12,13 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('ads', function (Blueprint $table) {
-            $table->foreignId("category_id")->constrained("categories");
+            $table->foreignId("category_id")->constrained("categories")->cascadeOnUpdate();
+            $table->foreignId("user_id")->constrained()->cascadeOnUpdate();
             $table->text("price");
             $table->text("description");
             $table->enum("type",["new","used"]);
             $table->enum("status",["pending","approved","rejected",])->default("pending");
-            
-            
+
+
         });
     }
 

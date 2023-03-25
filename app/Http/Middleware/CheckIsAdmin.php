@@ -18,6 +18,6 @@ class CheckIsAdmin
           if (auth()->user()->group->group_id == 1) {
                 return $next($request);
             }
-            return response()->json('You are not admin');
+            return  redirect()->route('endUser.home');
     }
 }

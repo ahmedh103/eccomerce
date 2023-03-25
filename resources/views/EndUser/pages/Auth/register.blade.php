@@ -66,26 +66,47 @@
         </div>
         <div class="user-form-category-btn">
             <ul class="nav nav-tabs">
-                <li><a href="#login-tab" class="nav-link active">sign in</a></li>
-                <li><a href="{{route('register')}}" class="nav-link" >sign up</a></li>
+                <li><a href="{{route('login')}}" class="nav-link" >sign in</a></li>
+                <li><a href="#register-tab" class="nav-link active" >sign up</a></li>
             </ul>
         </div>
 
-        <div class="tab-pane active" id="login-tab">
+        <div class="tab-pane  active" id="register-tab">
             <div class="user-form-title">
-                <h2>Welcome!</h2>
-                <p>Use credentials to access your account.</p>
+                <h2>Register</h2>
+                <p>Setup a new account in a minute.</p>
             </div>
-            <form method="post" action="{{route('login')}}">
+            <ul class="user-form-option">
+                <li>
+                    <a href="#">
+                        <i class="fab fa-facebook-f"></i>
+                        <span>facebook</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fab fa-twitter"></i>
+                        <span>twitter</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fab fa-google"></i>
+                        <span>google</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="user-form-devider">
+                <p>or</p>
+            </div>
+            <form method="post" action="{{route('register')}}">
                 @csrf
                 <div class="row">
-                    @if(session()->has('invalid'))
-                        <div class="alert alert-danger">
-                            {{ session()->get('invalid') }}
-                        </div>
-                    @endif
+
                     <div class="col-12">
                         <div class="form-group">
+                            <input type="text" class="form-control"  name="email" placeholder="email">
+                            <small class="form-alert">Please follow this example - example@example.com</small>
                             @error('email')
                             <div class="alert alert-danger mt-1" role="alert">
                                 <h4 class="alert-heading">Alert Danger</h4>
@@ -94,17 +115,13 @@
                                 </div>
                             </div>
                             @enderror
-                            <input type="text" name="email" class="form-control" placeholder="email">
-                            <small class="form-alert">Please follow this example  example@example.com</small>
-
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="form-group">
-                            <input type="password" name="password" class="form-control" id="pass" placeholder="Password">
-                            <button type="button" class="form-icon"><i class="eye fas fa-eye"></i></button>
-                            <small class="form-alert">Password must be 6 characters</small>
-                            @error('password')
+                            <input type="text" class="form-control"  name="phone" placeholder="Phone number">
+                            <small class="form-alert">Please follow this example - 01XXXXXXXXX</small>
+                            @error('phone')
                             <div class="alert alert-danger mt-1" role="alert">
                                 <h4 class="alert-heading">Alert Danger</h4>
                                 <div class="alert-body">
@@ -114,31 +131,81 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-6">
+                    {{--                    first_name--}}
+                    <div class="col-12">
                         <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="signin-check">
-                                <label class="custom-control-label" for="signin-check">Remember me</label>
+                            @error('first_name')
+                            <div class="alert alert-danger mt-1" role="alert">
+                                <h4 class="alert-heading">Alert Danger</h4>
+                                <div class="alert-body">
+                                    {{ $message }}
+                                </div>
                             </div>
+                            @enderror
+                            <input type="text" class="form-control"  name="first_name" placeholder="First Name">
+                            <small class="form-alert">Please follow this example - 01XXXXXXXXX</small>
+
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="form-group text-right">
-                            <a href="#" class="form-forgot">Forgot password?</a>
+                    {{--                    last_name--}}
+                    <div class="col-12">
+                        <div class="form-group">
+                            @error('last_name')
+                            <div class="alert alert-danger mt-1" role="alert">
+                                <h4 class="alert-heading">Alert Danger</h4>
+                                <div class="alert-body">
+                                    {{ $message }}
+                                </div>
+                            </div>
+                            @enderror
+
+                            <input type="text" class="form-control"  name="last_name" placeholder="Last Name">
+                            <small class="form-alert">Please follow this example - 01XXXXXXXXX</small>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            @error('password')
+                            <div class="alert alert-danger mt-1" role="alert">
+                                <h4 class="alert-heading">Alert Danger</h4>
+                                <div class="alert-body">
+                                    {{ $message }}
+                                </div>
+                            </div>
+                            @enderror
+                            <input type="password"   class="form-control" name="password" placeholder="Password">
+                            <a class="form-icon"><i class="eye fas fa-eye"></i></a>
+                            <small class="form-alert">Password must be 6 characters</small>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input type="password"  name="password_confirmation" class="form-control" placeholder="Repeat Password">
+                            <button type="button" class="form-icon"><i class="eye fas fa-eye"></i></button>
+                            <small class="form-alert">Password must be 6 characters</small>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox"  class="custom-control-input" id="signup-check">
+                                <label class="custom-control-label" for="signup-check">I agree to the all <a href="#">terms & consitions</a> of bebostha.</label>
+                            </div>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="form-group">
                             <button type="submit" class="btn btn-inline">
-                                <i class="fas fa-unlock"></i>
-                                <span>Enter your account</span>
+                                <i class="fas fa-user-check"></i>
+                                <span>Create new account</span>
                             </button>
                         </div>
                     </div>
                 </div>
             </form>
             <div class="user-form-direction">
-                <p>Don't have an account? click on the <span>( sign up )</span> button above.</p>
+                <p>Already have an account? click on the <span>( sign in )</span> button above.</p>
             </div>
         </div>
 

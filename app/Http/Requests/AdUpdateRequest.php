@@ -26,7 +26,8 @@ class AdUpdateRequest extends FormRequest
             'name_en' => 'required|string|max:255',
             'name_ar' => 'required|string|max:255',
             'city' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,png,jpg'
+            'image' => 'nullable|image|mimes:jpeg,png,png,jpg',
+            'category_id'=>'required|exists:categories,id'
         ];
     }
 }

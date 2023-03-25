@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Admin\Product;
+namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateProduct extends FormRequest
+class AdStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EndUser\AuthController;
 use App\Http\Controllers\EndUser\HomeController;
+use App\Http\Controllers\RegisterController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -28,7 +29,8 @@ Route::group(
 
     Route::get('/login', [AuthController::class, 'index'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login');
-    Route::post('/register', [AuthController::class, 'register'])->name('register');
+    Route::get('/register', [RegisterController::class, 'index'])->name('register');
+    Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
     Route::group(['prefix' => '/', 'as' => 'endUser.' , 'middleware'=> ['prevent-back-history'] ], function (){
 

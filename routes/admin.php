@@ -53,7 +53,8 @@ Route::group(
         /*  Category Routes */
         Route::group([
             'controller' => CategoryController::class,
-            'prefix' => 'categories', 'as' => 'category.',
+            'prefix' => 'categories',
+            'as' => 'category.',
         ], function () {
             Route::get('index', 'index')->name('index');
             Route::get('create', 'create')->name('create');

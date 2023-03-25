@@ -29,7 +29,7 @@ Departments
                         <tr>
                             <td>{{$department->name}}</td>
                             <td>{{$department->slug}}</td>
-                            <td><img src="{{ $department->image}}" width="100px" height="100px"></td>
+                            <td><img src="{{ asset($department->image) }}" width="100px" height="100px"></td>
                             <td><a href="{{ route('admin.department.updateForm',$department) }}"
                                     class="btn btn-primary">Edit</a></td>
                             <td class="text-center">

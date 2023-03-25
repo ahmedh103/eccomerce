@@ -35,7 +35,7 @@
                                 <td>{{$ad->name}}</td>
                                 <td>{{$ad->slug}}</td>
                                 <td>{{$ad->city}}</td>
-                                <td><img src="{{ $ad->image}}" width="100px" height="100px"></td>
+                                <td><img src="{{ asset($ad->image) }}" width="100px" height="100px"></td>
                                 <td class="text-center">
                                     <a href="{{ route('admin.ads.edit', $ad) }}" class="btn btn-primary">Edit</a>
                                     <form style="display: inline-block" action="{{route('admin.ads.delete',$ad)}}" method="post">

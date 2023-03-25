@@ -50,6 +50,7 @@ class AdRepository implements AdInterface
     public function update($ad, $request)
     {
         if ($request->image) {
+
             $imageName = $this->uploadImage($request->image, $this->adModel::PATH, $ad->getRawOriginal('image'));
         }
 
@@ -58,6 +59,7 @@ class AdRepository implements AdInterface
             'city' => $request->city,
             'image' => $imageName ?? $ad->getRawOriginal('image'),
         ]);
+
         toast('Ad Updated Successfully', 'success');
         return redirect()->route('admin.ads.index');
     }
@@ -65,6 +67,7 @@ class AdRepository implements AdInterface
     public function delete($ad)
     {
         $ad->delete();
+        $this->removeImage($ad->image);
         toast('Ad Deleted Successfully', 'success');
 
         return redirect()->route('admin.ads.index');

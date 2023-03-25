@@ -13,13 +13,14 @@ class Ads extends Model
 {
     use HasFactory,HasTranslations , HasSlug;
 
-    const PATH = "adsImages";
+    const PATH = "images/adsImages";
     protected $fillable = ['name','city','image','slug'];
+
     public  $translatable = ["name"];
 
     public function getImageAttribute($value): string
     {
-        return asset($this::PATH . DIRECTORY_SEPARATOR . $value);
+        return $this::PATH . DIRECTORY_SEPARATOR . $value;
     }
 
     public function getSlugOptions() : SlugOptions

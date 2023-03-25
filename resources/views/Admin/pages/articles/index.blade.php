@@ -75,7 +75,7 @@
                                                     {{$article->title}}
                                                 </td>
                                                 <td>
-                                                    <img src="{{ $article->image }}" alt="notfound" width="100px"
+                                                    <img src="{{ asset($article->image) }}" alt="notfound" width="100px"
                                                          height="100px">
                                                 </td>
                                                 {{--                                                <td>--}}

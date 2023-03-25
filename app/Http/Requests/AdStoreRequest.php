@@ -25,7 +25,7 @@ class AdStoreRequest extends FormRequest
             'name_en' => 'required|string|max:255',
             'name_ar' => 'required|string|max:255',
             'city' => 'required|string|max:255',
-            'image' => 'required|mimes:jpeg,png,svg,jpg'
+            'image' => 'required|image|mimes:jpeg,png,svg,jpg'
         ];
     }
 }

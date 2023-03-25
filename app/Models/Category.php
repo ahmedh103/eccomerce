@@ -34,7 +34,7 @@ return $this->belongsTo(Department::class);
     const PATH = 'images/gallery';
     public function getImageAttribute($value): string
     {
-       return asset($this::PATH . DIRECTORY_SEPARATOR . $value);
+       return $this::PATH . DIRECTORY_SEPARATOR . $value;
     }
 
 

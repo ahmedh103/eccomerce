@@ -25,7 +25,7 @@ class AdminSeeder extends Seeder
         ]);
         $group = Group::where('name', 'admin')->first();
 
-        //$user->attachGroup(1);
+        $user->groups()->attach($group->id);
 
         $this->command->comment('======== Information admin created ========');
         $this->command->comment('======== Information admin created ========');

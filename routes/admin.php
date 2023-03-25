@@ -1,15 +1,13 @@
 <?php
 
 
-
-
+use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\ArticleController;
-
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\AdController;
-use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -23,7 +21,6 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 
 Route::group(
     [
@@ -49,8 +46,8 @@ Route::group(
         /*  Category Routes */
         Route::group([
             'controller' => CategoryController::class,
-            'prefix' => 'categories',
-            'as' => 'category.',
+            'prefix'     => 'categories', 'as' => 'category.',
+
         ], function () {
             Route::get('index', 'index')->name('index');
             Route::get('create', 'create')->name('create');
@@ -58,6 +55,7 @@ Route::group(
             Route::get('edit/{category}', 'edit')->name('edit');
             Route::put('update/{category}', 'update')->name('update');
             Route::delete('delete/{category}', 'delete')->name('delete');
+
         });
 
         /*  Department Routes */
@@ -105,7 +103,11 @@ Route::group(
             Route::put('update/{product}',[ProductController::class,"update"])->name('update');
             Route::delete('/{product}',[ProductController::class,"delete"])->name('delete');
         });
+
+
     });
 
 });
+
+
 

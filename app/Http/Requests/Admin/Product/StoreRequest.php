@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin\Product;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateProduct extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,9 +27,16 @@ class UpdateProduct extends FormRequest
             'name_ar'=>'required|max:255',
             'detalis_en'=>'required',
             'detalis_ar'=>'required',
-            'price'=>'required',
-            'image'=>'nullable|image|mimes:png,jpg,jpeg,webp',
+            'price'=>'required|numeric',
+            'image'=>'required|image|mimes:png,jpg,jpeg,webp',
             'category_id'=>'required|exists:categories,id'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'neme_en.required'=> trans('validation.required'),
         ];
     }
 }

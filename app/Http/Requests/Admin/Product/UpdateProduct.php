@@ -27,7 +27,7 @@ class UpdateProduct extends FormRequest
             'detalis_en'=>'required',
             'detalis_ar'=>'required',
             'price'=>'required',
-            'image'=>'sometimes'
+            'image'=>'required|image|png|jpg|jpeg',
         ];
     }
 }

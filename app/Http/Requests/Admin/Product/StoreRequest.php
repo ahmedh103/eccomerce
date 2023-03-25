@@ -28,7 +28,7 @@ class StoreRequest extends FormRequest
             'detalis_en'=>'required',
             'detalis_ar'=>'required',
             'price'=>'required',
-            'image'=>'required',
+            'image'=>'required|image|png|jpg|jpeg',
             'category_id'=>'required'
         ];
     }

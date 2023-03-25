@@ -69,7 +69,7 @@
                                             <tr>
                                                 <td>{{ $category->name }}</td>
                                                 <td>{{ $category->slug }}</td>
-                                                <td><img src=" {{ $category->image }}" width="100px" height="100px"></td>
+                                                <td><img src=" {{ asset($category->image) }}" width="100px" height="100px"></td>
                                                 <td class="text-center">
 
                                                         <span class="badge badge-light-success"><a

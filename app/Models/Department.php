@@ -18,7 +18,7 @@ class Department extends Model
 
     public function getImageAttribute($value)
     {
-       return asset($this::PATH . DIRECTORY_SEPARATOR . $value);
+       return $this::PATH . DIRECTORY_SEPARATOR . $value;
     }
 
 

@@ -24,7 +24,8 @@ class StoreCategoryRequest extends FormRequest
         return [
             'name_en'=>'required|min:3|unique:categories,name',
             'name_ar'=>'required|min:3',
-            'image'=>'required|image|mimes:jpg,png,jpeg',
+            
+            'image'=>'nullable|image|mimes:jpg,png,jpeg',
             'department_id'=>'required|exists:departments,id'
         ];
     }

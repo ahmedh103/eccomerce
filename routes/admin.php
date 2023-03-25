@@ -25,15 +25,11 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 */
 
 
-
-
-
-
 Route::group(
-[
-'prefix' => LaravelLocalization::setLocale(),
-'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
-], function () {
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
+    ], function () {
 
 
     Route::group(['prefix' => 'admin', 'as' => 'admin.'], function (){
@@ -63,6 +59,7 @@ Route::group(
             Route::put('update/{category}', 'update')->name('update');
             Route::delete('delete/{category}', 'delete')->name('delete');
         });
+
         /*  Department Routes */
         Route::group(['controller' => DepartmentController::class,
             'prefix' => 'departments', 'as' => 'department.',
@@ -84,9 +81,7 @@ Route::group(
             Route::get('index', 'index')->name('index');
             Route::get('show/{article}', 'show')->name('show');
             Route::put('update/{article}', 'changeStates')->name('changeStates');
-
         });
-
 
         Route::group([
             'controller' => AdController::class,
@@ -96,17 +91,21 @@ Route::group(
             Route::get('/', 'index')->name('index');
             Route::get('/create', 'create')->name('create');
             Route::post('/store', 'store')->name('store');
-
             Route::put('update/{ad}', 'update')->name('update');
             Route::delete('delete/{ad}', 'delete')->name('delete');
             Route::get('/edit/{ad}', 'edit')->name('edit');
         });
 
+
+        Route::group(['prefix'=>'product','as'=>'product.'],function (){
+            Route::get('/',[ProductController::class,"index"])->name('index');
+            Route::get('create',[ProductController::class,"create"])->name('create');
+            Route::post('store',[ProductController::class,"store"])->name('store');
+            Route::get('editForm/{product}',[ProductController::class,"editForm"])->name('edit');
+            Route::put('update/{product}',[ProductController::class,"update"])->name('update');
+            Route::delete('/{product}',[ProductController::class,"delete"])->name('delete');
+        });
     });
 
 });
-
-
-
-
 

@@ -1,7 +1,6 @@
 <?php
 
 
-use App\Http\Controllers\Admin\AuthController;
 
 
 use App\Http\Controllers\Admin\CategoryController;
@@ -9,6 +8,8 @@ use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\ArticleController;
 
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\AdController;
+use App\Http\Controllers\Admin\AuthController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -22,10 +23,6 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-
-
-
 
 
 Route::group(
@@ -52,7 +49,8 @@ Route::group(
         /*  Category Routes */
         Route::group([
             'controller' => CategoryController::class,
-            'prefix'     => 'categories', 'as' => 'category.',
+            'prefix' => 'categories',
+            'as' => 'category.',
         ], function () {
             Route::get('index', 'index')->name('index');
             Route::get('create', 'create')->name('create');
@@ -61,6 +59,7 @@ Route::group(
             Route::put('update/{category}', 'update')->name('update');
             Route::delete('delete/{category}', 'delete')->name('delete');
         });
+
         /*  Department Routes */
         Route::group(['controller' => DepartmentController::class,
             'prefix' => 'departments', 'as' => 'department.',
@@ -82,18 +81,31 @@ Route::group(
             Route::get('index', 'index')->name('index');
             Route::get('show/{article}', 'show')->name('show');
             Route::put('update/{article}', 'changeStates')->name('changeStates');
+        });
 
+        Route::group([
+            'controller' => AdController::class,
+            'prefix' => 'ads',
+            'as' => 'ads.',
+        ], function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::put('update/{ad}', 'update')->name('update');
+            Route::delete('delete/{ad}', 'delete')->name('delete');
+            Route::get('/edit/{ad}', 'edit')->name('edit');
         });
 
 
         Route::group(['prefix'=>'product','as'=>'product.'],function (){
-           Route::get('/',[ProductController::class,"index"])->name('index');
-           Route::get('create',[ProductController::class,"create"])->name('create');
-           Route::post('store',[ProductController::class,"store"])->name('store');
-           Route::get('editForm/{product}',[ProductController::class,"editForm"])->name('edit');
-           Route::put('update/{product}',[ProductController::class,"update"])->name('update');
-           Route::delete('/{product}',[ProductController::class,"delete"])->name('delete');
+            Route::get('/',[ProductController::class,"index"])->name('index');
+            Route::get('create',[ProductController::class,"create"])->name('create');
+            Route::post('store',[ProductController::class,"store"])->name('store');
+            Route::get('editForm/{product}',[ProductController::class,"editForm"])->name('edit');
+            Route::put('update/{product}',[ProductController::class,"update"])->name('update');
+            Route::delete('/{product}',[ProductController::class,"delete"])->name('delete');
         });
     });
+
 });
 

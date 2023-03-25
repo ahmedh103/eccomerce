@@ -23,7 +23,7 @@ class Article extends Model
 
     public function getImageAttribute($value)
     {
-        return asset(self::PATH . DIRECTORY_SEPARATOR . $value);
+        return self::PATH . DIRECTORY_SEPARATOR . $value;
     }
 
 }

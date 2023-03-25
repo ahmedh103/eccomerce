@@ -14,6 +14,8 @@ return [
     'addProduct'=>'اضافه منتج',
     'nameProduct_en'=>'اسم المنتج بالانجليزيه',
     'nameProduct_ar'=>'اسم المنتج بالعربيه',
+    'detalis_en'=>'التفاصيل بالانجليزيه',
+    'detalis_ar'=>'التفاصيل بالعربيه',
     'editProduct'=>'تعديل منتج',
     'edit'=>'تعديل',
     'category'=>'فئه',

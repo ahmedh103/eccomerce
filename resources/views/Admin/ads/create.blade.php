@@ -31,7 +31,56 @@
                         <label class="m-2">Image</label>
                         <input type="file" name="image" id="input-file-now-custom-3" class="form-control m-2">
 
-                        <button type="submit" class="btn btn-danger mt-3">Submit</button>
+{{--                        <input type="text" name="category_id" class="form-control m-2" placeholder="Category Id">--}}
+{{--                        @if ($errors->has('category_id'))--}}
+{{--                            <span class="text-danger">{{ $errors->first('category_id') }}</span>--}}
+{{--                        @endif--}}
+
+
+                        <label for="exampleFormControlInput2">Category</label>
+                        <select name="category_id" id="" class="form-control my-2">
+                            <option value="">Select Category</option>
+                            @foreach ( $categories as $category )
+                                <option value="{{ $category->id }}" @selected('category_id')> {{$category->name}} </option>
+                            @endforeach
+                        </select>
+
+
+
+                        <input type="text" name="price" class="form-control m-2" placeholder="Price">
+                        @if ($errors->has('price'))
+                            <span class="text-danger">{{ $errors->first('price') }}</span>
+                        @endif
+
+                        <input type="text" name="description_en" class="form-control m-2" placeholder="Description">
+                        @if ($errors->has('description_en'))
+                            <span class="text-danger">{{ $errors->first('description_en') }}</span>
+                        @endif
+
+                        <input type="text" name="description_ar" class="form-control m-2" placeholder="وصــف الاعــلان">
+                        @if ($errors->has('description_ar'))
+                            <span class="text-danger">{{ $errors->first('description_ar') }}</span>
+                        @endif
+
+                        @php
+                            $types = ['new','used'];
+                        @endphp
+
+
+                        <div class="input-group mb-4">
+                            <select  required class="form-control" name="type">
+                                <option>Select Ad Type</option>
+                                @foreach($types as $type)
+                                    <option value="{{$type}}">{{$type}}</option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('type'))
+                                <span class="text-danger">{{ $errors->first('type') }}</span>
+                            @endif
+                        </div>
+
+
+                        <button type="submit" class="btn btn-danger mt-3 mb-5">Submit</button>
                     </form>
                 </div>
             </div>

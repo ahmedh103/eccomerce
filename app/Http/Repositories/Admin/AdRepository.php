@@ -8,10 +8,11 @@ use App\Models\Ads;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use App\Http\Traits\CategoryTrait;
 
 class AdRepository implements AdInterface
 {
-    use ImageTrait;
+    use ImageTrait , CategoryTrait;
 
     private $adModel;
     public function __construct(Ads $ad)
@@ -27,11 +28,16 @@ class AdRepository implements AdInterface
 
     public function store($request)
     {
+
         $imageName = $this->uploadImage($request->image, $this->adModel::PATH);
         $this->adModel::create([
             'name' => ['en' => $request->name_en , 'ar' => $request->name_ar],
             'city' => $request->city,
-            'image' => $imageName
+            'image' => $imageName,
+            'category_id' => $request->category_id,
+            'price' => $request->price,
+            'description' => ['en' => $request->description_en , 'ar' => $request->description_ar],
+            'type' => $request->type,
         ]);
         toast('Ad created successfully', 'success');
         return redirect(route('admin.ads.index'));
@@ -39,7 +45,8 @@ class AdRepository implements AdInterface
 
     public function create()
     {
-        return view('Admin.ads.create');
+        $categories =  $this->getCategoryBydepartment();
+        return view('Admin.ads.create' ,compact('categories'));
     }
 
     public function edit($ad)

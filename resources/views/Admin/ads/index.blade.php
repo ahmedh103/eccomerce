@@ -22,9 +22,12 @@
                         <thead>
                         <tr>
                             <th scope="col">Name</th>
-                            <th scope="col">Slug</th>
                             <th scope="col">City</th>
                             <th scope="col">Image</th>
+                            <th scope="col">Slug</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Type</th>
                             <th class="text-center" scope="col">Actions</th>
 
                         </tr>
@@ -33,9 +36,12 @@
                         @foreach($ads as $ad)
                             <tr>
                                 <td>{{$ad->name}}</td>
-                                <td>{{$ad->slug}}</td>
                                 <td>{{$ad->city}}</td>
                                 <td><img src="{{ asset($ad->image) }}" width="100px" height="100px"></td>
+                                <td>{{$ad->slug}}</td>
+                                <td>{{$ad->price}}</td>
+                                <td>{{$ad->description}}</td>
+                                <td>{{$ad->type}}</td>
                                 <td class="text-center">
                                     <a href="{{ route('admin.ads.edit', $ad) }}" class="btn btn-primary">Edit</a>
                                     <form style="display: inline-block" action="{{route('admin.ads.delete',$ad)}}" method="post">

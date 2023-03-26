@@ -14,9 +14,9 @@ class Ads extends Model
     use HasFactory,HasTranslations , HasSlug;
 
     const PATH = "images/adsImages";
-    protected $fillable = ['name','city','image','slug'];
+    protected $fillable = ['name','slug','city','image','category_id','price','description','type'];
 
-    public  $translatable = ["name"];
+    public  $translatable = ["name",'description'];
 
     public function getImageAttribute($value): string
     {
@@ -36,5 +36,10 @@ class Ads extends Model
         return 'slug';
     }
 
+    public function Category(){
+
+        return $this->belongsTo(Category::class);
+
+    }
 
 }

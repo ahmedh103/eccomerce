@@ -11,7 +11,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 
 class AdsRepository implements AdsInterface{
-use ImageTrait;
+    use ImageTrait;
 
     private $categoryModel,$adsModel;
     public function __construct(Category $categoryModel, Ads $adsModel)
@@ -35,18 +35,18 @@ use ImageTrait;
     {
 
         $adsImage = $this->uploadImage($request->image, $this->adsModel::PATH);
-       $this->adsModel::create(
-        [
-            'name' => ['en' => $request->name_en , 'ar' => $request->name_ar],
-            "city" =>$request->city,
-            'category_id' => $request->category_id,
-            "price" =>$request->price,
-            "description" => $request->description,
-            "type" => $request->type,
-            'image' => $adsImage,
-            "user_id" => auth()->id()
-        ]
-       );
+        $this->adsModel::create(
+            [
+                'name' => ['en' => $request->name_en , 'ar' => $request->name_ar],
+                "city" =>$request->city,
+                'category_id' => $request->category_id,
+                "price" =>$request->price,
+                "description" => $request->description,
+                "type" => $request->type,
+                'image' => $adsImage,
+                "user_id" => auth()->id()
+            ]
+        );
 
         toast("ads added successfully" ,"success");
         return back();

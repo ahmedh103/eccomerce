@@ -76,6 +76,7 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Http\Interfaces\EndUser\RegisterInterface',
             'App\Http\Repositories\EndUser\RegisterRepository',
         );
+
         $this->app->bind(
             'App\Http\Interfaces\EndUser\ProfileInterface',
             'App\Http\Repositories\EndUser\ProfileRepository',
@@ -83,6 +84,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             'App\Http\Interfaces\EndUser\ProfileSettingInterface',
             'App\Http\Repositories\EndUser\ProfileSettingRepository',
+        );
+
+        $this->app->bind(
+            'App\Http\Interfaces\EndUser\AdsInterface',
+            'App\Http\Repositories\EndUser\AdsRepository',
         );
     }
 

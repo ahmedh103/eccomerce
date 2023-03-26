@@ -5,7 +5,7 @@ namespace App\Http\Repositories\Admin;
 use App\Http\Interfaces\Admin\DepartmentInterface;
 use App\Http\Traits\ImageTrait;
 use App\Models\Department;
-
+use Illuminate\Support\Facades\Storage;
 
 class DepartmentRepository implements DepartmentInterface
 {
@@ -68,6 +68,7 @@ class DepartmentRepository implements DepartmentInterface
 
     public function delete($department)
     {
+        Storage::delete($department->image);
        $department->delete();
         toast('department Deleted Successfully', 'success');
         return back();

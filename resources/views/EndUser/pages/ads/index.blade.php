@@ -3,7 +3,7 @@
 @extends('EndUser.Includes.master')
 
 @section('title')
-    ads
+{{ __('ads.ad page')}}
 @endsection
 
 @section('content')
@@ -135,23 +135,23 @@
                             @csrf
                             <div class="adpost-card">
                                 <div class="adpost-title">
-                                    <h3>Ad Information</h3>
+                                    <h3>{{__("ads.Ad Information")}}</h3>
                                 </div>
                                
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label class="form-label">ad  name in arabic </label>
-                                            <input type="text" name = "name_ar" class="form-control" placeholder="Type your ad title here">
+                                            <label class="form-label"> {{ __('ads.ad_name_in_arabic')}}   </label>
+                                            <input type="text" name = "name_ar" class="form-control" value="{{old("name_ar")}}" >
                                         </div>
                                     </div>
                                     @if ($errors->has('name_ar'))
-                                    <span class="text-danger">{{ $errors->first('name_en') }}</span>
+                                    <span class="text-danger">{{ $errors->first('name_ar') }}</span>
                                 @endif
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label class="form-label">ad name in english </label>
-                                            <input type="text" name = "name_en" class="form-control" placeholder="Type your ad title here">
+                                            <label class="form-label"> {{ __('ads.ad_name_in_english')}} </label>
+                                            <input type="text" name = "name_en" class="form-control" value="{{old("name_en")}}" >
                                         </div>
                                     </div>
                                     @if ($errors->has('name_en'))
@@ -159,33 +159,35 @@
                                 @endif
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label class="form-label">ad city </label>
-                                        <input type="text" name = "city" class="form-control" placeholder="Type your city here">
+                                        <label class="form-label"> {{ __('ads.ad_city')}}  </label>
+                                        <input type="text" name = "city" class="form-control" value="{{old("city")}}" >
                                     </div>
                                 </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label class="form-label">ad  image</label>
-                                            <input type="file" name = "image"  class="form-control">
+                                            <label class="form-label">{{ __('ads.ad_image')}}</label>
+                                            <input type="file" name = "image"  value="{{old("image")}}"  class="form-control">
                                         </div>
                                     </div>
                                     @if ($errors->has('image'))
-                                    <span class="text-danger">{{ $errors->first('name_en') }}</span>
+                                    <span class="text-danger">{{ $errors->first('image') }}</span>
                                 @endif
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label class="form-label">ad  description</label>
-                                            <input type="text" name = "description" class="form-control">
+                                            <label class="form-label"> {{ __('ads.ad_description')}} </label>
+                                            {{-- <input type="texta" name = "description" value="{{old("name_ar")}}"  class="form-control"> --}}
+                                            <textarea name="description" id="" cols="30" rows="10" value="{{old("description")}}"  class="form-control" >
+                                            </textarea>
                                         </div>
                                     </div>
                                     @if ($errors->has('description'))
-                                    <span class="text-danger">{{ $errors->first('name_en') }}</span>
+                                    <span class="text-danger">{{ $errors->first('description') }}</span>
                                 @endif
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label class="form-label">ad Category</label>
+                                            <label class="form-label">{{ __('ads.ad_category')}} </label>
                                             <select class="form-control custom-select" name = "category_id">
-                                                <option selected >Select Category</option>
+                                                <option selected >{{ __('ads.select_category')}} </option>
                 
                                                 @foreach ($categories as $category)
                                                 <option value={{$category->id}}> {{$category->name}}</option>
@@ -197,12 +199,12 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label class="form-label">Price</label>
-                                            <input type="text" name = "price" class="form-control" placeholder="Enter your pricing amount">
+                                            <label class="form-label">{{ __('ads.price')}}</label>
+                                            <input type="text" name = "price" class="form-control" >
                                         </div>
                                     </div>
                                     @if ($errors->has('price'))
-                                    <span class="text-danger">{{ $errors->first('name_en') }}</span>
+                                    <span class="text-danger">{{ $errors->first('price') }}</span>
                                 @endif
                                   
                                     {{-- <div class="col-md-4 col-lg-4">
@@ -225,14 +227,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div> --}}
-                                    <select class="form-select col-lg-6" aria-label="Default select example" name ="status">
-                                        <option selected>  choose the status </option>
-                                        <option value="pending">pending</option>
-                                        <option value="approved">approved</option>
-                                        <option value="rejected">rejected</option>
-                                      </select>
-                                      
+                                    </div> --}}         
                                       
                                     {{-- <div class="col-md-4 col-lg-4">
                                         <div class="form-group" name = "type">
@@ -253,41 +248,26 @@
                                     
                                     </div> --}}
                                     <select class="form-select col-lg-6" aria-label="Default select example" name ="type">
-                                        <option selected>choose the type </option>
-                                        <option value="new">new </option>
-                                        <option value="used">used</option>
+                                        <option selected>{{__('ads.choose_the_type')}}</option>
+                                        <option value="new"> {{__("ads.new")}}</option>
+                                        <option value="used"> {{__("ads.used")}}</option>
                                       </select>
                                       
-                                
+                                       
                         
                                 </div>
                             </div>
-                            <div class="adpost-card">
-                                <div class="adpost-title">
-                                    <h3>user  Information</h3>
-                                </div>
-                                
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Name</label>
-                                            <input type="text" name="user_id" class="form-control" value="{{ Auth::user()->id}}"  >
-                                        </div>
-                                    </div>
                                   
-
-                                 
-                                   
-                                  
-                            
+                            <br>
                             </div>
                             <div class="col-12">
-                                <button type="submit" class="btn btn-primary"> create </button>
+                                <button type="submit" class="btn btn-primary"> {{__("ads.create")}}</button>
                               </div>
             
                                            
                         </form>
                     </div>
-                    <div class="col-lg-4">
+                    {{-- <div class="col-lg-4">
                         <div class="account-card alert fade show">
                             <div class="account-title">
                                 <h3>Safety Tips</h3>
@@ -334,7 +314,7 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </section>

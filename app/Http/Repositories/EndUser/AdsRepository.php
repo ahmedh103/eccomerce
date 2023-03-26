@@ -6,6 +6,7 @@ use App\Http\Requests\User\AdsStore;
 use App\Http\Traits\ImageTrait;
 use App\Models\Ads;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AdsRepository implements AdsInterface{
@@ -43,9 +44,8 @@ use ImageTrait;
             "type" => $request->type,
             "status" =>$request->status,
             'image' => $adsImage,
-            "user_id" =>$request->user_id
-            
-            
+            "user_id" =>Auth::user()->id
+                  
         ]
        );
        DB::commit();

@@ -21,7 +21,6 @@ public $translatable = ['name'];
         'slug',
         'image',
         'department_id'
-
     ];
 
 

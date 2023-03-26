@@ -19,4 +19,5 @@ class HomeController extends Controller
     {
         return $this->homeInterface->index();
     }
+
 }

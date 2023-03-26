@@ -14,7 +14,8 @@ class Ads extends Model
     use HasFactory,HasTranslations , HasSlug;
 
     const PATH = "images/adsImages";
-    protected $fillable = ['name','city','image','slug'];
+    // protected $fillable = ['name','city','image','slug',""];
+    protected $guarded =[];
 
     public  $translatable = ["name"];
 

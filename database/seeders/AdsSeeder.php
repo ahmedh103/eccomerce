@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Ads;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class AdsSeeder extends Seeder
 {
@@ -13,20 +13,19 @@ class AdsSeeder extends Seeder
      */
     public function run(): void
     {
-        Ads::create([
-            
-            'name'=>['en' => 'ahmed' , 'ar' => 'احمد'],
-            'city'=>'cairo',
-            'image'=>'1679348143_MuaRyfRslB8kWSRPG7TuHHLjYCYUo1RQGKYO8KgQ.jpg',
-            'category_id'=>'1',
-            'user_id'=>'1',
-            'price'=>'5000',
-            'description'=>'aassasalsal',
-            'type'=>'used',
-            'status'=>'approved',
-    ]);
-
-
-
+        for ($i = 0 ;$i<24 ; $i++){
+            DB::table('ads')->insert([
+               'name'=>"fack Name",
+                'city'=>'mansora',
+                'image'=>'logo.png',
+                'slug'=>'fack slug',
+                'description'=>'Lorem ipsum dolor sit amet consectetur adipisicing elit aspernatur illum vel sunt libero voluptatum repudiandae veniam maxime tenetur.',
+                'user_id'=>1,
+                'category_id'=>1,
+                'price'=>200,
+                'type'=>'new',
+                'status'=>'pending'
+            ]);
+        }
     }
 }

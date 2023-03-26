@@ -10,53 +10,54 @@ use Spatie\Translatable\HasTranslations;
 
 class Category extends Model
 {
-    use HasFactory, HasTranslations, HasSlug ;
-
-
-
-public $translatable = ['name'];
-
-    protected $fillable = [
-        'name',
-        'slug',
-        'image',
-        'department_id'
-    ];
-
-
-public function Department(){
-
-return $this->belongsTo(Department::class);
-
-}
+    use HasFactory, HasTranslations, HasSlug;
 
     const PATH = 'images/gallery';
-    public function getImageAttribute($value): string
+
+    public $translatable = ['name'];
+    protected $fillable
+        = [
+            'name',
+            'slug',
+            'image',
+            'department_id',
+        ];
+
+    public function Department()
     {
-       return $this::PATH . DIRECTORY_SEPARATOR . $value;
+
+        return $this->belongsTo(Department::class);
+
     }
 
+    public function ads()
+    {
+        return $this->hasMany(Ads::class);
+    }
+
+    public function getImageAttribute($value):string
+    {
+        return $this::PATH.DIRECTORY_SEPARATOR.$value;
+    }
 
     /**
      * @return SlugOptions
      */
-    public function getSlugOptions(): SlugOptions
+    public function getSlugOptions():SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
 
-
- /**
+    /**
      * Get the route key for the model.
      *
      * @return string
      */
-    public function getRouteKeyName(): string
+    public function getRouteKeyName():string
     {
         return 'slug';
     }
-
 
 }

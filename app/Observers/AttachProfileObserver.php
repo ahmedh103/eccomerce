@@ -2,20 +2,19 @@
 
 namespace App\Observers;
 
-use App\Models\Group;
 use App\Models\User;
 
-class AttachGroupByUser
+class AttachProfileObserver
 {
     /**
      * Handle the User "created" event.
      */
     public function created(User $user): void
     {
-        $group = Group::where('name', 'user')->first();
-        $user->attachGroup($group->id);
-
-
+        $user->profile()->create([
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
+        ]);
     }
 
     /**
@@ -23,7 +22,10 @@ class AttachGroupByUser
      */
     public function updated(User $user): void
     {
-        //
+        $user->profile()->update([
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
+        ]);
     }
 
     /**

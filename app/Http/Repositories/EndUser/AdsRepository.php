@@ -2,58 +2,57 @@
 namespace App\Http\Repositories\EndUser;
 
 use App\Http\Interfaces\EndUser\AdsInterface;
-use App\Http\Requests\User\AdsStore;
 use App\Http\Traits\ImageTrait;
 use App\Models\Ads;
 use App\Models\Category;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 
 class AdsRepository implements AdsInterface{
-use ImageTrait;
+    use ImageTrait;
 
-    private $categorymodel,$Adsmodel;
-    public function __construct(Category $categorymodel,Ads $Adsmodel )
+    private $categoryModel,$adsModel;
+    public function __construct(Category $categoryModel, Ads $adsModel)
     {
 
-        $this->categorymodel = $categorymodel;
-        $this->Adsmodel = $Adsmodel;
-    } 
+        $this->categoryModel = $categoryModel;
+        $this->adsModel = $adsModel;
+    }
 
 
-    public function create (){
+    public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    {
 
-
-        $categories = $this->categorymodel::get("id","name");
-        return view("Enduser.pages.ads.index",compact("categories"));
-
+        $categories = $this->categoryModel::get(['id', 'name']);
+        return view("EndUser.pages.ads.index",compact("categories"));
 
     }
 
 
-    public function store( $request ) { 
-        DB::beginTransaction();
-        $adsImage = $this->uploadImage($request->image, $this->Adsmodel::PATH);
-       $this->Adsmodel::create(
-        [
-            'name' => ['en' => $request->name_en , 'ar' => $request->name_ar],
-            "city" =>$request->city,
-            'category_id' => $request->category_id,
-            "price" =>$request->price,
-            "description" => $request->description,
-            "type" => $request->type,
-            "status" =>$request->status,
-            'image' => $adsImage,
-            "user_id" =>Auth::user()->id
-                  
-        ]
-       );
-       DB::commit();
+    public function store($request): RedirectResponse
+    {
+
+        $adsImage = $this->uploadImage($request->image, $this->adsModel::PATH);
+        $this->adsModel::create(
+            [
+                'name' => ['en' => $request->name_en , 'ar' => $request->name_ar],
+                "city" =>$request->city,
+                'category_id' => $request->category_id,
+                "price" =>$request->price,
+                "description" => $request->description,
+                "type" => $request->type,
+                'image' => $adsImage,
+                "user_id" => auth()->id()
+            ]
+        );
+
         toast("ads added successfully" ,"success");
         return back();
-    
-        
+
+
     }
 }
 
-?>
+

@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
 		$this->call([
 			GroupSeeder::class,
 			AdminSeeder::class,
+            UserSeeder::class,
 		]);
 		\App\Models\Article::factory(10)->create();
 		// \App\Models\User::factory()->create([

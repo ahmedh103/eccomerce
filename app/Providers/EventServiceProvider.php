@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Profile;
 use App\Models\User;
 use App\Observers\AttachGroupByUser;
+use App\Observers\AttachProfileObserver;
+use App\Observers\UpdateUserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -28,6 +31,8 @@ class EventServiceProvider extends ServiceProvider
     public function boot(): void
     {
         User::observe(AttachGroupByUser::class);
+        User::observe(AttachProfileObserver::class);
+        Profile::observe(UpdateUserObserver::class);
     }
 
     /**

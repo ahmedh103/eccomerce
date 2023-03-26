@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\EndUser\AuthController;
 use App\Http\Controllers\EndUser\HomeController;
+use App\Http\Controllers\EndUser\ProfileController;
+use App\Http\Controllers\EndUser\ProfileSettingController;
 use App\Http\Controllers\RegisterController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +39,30 @@ Route::group(
         Route::middleware(['auth' , 'status' ])->group(function () {
             Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
         });
+
+        // profile
+        Route::group([
+            'controller' => ProfileController::class,
+            'prefix' => 'profile',
+            'as' => 'profile.',
+        ], function () {
+            Route::get('/', 'index')->name('index');
+            Route::put('update', 'update')->name('update');
+            Route::get('/edit', 'edit')->name('edit');
+        });
+
+        //profile setting
+        Route::group([
+            'controller' => ProfileSettingController::class,
+            'prefix' => 'profile/setting',
+            'as' => 'profile.setting.',
+        ], function () {
+            Route::get('/', 'index')->name('index');
+            Route::put('/update', 'update')->name('update');
+            Route::get('/edit', 'edit')->name('edit');
+        });
+
+
         Route::get('', [HomeController::class, 'index'])->name('home');
     });
 

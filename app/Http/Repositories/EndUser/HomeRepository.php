@@ -13,8 +13,9 @@ class HomeRepository implements HomeInterface
     use AllAdsTrait;
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $ads = $this->getAllAds();
-//        dd($ads);
-        return view('index',['ads'=>$ads]);
+        $ads = $this->getAllAds(8);
+        $our_Recommend_ads =   $this->getAllAds(4);
+        return view('index',compact('our_Recommend_ads', 'ads'));
     }
+
 }

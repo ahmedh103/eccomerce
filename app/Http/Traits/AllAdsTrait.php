@@ -6,7 +6,7 @@ use App\Models\Ads;
 
 trait AllAdsTrait
 {
-    public function getAllAds(){
-        return Ads::inRandomOrder()->limit(8)->get(['name','city','description','type','status','price','image','slug']);
+    public function getAllAds($count){
+        return Ads::inRandomOrder()->limit($count)->get(['name','city','description','type','status','price','image','slug']);
     }
 }

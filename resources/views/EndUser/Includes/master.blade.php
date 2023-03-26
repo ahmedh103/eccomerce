@@ -265,7 +265,7 @@
                         </div>
                     </li>
                 </ul>
-                <a href="ad-post.html" class="btn btn-inline post-btn">
+                <a href="{{route("endUser.ads.create")}}" class="btn btn-inline post-btn">
                     <i class="fas fa-plus-circle"></i>
                     <span>post your ad</span>
                 </a>
@@ -291,7 +291,7 @@
             <div class="sidebar-profile">
                 <a href="#" class="sidebar-avatar"><img src="images/avatar/01.jpg" alt="avatar"></a>
                 <h4><a href="#" class="sidebar-name">Jackon Honson</a></h4>
-                <a href="ad-post.html" class="btn btn-inline sidebar-post">
+                <a href="{{route("endUser.ads.create")}}" class="btn btn-inline sidebar-post">
                     <i class="fas fa-plus-circle"></i>
                     <span>post your ad</span>
                 </a>

@@ -99,6 +99,10 @@
                     <li>
                         <a href="{{route('admin.category.create')}}"> Add New Category </a>
                     </li>
+                    <li>
+                        <a href="{{route('admin.department.create')}}"> Add New DEpartment </a>
+                    </li>
+                   
 
                     <li>
                         <a href="./app-notes.html"> Notes </a>

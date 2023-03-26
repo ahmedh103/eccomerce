@@ -43,7 +43,6 @@ use ImageTrait;
             "price" =>$request->price,
             "description" => $request->description,
             "type" => $request->type,
-            "status" =>$request->status,
             'image' => $adsImage,
             "user_id" => auth()->id()
         ]

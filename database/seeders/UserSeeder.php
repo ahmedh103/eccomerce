@@ -16,14 +16,14 @@ class UserSeeder extends Seeder
 
 
         $user = User::query()->create([
-            'first_name' => "admin",
-            'last_name' => "admin",
+            'first_name' => "user",
+            'last_name' => "user",
             'phone' => '0100000000',
             'email' => 'User@user.com',
             "password" => bcrypt('123456'),
             'active' => 1,
         ]);
-        $user->attachGroup(2);
+
 
 
     }

@@ -21,7 +21,7 @@ class AuthRepository implements AuthInterface
 
 
 
-    public function index(): View|Factory|Application|\Illuminate\Contracts\Foundation\Application
+    public function index()
     {
 
         return $this->checkIsEndUserAuth();

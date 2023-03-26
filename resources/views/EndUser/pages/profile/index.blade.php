@@ -23,13 +23,20 @@
     =======================================-->
 
     <!-- FOR WEBPAGE TITLE -->
-    <title>@yield('title')</title>
+    <title>Profile - Classicads</title>
 
     <!--=====================================
                 CSS LINK PART START
     =======================================-->
     <!-- FAVICON -->
+    <link rel="icon" href="images/favicon.png">
+
+    <!-- FONTS -->
     @include('EndUser.Includes.head')
+
+    <!-- CUSTOM -->
+    <link rel="stylesheet" href= "{{asset('assetsEndUser/css/custom/main.css' )}}">
+    <link rel="stylesheet" href="{{asset('assetsEndUser/css/custom/profile.css') }} ">
     <!--=====================================
                 CSS LINK PART END
     =======================================-->
@@ -50,19 +57,8 @@
                 </a>
                 <a href="user-form.html" class="header-widget header-user">
                     <img src="images/user.png" alt="user">
-                    <a href="{{route('login')}}">
-                    <span>
-                        join me
-                    </span>
-                    </a>
+                    <span>join me</span>
                 </a>
-
-               @if(Auth::check())
-                    <a class="ml-2" href="{{ route('endUser.logout') }}">
-                        <span>logo out</span>
-                    </a>
-                @endif
-
                 <button type="button" class="header-widget search-btn">
                     <i class="fas fa-search"></i>
                 </button>
@@ -265,7 +261,7 @@
                         </div>
                     </li>
                 </ul>
-                <a href="{{route("endUser.ads.create")}}" class="btn btn-inline post-btn">
+                <a href="ad-post.html" class="btn btn-inline post-btn">
                     <i class="fas fa-plus-circle"></i>
                     <span>post your ad</span>
                 </a>
@@ -291,7 +287,7 @@
             <div class="sidebar-profile">
                 <a href="#" class="sidebar-avatar"><img src="images/avatar/01.jpg" alt="avatar"></a>
                 <h4><a href="#" class="sidebar-name">Jackon Honson</a></h4>
-                <a href="{{route("endUser.ads.create")}}" class="btn btn-inline sidebar-post">
+                <a href="ad-post.html" class="btn btn-inline sidebar-post">
                     <i class="fas fa-plus-circle"></i>
                     <span>post your ad</span>
                 </a>
@@ -368,10 +364,10 @@
                 <div class="tab-pane" id="author-menu">
                     <ul class="navbar-list">
                         <li class="navbar-item"><a class="navbar-link" href="dashboard.html">Dashboard</a></li>
-                        <li class="navbar-item"><a class="navbar-link" href="{{route('endUser.profile.index')}}">Profile</a></li>
+                        <li class="navbar-item"><a class="navbar-link" href="profile.html">Profile</a></li>
                         <li class="navbar-item"><a class="navbar-link" href="ad-post.html">Ad Post</a></li>
                         <li class="navbar-item"><a class="navbar-link" href="my-ads.html">My Ads</a></li>
-                        <li class="navbar-item"><a class="navbar-link" href="setting.html">Settings</a></li>
+                        <li class="navbar-item"><a class="navbar-link" href="{{route('endUser.profile.setting.index')}}">Settings</a></li>
                         <li class="navbar-item navbar-dropdown">
                             <a class="navbar-link" href="bookmark.html">
                                 <span>bookmark</span>
@@ -443,7 +439,166 @@
 =======================================-->
 
 
-@yield('content')
+<!--=====================================
+          SINGLE BANNER PART START
+=======================================-->
+<section class="single-banner dashboard-banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="single-content">
+                    <h2>profile</h2>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">profile</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=====================================
+          SINGLE BANNER PART END
+=======================================-->
+
+
+<!--=====================================
+        DASHBOARD HEADER PART START
+=======================================-->
+<section class="dash-header-part">
+    <div class="container">
+        <div class="dash-header-card">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="dash-header-left">
+                        <div class="dash-avatar">
+                            <a href="#"><img src="{{asset($profile->image)}}" alt="avatar"></a>
+                        </div>
+                        <div class="dash-intro">
+                            <h4><a href="#">gackon Honson</a></h4>
+                            <h5>new seller</h5>
+                            <ul class="dash-meta">
+                                <li>
+                                    <i class="fas fa-phone-alt"></i>
+                                    <span>(123) 000-1234</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-envelope"></i>
+                                    <span>gackon@gmail.com</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Los Angeles, West America</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="dash-header-right">
+                        <div class="dash-focus dash-list">
+                            <h2>2433</h2>
+                            <p>listing ads</p>
+                        </div>
+                        <div class="dash-focus dash-book">
+                            <h2>2433</h2>
+                            <p>total follower</p>
+                        </div>
+                        <div class="dash-focus dash-rev">
+                            <h2>2433</h2>
+                            <p>total review</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="dash-header-alert alert fade show">
+                        <p>From your account dashboard. you can easily check & view your recent orders, manage your shipping and billing addresses and Edit your password and account details.</p>
+                        <button data-dismiss="alert"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="dash-menu-list">
+                        <ul>
+                            <li><a href="dashboard.html">dashboard</a></li>
+                            <li><a class="active" href="profile.html">Profile</a></li>
+                            <li><a href="ad-post.html">ad post</a></li>
+                            <li><a href="my-ads.html">my ads</a></li>
+                            <li><a href="{{route('endUser.profile.setting.index')}}">settings</a></li>
+                            <li><a href="bookmark.html">bookmarks</a></li>
+                            <li><a href="message.html">message</a></li>
+                            <li><a href="notification.html">notification</a></li>
+                            <li><a href="user-form.html">logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=====================================
+        DASHBOARD HEADER PART END
+=======================================-->
+
+
+<!--=====================================
+            PROFILE PART START
+=======================================-->
+<section class="profile-part">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+
+                <div class="account-card">
+                    <div class="account-title">
+                        <h3>Contact Info</h3>
+                        <a href="{{route('endUser.profile.setting.index')}}">Edite</a>
+                    </div>
+                    <ul class="account-card-list">
+                        <li><h5>Website:</h5><p>
+                                {{$profile->website}}
+                            </p></li>
+                        <li><h5>Email:</h5><p>
+                                {{auth()->user()->email}}
+                            </p></li>
+                        <li><h5>Phone:</h5><p>{{$profile->phone}}</p></li>
+{{--                        <li><h5>Skype:</h5><p>live:richard</p></li>--}}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="account-card">
+                    <div class="account-title">
+                        <h3>Billing Address</h3>
+                        <a href="{{route('endUser.profile.setting.index')}}">Edite</a>
+                    </div>
+                    <ul class="account-card-list">
+                        <li><h5>Post Code:</h5><p>
+                                {{$profile->post_code}}
+                            </p></li>
+                        <li><h5>State:</h5><p>
+                                {{$profile->state}}
+                            </p></li>
+                        <li><h5>City:</h5><p>
+                                {{$profile->city}}
+                            </p></li>
+                        <li><h5>Country:</h5><p>
+                                {{$profile->country}}
+                            </p></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!--=====================================
+            PROFILE PART END
+=======================================-->
+
 
 <!--=====================================
             FOOTER PART PART
@@ -626,13 +781,10 @@
 =======================================-->
 <!-- VENDOR -->
 @include('EndUser.Includes.footer')
-<!--=====================================
             JS LINK PART END
 =======================================-->
 </body>
 </html>
-
-
 
 
 

@@ -249,7 +249,7 @@
                         <div class="product-card">
                             <div class="product-media">
                                 <div class="product-img">
-                                    <img src="{{asset("$our_Recommend_ad->images")}}" alt="product">
+                                    <img src="{{asset("$our_Recommend_ad->image")}}" alt="{{ $our_Recommend_ad->slug }}" width="250px" height="250px">
                                 </div>
                                 <div class="cross-vertical-badge product-badge">
                                     <i class="fas fa-clipboard-check"></i>

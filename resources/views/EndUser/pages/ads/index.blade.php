@@ -6,14 +6,18 @@
     ads
 @endsection
 
+    @push('css')
+        <link rel="stylesheet" href="{{ asset('assetsEndUser') }}css/custom/ad-post.css">
+    @endpush
+
 @section('content')
- 
+
 
 <!DOCTYPE html>
 
     <body>
-  
-    
+
+
         <!--=====================================
                     MOBILE-NAV PART END
         =======================================-->
@@ -29,7 +33,7 @@
                         <div class="single-content">
                             <h2>ad post</h2>
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('endUser.home') }}">Home</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">ad-post</li>
                             </ol>
                         </div>
@@ -137,21 +141,21 @@
                                 <div class="adpost-title">
                                     <h3>Ad Information</h3>
                                 </div>
-                               
+
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label class="form-label">ad  name in arabic </label>
-                                            <input type="text" name = "name_ar" class="form-control" placeholder="Type your ad title here">
+                                            <input type="text" name = "name_ar" class="form-control" value="{{ old('name_ar') }}" placeholder="Type your ad title here">
                                         </div>
                                     </div>
                                     @if ($errors->has('name_ar'))
-                                    <span class="text-danger">{{ $errors->first('name_en') }}</span>
+                                    <span class="text-danger">{{ $errors->first('name_ar') }}</span>
                                 @endif
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label class="form-label">ad name in english </label>
-                                            <input type="text" name = "name_en" class="form-control" placeholder="Type your ad title here">
+                                            <input type="text" name = "name_en" class="form-control" value="{{ old('name_en') }}" placeholder="Type your ad title here">
                                         </div>
                                     </div>
                                     @if ($errors->has('name_en'))
@@ -184,14 +188,12 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label class="form-label">ad Category</label>
-                                            <select class="form-control custom-select" name = "category_id">
-                                                <option selected >Select Category</option>
-                
-                                                @foreach ($categories as $category)
-                                                <option value={{$category->id}}> {{$category->name}}</option>
-                                                    
-                                                @endforeach
-        
+                                            <select class="form-control custom-select" name="category_id">
+                                                <option value="">Select Category</option>
+                                                @forelse($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    @empty
+                                                @endforelse
                                             </select>
                                         </div>
                                     </div>
@@ -204,7 +206,7 @@
                                     @if ($errors->has('price'))
                                     <span class="text-danger">{{ $errors->first('name_en') }}</span>
                                 @endif
-                                  
+
                                     {{-- <div class="col-md-4 col-lg-4">
                                         <div class="form-group" name = "status">
                                             <ul class="form-check-list" name = "status">
@@ -232,8 +234,8 @@
                                         <option value="approved">approved</option>
                                         <option value="rejected">rejected</option>
                                       </select>
-                                      
-                                      
+
+
                                     {{-- <div class="col-md-4 col-lg-4">
                                         <div class="form-group" name = "type">
                                             <ul class="form-check-list" name = "type">
@@ -250,41 +252,23 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                    
+
                                     </div> --}}
                                     <select class="form-select col-lg-6" aria-label="Default select example" name ="type">
                                         <option selected>choose the type </option>
                                         <option value="new">new </option>
                                         <option value="used">used</option>
                                       </select>
-                                      
-                                
-                        
-                                </div>
-                            </div>
-                            <div class="adpost-card">
-                                <div class="adpost-title">
-                                    <h3>user  Information</h3>
-                                </div>
-                                
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Name</label>
-                                            <input type="text" name="user_id" class="form-control" value="{{ Auth::user()->id}}"  >
-                                        </div>
-                                    </div>
-                                  
 
-                                 
-                                   
-                                  
-                            
+
+
+                                </div>
                             </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary"> create </button>
                               </div>
-            
-                                           
+
+
                         </form>
                     </div>
                     <div class="col-lg-4">

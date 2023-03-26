@@ -28,6 +28,7 @@
                             <th scope="col">Price</th>
                             <th scope="col">Description</th>
                             <th scope="col">Type</th>
+                            <th scope="col">Status</th>
                             <th class="text-center" scope="col">Actions</th>
 
                         </tr>
@@ -42,13 +43,34 @@
                                 <td>{{$ad->price}}</td>
                                 <td>{{$ad->description}}</td>
                                 <td>{{$ad->type}}</td>
+                                <td>{{$ad->status}}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('admin.ads.edit', $ad) }}" class="btn btn-primary">Edit</a>
-                                    <form style="display: inline-block" action="{{route('admin.ads.delete',$ad)}}" method="post">
-                                        @csrf
-                                        {{method_field('DELETE')}}
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
+
+                                    <div class="row-cols-2">
+                                        <a href="{{ route('admin.ads.edit', $ad) }}" class="btn btn-info">Edit</a>
+                                        <form style="display: inline-block" action="{{route('admin.ads.delete',$ad)}}" method="post">
+                                            @csrf
+                                            {{method_field('DELETE')}}
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+
+                                    </div>
+
+                                    <br>
+
+                                    <div class="row-cols-2">
+                                        <form style="display: inline-block" action="{{route('admin.ads.approve',$ad)}}" method="post">
+                                            @csrf
+                                            @method("PUT")
+                                            <button type="submit" class="btn btn-success">Approve</button>
+                                        </form>
+                                        <form style="display: inline-block" action="{{route('admin.ads.reject',$ad)}}" method="post">
+                                            @csrf
+                                            @method("PUT")
+                                            <button type="submit" class="btn btn-warning">Reject</button>
+                                        </form>
+                                    </div>
+
                                 </td>
 
                             </tr>

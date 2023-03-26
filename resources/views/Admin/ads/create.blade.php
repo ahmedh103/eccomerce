@@ -62,6 +62,8 @@
                             <span class="text-danger">{{ $errors->first('description_ar') }}</span>
                         @endif
 
+{{--                        <input type="hidden" value="{{ $user->id }}" name="user_id">--}}
+
                         @php
                             $types = ['new','used'];
                         @endphp

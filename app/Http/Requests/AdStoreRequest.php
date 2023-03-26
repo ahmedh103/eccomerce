@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class AdStoreRequest extends FormRequest
 {
@@ -31,7 +32,7 @@ class AdStoreRequest extends FormRequest
             'description_en'=>'required',
             'description_ar'=>'required',
             'type' => 'required|in:new,used',
-            //'category_id'=>'required|exists:categories,id'
+            'category_id'=>'required|exists:categories,id',
         ];
     }
 }

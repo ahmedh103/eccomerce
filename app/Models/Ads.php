@@ -14,9 +14,12 @@ class Ads extends Model
     use HasFactory,HasTranslations , HasSlug;
 
     const PATH = "images/adsImages";
-    protected $fillable = ['name','slug','city','image','category_id','price','description','type'];
+    protected $fillable = ['name','slug','city','image','category_id','user_id','price','description','type','status'];
 
     public  $translatable = ["name",'description'];
+
+    const APPROVED = 'approved';
+    const REJECTED = 'rejected';
 
     public function getImageAttribute($value): string
     {

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\EndUser;
+namespace App\Http\Requests;
 
+use App\Models\Profile;
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdsStore extends FormRequest
+class ProfileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,13 +22,7 @@ class AdsStore extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name_en'=>'required|min:3|unique:ads,name',
-            'name_ar'=>'required|min:3',
-            'city' => 'required|max:14',
-            'description' => "required|max:100",
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
-            
-        ];
+       $rules = Profile::$rules;
+       return  $rules;
     }
 }

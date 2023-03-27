@@ -14,6 +14,7 @@ class Ads extends Model
     use HasFactory,HasTranslations , HasSlug;
 
     const PATH = "images/adsImages";
+
     protected $fillable = ['name','city','image','slug','user_id','category_id','type','status','price','description'];
 
     public  $translatable = ["name"];
@@ -31,11 +32,11 @@ class Ads extends Model
             ->saveSlugsTo('slug');
     }
 
-    public function user()
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-    public function category()
+    public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Category::class);
     }

@@ -10,9 +10,9 @@ use App\Traits\AuthTrait;
 class RegisterRepository implements RegisterInterface
 {
         use AuthTrait;
-    public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function index()
     {
-        //  if(\auth()->user()) $this->checkGroup();
+          if(\auth()->user())  return $this->checkGroup();
 
         return view('EndUser.pages.Auth.register');
     }

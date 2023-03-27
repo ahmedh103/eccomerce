@@ -15,9 +15,11 @@ class HomeRepository implements HomeInterface
 {
     use AllAdsTrait;
 
+    const TOP_CATEGORY_ADDS_NUMBER = 8;
     private $department;
     private $ad;
     private $category;
+
     public function __construct(Department $department, Ads $ad, Category $category)
     {
         $this->department = $department;
@@ -33,23 +35,4 @@ class HomeRepository implements HomeInterface
         return view('index', compact('our_Recommend_ads', 'ads', 'departments'));
     }
 
-    private function topCategoriesByAds()
-    {
-        $departments = $this->department->with('categories')->get();
-        $departments = $this->mappingDepartmentAndCategoryToAddAddsCount($departments);
-        return $departments;
-    }
-    private function mappingDepartmentAndCategoryToAddAddsCount($departments)
-    {
-        $departments->map(function ($department) {
-            // get all ads for each category that has relation with ads
-            $department->categories->map(function ($category) {
-                // get all ads count for each category
-                $category->ads_count = $category->ads->count();
-            });
-            // get all ads count for each department
-            $department->ads_count = $department->categories->sum('ads_count');
-        });
-        return $departments;
-    }
 }

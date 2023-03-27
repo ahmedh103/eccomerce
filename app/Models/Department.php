@@ -8,6 +8,9 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Translatable\HasTranslations;
 
+/**
+ * @method get()
+ */
 class Department extends Model
 {
     use HasFactory, HasTranslations, HasSlug;
@@ -29,6 +32,11 @@ class Department extends Model
             ->saveSlugsTo('slug');
     }
 
+    public function categories(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Category::class);
+    }
+
     /**
      * Get the route key for the model.
      *
@@ -39,8 +47,4 @@ class Department extends Model
         return 'slug';
     }
 
-    public function categories()
-    {
-        return $this->hasMany(Category::class);
-    }
 }

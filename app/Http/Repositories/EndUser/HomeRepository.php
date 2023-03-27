@@ -4,6 +4,7 @@ namespace App\Http\Repositories\EndUser;
 
 use App\Http\Interfaces\EndUser\HomeInterface;
 use App\Http\Traits\AllAdsTrait;
+use App\Http\Traits\ShowDepartmentTrait;
 use App\Models\Ads;
 use App\Models\Category;
 use App\Models\Department;
@@ -13,7 +14,8 @@ use Illuminate\Foundation\Application;
 
 class HomeRepository implements HomeInterface
 {
-    use AllAdsTrait;
+
+    use AllAdsTrait , ShowDepartmentTrait;
 
     private $department;
     private $ad;

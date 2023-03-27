@@ -6,6 +6,7 @@ use App\Http\Controllers\EndUser\HomeController;
 use App\Http\Controllers\EndUser\ProfileController;
 use App\Http\Controllers\EndUser\ProfileSettingController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ShowDepartmentController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -71,6 +72,6 @@ Route::group(
         });
     });
 
+
+
 });
-
-

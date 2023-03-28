@@ -23,13 +23,17 @@
     =======================================-->
 
     <!-- FOR WEBPAGE TITLE -->
-    <title>@yield('title')</title>
+    <title>Setting - Classicads</title>
 
     <!--=====================================
                 CSS LINK PART START
     =======================================-->
     <!-- FAVICON -->
-    @include('EndUser.Includes.head')
+    <link rel="icon" href="images/favicon.png">
+
+    <!-- FONTS -->
+  @include('EndUser.Includes.head')
+    <link rel="stylesheet" href="{{asset('assetsEndUser/css/custom/setting.css')}}">
     <!--=====================================
                 CSS LINK PART END
     =======================================-->
@@ -50,19 +54,8 @@
                 </a>
                 <a href="user-form.html" class="header-widget header-user">
                     <img src="images/user.png" alt="user">
-                    <a href="{{route('login')}}">
-                    <span>
-                        join me
-                    </span>
-                    </a>
+                    <span>join me</span>
                 </a>
-
-               @if(Auth::check())
-                    <a class="ml-2" href="{{ route('endUser.logout') }}">
-                        <span>logo out</span>
-                    </a>
-                @endif
-
                 <button type="button" class="header-widget search-btn">
                     <i class="fas fa-search"></i>
                 </button>
@@ -105,7 +98,7 @@
                                 <li class="message-item unread">
                                     <a href="message.html" class="message-link">
                                         <div class="message-img active">
-                                            <img src="images/avatar/01.jpg" alt="avatar">
+                                            <img src="{{$profile->img}}" alt="avatar">
                                         </div>
                                         <div class="message-text">
                                             <h6>miron mahmud <span>now</span></h6>
@@ -265,7 +258,7 @@
                         </div>
                     </li>
                 </ul>
-                <a href="{{route("endUser.ads.create")}}" class="btn btn-inline post-btn">
+                <a href="ad-post.html" class="btn btn-inline post-btn">
                     <i class="fas fa-plus-circle"></i>
                     <span>post your ad</span>
                 </a>
@@ -291,7 +284,7 @@
             <div class="sidebar-profile">
                 <a href="#" class="sidebar-avatar"><img src="images/avatar/01.jpg" alt="avatar"></a>
                 <h4><a href="#" class="sidebar-name">Jackon Honson</a></h4>
-                <a href="{{route("endUser.ads.create")}}" class="btn btn-inline sidebar-post">
+                <a href="ad-post.html" class="btn btn-inline sidebar-post">
                     <i class="fas fa-plus-circle"></i>
                     <span>post your ad</span>
                 </a>
@@ -353,12 +346,12 @@
                         </li>
                         <li class="navbar-item navbar-dropdown">
                             <a class="navbar-link" href="#">
-                                <span>{{__('user.blog')}}</span>
+                                <span>blogs</span>
                                 <i class="fas fa-plus"></i>
                             </a>
                             <ul class="dropdown-list">
-                                <li><a class="dropdown-link" href={{route('endUser.blog.index')}}>{{__('user.list')}}</a></li>
-                                <li><a class="dropdown-link" href="{{route('endUser.blog.create')}}">{{__('user.create')}}</a></li>
+                                <li><a class="dropdown-link" href="blog-list.html">Blog list</a></li>
+                                <li><a class="dropdown-link" href="blog-details.html">blog details</a></li>
                             </ul>
                         </li>
                         <li class="navbar-item"><a class="navbar-link" href="contact.html">Contact</a></li>
@@ -371,7 +364,7 @@
                         <li class="navbar-item"><a class="navbar-link" href="{{route('endUser.profile.index')}}">Profile</a></li>
                         <li class="navbar-item"><a class="navbar-link" href="ad-post.html">Ad Post</a></li>
                         <li class="navbar-item"><a class="navbar-link" href="my-ads.html">My Ads</a></li>
-                        <li class="navbar-item"><a class="navbar-link" href="setting.html">Settings</a></li>
+                        <li class="navbar-item"><a class="navbar-link" href="{{route('endUser.profile.setting.index')}}">Settings</a></li>
                         <li class="navbar-item navbar-dropdown">
                             <a class="navbar-link" href="bookmark.html">
                                 <span>bookmark</span>
@@ -443,7 +436,216 @@
 =======================================-->
 
 
-@yield('content')
+<!--=====================================
+          SINGLE BANNER PART START
+=======================================-->
+<section class="single-banner dashboard-banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="single-content">
+                    <h2>setting</h2>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">setting</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=====================================
+          SINGLE BANNER PART END
+=======================================-->
+
+
+<!--=====================================
+        DASHBOARD HEADER PART START
+=======================================-->
+<section class="dash-header-part">
+    <div class="container">
+        <div class="dash-header-card">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="dash-header-left">
+                        <div class="dash-avatar">
+                            <a href="#"><img src="{{asset($profile->image)}}" alt="avatar"></a>
+                        </div>
+                        <div class="dash-intro">
+                            <h4><a href="#">gackon Honson</a></h4>
+                            <h5>new seller</h5>
+                            <ul class="dash-meta">
+                                <li>
+                                    <i class="fas fa-phone-alt"></i>
+                                    <span>(123) 000-1234</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-envelope"></i>
+                                    <span>gackon@gmail.com</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Los Angeles, West America</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="dash-header-right">
+                        <div class="dash-focus dash-list">
+                            <h2>2433</h2>
+                            <p>listing ads</p>
+                        </div>
+                        <div class="dash-focus dash-book">
+                            <h2>2433</h2>
+                            <p>total follower</p>
+                        </div>
+                        <div class="dash-focus dash-rev">
+                            <h2>2433</h2>
+                            <p>total review</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="dash-header-alert alert fade show">
+                        <p>From your account dashboard. you can easily check & view your recent orders, manage your shipping and billing addresses and Edit your password and account details.</p>
+                        <button data-dismiss="alert"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="dash-menu-list">
+                        <ul>
+                            <li><a href="dashboard.html">dashboard</a></li>
+                            <li><a href="{{route('endUser.profile.index')}}">Profile</a></li>
+                            <li><a href="ad-post.html">ad post</a></li>
+                            <li><a href="my-ads.html">my ads</a></li>
+                            <li><a class="active" href="{{route('endUser.profile.setting.index')}}">settings</a></li>
+                            <li><a href="bookmark.html">bookmarks</a></li>
+                            <li><a href="message.html">message</a></li>
+                            <li><a href="notification.html">notification</a></li>
+                            <li><a href="user-form.html">logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=====================================
+        DASHBOARD HEADER PART END
+=======================================-->
+
+
+<!--=====================================
+            SETTING PART START
+=======================================-->
+<div class="setting-part">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="account-card alert fade show">
+                    <div class="account-title">
+                        <h3>Edit Profile</h3>
+                        <button data-dismiss="alert">close</button>
+                    </div>
+                    <form class="setting-form" method="post" enctype="multipart/form-data" action="{{route('endUser.profile.setting.update')}}">
+                        @csrf
+                        @method('PUT')
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" class="form-control" value="{{$profile->first_name}}"  name="first_name" placeholder="FirstName">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" value="{{$profile->last_name}}"  name="last_name" placeholder="Hasan">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="form-label">Company</label>
+                                    <input type="text" class="form-control" value="{{$profile->company}}" name="company" placeholder="Classicads Advertising LID.">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="form-label">Address</label>
+                                    <input type="text" class="form-control"  value="{{$profile->address}}" name="address" placeholder="1420, West Jalkuri, Narayanganj, Bangladesh">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-label">City</label>
+                                    <input type="text" class="form-control"  {{$profile->city}} name="city" placeholder="Narayanganj">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-label">State</label>
+                                    <input type="text" class="form-control" name="state" value="{{$profile->state}}" placeholder="West Jalkuri">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-label">Post Code</label>
+                                    <input type="text" class="form-control"  name="post_code"  value="{{$profile->post_code}}" placeholder="1420">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-label">Country</label>
+                                    <input type="text" class="form-control" name="country" value="{{$profile->country}}" placeholder="Bangladesh">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-label">Website</label>
+                                    <input type="text" class="form-control" name="website" value="{{$profile->website}}" placeholder="https://mironmahmud.com">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-label">Phone</label>
+                                    <input type="text" class="form-control"  name="phone" value="{{$profile->phone}}" placeholder="+8801838288389">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-label">Birthday</label>
+                                    <input type="date" class="form-control"   name="birth" value="{{$profile->birth}}" >
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-label">Profile Image</label>
+                                    <input type="file" name="image" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <button class="btn btn-inline">
+                                    <i class="fas fa-user-check"></i>
+                                    <span>update profile</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--=====================================
+            SETTING PART END
+=======================================-->
+
 
 <!--=====================================
             FOOTER PART PART
@@ -631,8 +833,6 @@
 =======================================-->
 </body>
 </html>
-
-
 
 
 

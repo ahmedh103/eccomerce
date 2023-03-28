@@ -32,7 +32,7 @@
                         <h5>{{__('user.search')}}</h5>
                     </div>
                     <form action="" method="" class="blog-src">
-
+                        @csrf
                         <input type="search" id="search" name="search" placeholder="{{__('user.search')}}...">
                         <button type="submit"><i class="fas fa-search"></i></button>
                     </form>
@@ -84,7 +84,7 @@
                                         <h4><a href="blog-details.html">{{$blog->title}}</a></h4>
                                         <p>{{$blog->description}}</p>
                                     </div>
-                                    <a href="{{route('blog.edit',$blog)}}" class="blog-read">
+                                    <a href="{{route('endUser.blog.edit',$blog)}}" class="blog-read">
                                         <span>{{__('user.edit_card')}}</span>
                                         <i class="fas fa-long-arrow-alt-right"></i>
                                     </a>

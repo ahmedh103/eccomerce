@@ -14,7 +14,7 @@ trait AuthTrait
         return view('Admin.pages.Auth.login');
     }
 
-    public  function  checkIsEndUserAuth(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
+    public  function  checkIsEndUserAuth()
     {
         if(\auth()->user()) return $this->checkGroup();
         return view('EndUser.pages.Auth.login');

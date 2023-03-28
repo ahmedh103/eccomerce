@@ -19,7 +19,7 @@
 			<div class="inner">
 				<img src="{{asset("register/images/image-1.png")}}" alt="" class="image-1">
                 <h4 class="lnr lnr-arrow-left text-white p-2"><a href="{{url('/blog')}}" class="text-white">{{__('user.role_back')}}</a></h4>
-				<form action="{{route('blog.update',$blog)}}" method="POST" enctype="multipart/form-data">
+				<form action="{{route('endUser.blog.update',$blog)}}" method="POST" enctype="multipart/form-data">
 					@csrf
                     @method('PUT')
 					<h3>{{__('user.edit_blog')}}</h3>

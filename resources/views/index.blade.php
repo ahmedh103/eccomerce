@@ -956,60 +956,24 @@
                 </div>
             </div>
             <div class="row">
+            
+               
+             
+                @forelse($our_city as $our_citys)
                 <div class="col-sm-6 col-md-6 col-lg-3">
-                    <a href="ad-list-column3.html" class="city-card"
-                       style="background: url(images/cities/01.jpg) no-repeat center; background-size: cover">
-                        <div class="city-content">
-                            <h4>Los Angeles</h4>
-                            <p>(25) ads</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-4">
-                    <a href="ad-list-column3.html" class="city-card"
-                       style="background: url(images/cities/02.jpg) no-repeat center; background-size: cover">
-                        <div class="city-content">
-                            <h4>san francisco</h4>
-                            <p>(25) ads</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-5">
-                    <a href="ad-list-column3.html" class="city-card"
-                       style="background: url(images/cities/03.jpg) no-repeat center; background-size: cover">
-                        <div class="city-content">
-                            <h4>california</h4>
-                            <p>(25) ads</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-5">
-                    <a href="ad-list-column3.html" class="city-card"
-                       style="background: url(images/cities/04.jpg) no-repeat center; background-size: cover">
-                        <div class="city-content">
-                            <h4>new york</h4>
-                            <p>(25) ads</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-4">
-                    <a href="ad-list-column3.html" class="city-card"
-                       style="background: url(images/cities/05.jpg) no-repeat center; background-size: cover">
-                        <div class="city-content">
-                            <h4>manhattan</h4>
-                            <p>(25) ads</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-3">
-                    <a href="ad-list-column3.html" class="city-card"
-                       style="background: url(images/cities/06.jpg) no-repeat center; background-size: cover">
-                        <div class="city-content">
-                            <h4>Baltimore</h4>
-                            <p>(25) ads</p>
-                        </div>
-                    </a>
-                </div>
+              
+                <a href="ad-list-column3.html" class="city-card" style="background:url('{{url($our_citys['image'])}}')"  no-repeat center; background-size: cover">
+                    <div class="city-content">
+                        <h4>{{$our_citys['city']}}</h4>
+                        <p>{{$our_citys['count']}}</p>
+                    </div>
+                </a>
+            </div>
+            @empty
+            @endforelse
+        </div>
+
+
             </div>
             <div class="row">
                 <div class="col-lg-12">

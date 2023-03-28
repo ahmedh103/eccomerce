@@ -4,16 +4,13 @@ $.ajaxSetup({
    }
 });
 $('#search').on('keyup',function (){
-    $value = $(this).val();
-    if($value == false){
-        $('.allData').show();
-        $('showData').hide();
-    }else {
+    value = $(this).val();
+
         $.ajax({
             method: 'post',
-            url: 'search',
+            url: 'endUser/blog/search',
             data: JSON.stringify({
-                search: $inputSearch
+                search: value
             }),
             headers: {
                 'Accept': 'application/json',
@@ -23,15 +20,14 @@ $('#search').on('keyup',function (){
                 var searchResultAjax ='';
                 data = JSON.parse(data);
                 $('.allData').hide();
-                $('showData').show();
+                $('.showData').show();
                 for (let i = 0 ; i<data.length;i++){
                     searchResultAjax +=`
                         <h1>karim</h1>
                     `;
                 }
                 $('.showData').html(searchResultAjax)
-
             }
         })
-    }
+
 })

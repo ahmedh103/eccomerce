@@ -24,8 +24,8 @@ class blogController extends Controller
         return $this->blogInterface->create();
     }
 
-    public function store(StoreRequest $request , Article $blog){
-        return $this->blogInterface->store($request ,$blog);
+    public function store(StoreRequest $request){
+        return $this->blogInterface->store($request);
     }
 
     public function updateForm(Article $blog){

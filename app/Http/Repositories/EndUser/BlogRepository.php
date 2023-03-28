@@ -19,7 +19,7 @@ class BlogRepository implements \App\Http\Interfaces\EndUser\BlogInterface
 
     public function index()
     {
-      return $this->showBlog();
+      return $this->showUserBlogs(\auth()->id());
     }
 
     public function create()
@@ -27,13 +27,13 @@ class BlogRepository implements \App\Http\Interfaces\EndUser\BlogInterface
         return view('EndUser.pages.blogs.create');
     }
 
-    public function store($requset, $blog)
+    public function store($requset)
     {
         $imageName = $this->uploadImage($requset->image , $this->articleModel::PATH);
-      $blogs =  $blog::create([
-           'title'=>['en'=>$requset->name_en ,'ar'=>$requset->name_ar],
+        $this->articleModel::create([
+            'title'=>['en'=>$requset->name_en ,'ar'=>$requset->name_ar],
             'description'=>['en'=>$requset->desc_en ,'ar'=>$requset->desc_ar],
-            'user_id'=>Auth::user()->id,
+            'user_id'=>Auth::id(),
             'image'=>$imageName
         ]);
       toast(__('user.add'),'success');
@@ -62,8 +62,11 @@ class BlogRepository implements \App\Http\Interfaces\EndUser\BlogInterface
 
     public function search($request)
     {
-        $inputSearch = $request['search'];
-         $keyResult = $this->articleModel::where('title','LIKE','%'.$inputSearch.'%')->get();
+         $keyResult = $this->articleModel::where('title','LIKE','%'.$request->search.'%')->get();
+         return response()->json([
+             'status' => 'success',
+             'data' => $keyResult
+         ]);
 
     }
 }

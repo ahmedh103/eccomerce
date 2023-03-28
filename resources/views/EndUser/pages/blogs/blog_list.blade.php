@@ -56,8 +56,7 @@
                 </div>
 
                     <div class="row allData">
-                        @foreach($blogs as $blog)
-                            @if(Auth::user()->id == $blog->user_id)
+                        @forelse($blogs as $blog)
                         <div class="col-md-4 m-auto">
                             <div class="blog-card">
                                 <div class="blog-img">
@@ -92,10 +91,9 @@
                                 </div>
                             </div>
                         </div>
-                            @else
+                            @empty
                                 <div class="alert alert-danger w-100">Sorry, there is no data for you</div>
-                            @endif
-                        @endforeach
+                        @endforelse
                     </div>
                 <div class="row showData" id="content">
 

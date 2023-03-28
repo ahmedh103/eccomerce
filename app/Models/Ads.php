@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
@@ -22,6 +23,11 @@ class Ads extends Model
     public function getImageAttribute($value): string
     {
         return $this::PATH . DIRECTORY_SEPARATOR . $value;
+    }
+
+    public function getCreatedAtAttribute($date) : string {
+        $customDate = new Carbon($date);
+        return $customDate->diffForHumans();
     }
 
     public function getSlugOptions() : SlugOptions

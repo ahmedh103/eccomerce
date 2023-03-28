@@ -17,6 +17,7 @@ trait AuthTrait
     public  function  checkIsEndUserAuth()
     {
         if(\auth()->user()) return $this->checkGroup();
+        else
         return view('EndUser.pages.Auth.login');
     }
 

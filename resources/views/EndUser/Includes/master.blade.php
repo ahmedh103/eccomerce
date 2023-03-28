@@ -353,12 +353,12 @@
                         </li>
                         <li class="navbar-item navbar-dropdown">
                             <a class="navbar-link" href="#">
-                                <span>blogs</span>
+                                <span>{{__('user.blog')}}</span>
                                 <i class="fas fa-plus"></i>
                             </a>
                             <ul class="dropdown-list">
-                                <li><a class="dropdown-link" href="blog-list.html">Blog list</a></li>
-                                <li><a class="dropdown-link" href="blog-details.html">blog details</a></li>
+                                <li><a class="dropdown-link" href={{route('endUser.blog.index')}}>{{__('user.list')}}</a></li>
+                                <li><a class="dropdown-link" href="{{route('endUser.blog.create')}}">{{__('user.create')}}</a></li>
                             </ul>
                         </li>
                         <li class="navbar-item"><a class="navbar-link" href="contact.html">Contact</a></li>

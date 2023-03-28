@@ -45,6 +45,16 @@ Route::group(
         });
     });
 
+    Route::group(['prefix'=>'blog','as'=>'blog.','middleware'=>'auth'],function (){
+        Route::get('/',[\App\Http\Controllers\EndUser\blogController::class,"index"])->name('index');
+        Route::get('create',[\App\Http\Controllers\EndUser\blogController::class,"create"])->name('create');
+        Route::post('store',[\App\Http\Controllers\EndUser\blogController::class,"store"])->name('store');
+        Route::get('updateForm/{blog}',[\App\Http\Controllers\EndUser\blogController::class,"updateForm"])->name('edit');
+        Route::put('edit/{blog}',[\App\Http\Controllers\EndUser\blogController::class,"update"])->name('update');
+        Route::post('search',[\App\Http\Controllers\EndUser\blogController::class,"search"]);
+    });
+
 });
+
 
 

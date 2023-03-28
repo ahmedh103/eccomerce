@@ -10,6 +10,9 @@ trait AllAdsTrait
         return Ads::inRandomOrder()->limit($count)->get(['name','city','description','type','status','price','image','slug']);
     }
 
+    public function getPopularTrendingAds ($count) {
+        return Ads::inRandomOrder()->limit($count)->with(["category"])->get();
+    }
     private function topCategoriesByAds()
     {
         $departments = $this->department->with('categories')->inRandomOrder()

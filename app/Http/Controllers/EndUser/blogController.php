@@ -35,7 +35,7 @@ class blogController extends Controller
     public function update(UpdateRequest $requset , Article $blog){
         return $this->blogInterface->update($requset , $blog);
     }
-    public function search(Request $request){
-        return $this->blogInterface->search($request);
+    public function search(){
+        return $this->blogInterface->search();
     }
 }

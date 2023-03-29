@@ -3,31 +3,23 @@ $.ajaxSetup({
         'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
    }
 });
-$('#search').on('keyup',function (){
-    value = $(this).val();
 
+ var old_content = $('.content-reverse').html();
+$(document).on('keyup','#inputSearch',function (){
+
+    var search_content = $(this).val();
+    if (search_content != ''){
         $.ajax({
-            method: 'post',
-            url: 'endUser/blog/search',
-            data: JSON.stringify({
-                search: value
-            }),
-            headers: {
-                'Accept': 'application/json',
-                'Content-type': 'application/json'
-            },
-            success: function (data) {
-                var searchResultAjax ='';
-                data = JSON.parse(data);
-                $('.allData').hide();
-                $('.showData').show();
-                for (let i = 0 ; i<data.length;i++){
-                    searchResultAjax +=`
-                        <h1>karim</h1>
-                    `;
-                }
-                $('.showData').html(searchResultAjax)
+            url:'/blog/search',
+            method:'GET',
+            data:{search_content},
+            data_type:'json',
+            success:function (data){
+                $('.allData').html(data.row_result);
             }
         })
+    }else{
+        $('.content-reverse').html(old_content);
 
-})
+    }
+});

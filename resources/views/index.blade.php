@@ -754,12 +754,12 @@
                 </div>
             </div>
             <div class="row">
-            
-               
-             
+
+
+
                 @forelse($our_city as $our_citys)
                 <div class="col-sm-6 col-md-6 col-lg-3">
-              
+
                 <a href="ad-list-column3.html" class="city-card" style="background:url('{{url($our_citys['image'])}}')"  no-repeat center; background-size: cover">
                     <div class="city-content">
                         <h4>{{$our_citys['city']}}</h4>

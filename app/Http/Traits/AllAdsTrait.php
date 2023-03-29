@@ -20,16 +20,18 @@ trait AllAdsTrait
         $departments = $this->mappingDepartmentAndCategoryToAddAddsCount($departments);
         return $departments;
     }
-   
-  
-    public function getTopCity(){
 
+
+    public function getTopCity()
+    {
         $getAds = Ads::get(['image','city'])->groupBy('city');
         $results = [];
-    foreach($getAds as $group) {
-    $results[] = array_merge($group->first()->toArray() , ['count' =>$group->count()]);
-   return $results;
-}
+            foreach($getAds as $group)
+            {
+            $results[] = array_merge($group->first()->toArray() , ['count' =>$group->count()]);
+            }
+        return $results;
+
     }
 
     private function mappingDepartmentAndCategoryToAddAddsCount($departments)
@@ -47,5 +49,5 @@ trait AllAdsTrait
     }
 
 
-    
+
 }

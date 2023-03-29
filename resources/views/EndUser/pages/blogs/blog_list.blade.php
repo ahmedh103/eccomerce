@@ -31,11 +31,10 @@
                     <div class="blog-sidebar-title">
                         <h5>{{__('user.search')}}</h5>
                     </div>
-                    <form action="" method="" class="blog-src">
-                        @csrf
-                        <input type="search" id="search" name="search" placeholder="{{__('user.search')}}...">
-                        <button type="submit"><i class="fas fa-search"></i></button>
-                    </form>
+
+
+                        <input type="search" class="form-control w-50 m-auto" id="inputSearch" name="search" placeholder="{{__('user.search')}}...">
+
                 </div>
             </div>
             <div class="row content-reverse">

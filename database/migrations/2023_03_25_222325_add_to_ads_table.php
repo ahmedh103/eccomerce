@@ -18,8 +18,6 @@ return new class extends Migration
             $table->text("description");
             $table->enum("type",["new","used"]);
             $table->enum("status",["pending","approved","rejected",])->default("pending");
-
-
         });
     }
 

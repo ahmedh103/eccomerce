@@ -81,6 +81,20 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Http\Interfaces\EndUser\AdInterface',
             'App\Http\Repositories\EndUser\AdRepository',
         );
+
+        $this->app->bind(
+            'App\Http\Interfaces\EndUser\ProfileInterface',
+            'App\Http\Repositories\EndUser\ProfileRepository',
+        );
+        $this->app->bind(
+            'App\Http\Interfaces\EndUser\ProfileSettingInterface',
+            'App\Http\Repositories\EndUser\ProfileSettingRepository',
+        );
+
+        $this->app->bind(
+            'App\Http\Interfaces\EndUser\BlogInterface',
+            'App\Http\Repositories\EndUser\BlogRepository',
+        );
     }
 
     /**

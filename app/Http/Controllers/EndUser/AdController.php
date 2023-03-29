@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\EndUser;
 
 use App\Http\Controllers\Controller;
+use App\Http\Interfaces\EndUser\AdsInterface;
+use App\Http\Requests\EndUser\AdsStore;
 use App\Http\Interfaces\EndUser\AdInterface;
 use App\Http\Traits\CategoryTrait;
 use App\Http\Traits\ImageTrait;
@@ -11,63 +13,24 @@ use Illuminate\Http\Request;
 
 class AdController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-
-    private $adInterface;
-    public function __construct(AdInterface $adInterface){
-        $this->adInterface = $adInterface;
+    private $adsinterface ;
+    public function __construct(AdsInterface $adsInterface)
+    {
+        $this->adsinterface = $adsInterface;
     }
+
     public function index(){
-        return $this->adInterface->index();
+        return $this->adsInterface->index();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+    public function create (){
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        return $this->adsinterface->create();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
+    public function store (AdsStore $request){
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return $this->adsinterface->store($request);
     }
 }
+

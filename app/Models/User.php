@@ -80,7 +80,7 @@ class User extends Authenticatable
     // attach user to group
     public function attachGroup($group_id): void
     {
-        if($this->group !== null)
+        if($this->group != null)
             $this->group()->update([
                 'group_id' => $group_id,
             ]);
@@ -88,6 +88,18 @@ class User extends Authenticatable
             $this->group()->create([
                 'group_id' => $group_id,
             ]);
+    }
+
+    // detach user from group
+    public function detachGroup(): void
+    {
+        if($this->group !== null)
+            $this->group()->delete();
+    }
+    //user profile
+    public function profile(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Profile::class);
     }
 
 

@@ -8,25 +8,33 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Translatable\HasTranslations;
 
+/**
+ * @method get()
+ */
 class Department extends Model
 {
-    use HasFactory,  HasTranslations, HasSlug;
-    protected $fillable =['name','slug','image'];
-    public array $translatable =['name'] ;
+    use HasFactory, HasTranslations, HasSlug;
 
     const PATH = 'images/departmentImages';
 
+    public array $translatable = ['name'];
+    protected $fillable = ['name', 'slug', 'image'];
+
     public function getImageAttribute($value)
     {
-       return $this::PATH . DIRECTORY_SEPARATOR . $value;
+        return $this::PATH.DIRECTORY_SEPARATOR.$value;
     }
 
-
-    public function getSlugOptions(): SlugOptions
+    public function getSlugOptions():SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
+    }
+
+    public function categories(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Category::class);
     }
 
     /**
@@ -34,8 +42,9 @@ class Department extends Model
      *
      * @return string
      */
-    public function getRouteKeyName(): string
+    public function getRouteKeyName():string
     {
         return 'slug';
     }
+
 }

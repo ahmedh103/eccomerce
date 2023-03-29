@@ -14,6 +14,8 @@ class AttachGroupByUser
     {
         $group = Group::where('name', 'user')->first();
         $user->attachGroup($group->id);
+
+
     }
 
     /**

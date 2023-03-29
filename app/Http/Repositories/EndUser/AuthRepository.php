@@ -18,31 +18,26 @@ class AuthRepository implements AuthInterface
 {
         use AuthTrait;
 
-
-
-
-    public function index(): View|Factory|Application|\Illuminate\Contracts\Foundation\Application
+    public function index()
     {
-
         return $this->checkIsEndUserAuth();
-
     }
 
     public function login($request): Application|Redirector|RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
-
         $credentials = $request->only(['email', 'password']);
-            if (Auth::attempt($credentials) && Auth::user()->active == 1)
+            if (Auth::attempt($credentials , $request->remember) && Auth::user()->active == 1)
         {
             toast('Welcome'. \auth()->user()->first_name, 'success');
             return redirect(route('endUser.home'));
         }
-
         if(Auth::user() && Auth::user()->active == 0)
         {
             $this->handle_logout();
             return redirect()->route('login')->with('invalid', 'Email Not Verified');
-        }else{
+        }
+        else
+        {
             return redirect()->route('login')->with('invalid', 'Invalid Credentials');
         }
 
@@ -53,11 +48,5 @@ class AuthRepository implements AuthInterface
          $this->handle_logout();
         return redirect()->route('endUser.home');
     }
-
-
-
-
-
-
 
 }

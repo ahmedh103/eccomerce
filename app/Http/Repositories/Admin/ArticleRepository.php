@@ -19,7 +19,7 @@ class ArticleRepository implements ArticleInterface
 	public function index()
 	{
 		$articles = $this->article->get(['id', 'title', 'description', 'image', 'status']);
-		return view('admin.pages.articles.index', compact('articles'));
+		return view('Admin.pages.articles.index', compact('articles'));
 	}
 
 	public function show($article)

@@ -14,7 +14,7 @@ use Illuminate\Foundation\Application;
 
 class HomeRepository implements HomeInterface
 {
-
+   const TOP_CATEGORY_ADDS_NUMBER = "8";
     use AllAdsTrait , ShowDepartmentTrait;
 
     private $department;

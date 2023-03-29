@@ -69,7 +69,7 @@ class BlogRepository implements \App\Http\Interfaces\EndUser\BlogInterface
              $outPut.= '
                  <div class="blog-content">
                     <a href="#" class="blog-avatar">
-                        <img src="../../../../public/assetsEndUser/images/articles/"'.$blog->image.' alt="avatar">
+                        <img src="'.$blog->image.'" alt="avatar">
                     </a>
                     <ul class="blog-meta">
                         <li>

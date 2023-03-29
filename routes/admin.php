@@ -89,6 +89,8 @@ Route::group(
             Route::get('/', 'index')->name('index');
             Route::get('/create', 'create')->name('create');
             Route::post('/store', 'store')->name('store');
+            Route::put('/approve/{ad}', 'approve')->name('approve');
+            Route::put('/reject/{ad}', 'reject')->name('reject');
             Route::put('update/{ad}', 'update')->name('update');
             Route::delete('delete/{ad}', 'delete')->name('delete');
             Route::get('/edit/{ad}', 'edit')->name('edit');

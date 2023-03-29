@@ -12,9 +12,8 @@
         <div class="container">
             <div class="banner-content">
                 <h1>You can #Buy, #Rent, #Booking anything from here.</h1>
-                <p>Buy and sell everything from used cars to mobile phones and computers, or search for property, jobs
-                    and more in the world.</p>
-                <a href="ad-list-column3.html" class="btn btn-outline">
+                <p>Buy and sell everything from used cars to mobile phones and computers, or search for property, jobs and more in the world.</p>
+                <a href="{{route('endUser.ads.index')}}" class="btn btn-outline">
                     <i class="fas fa-eye"></i>
                     <span>Show all ads</span>
                 </a>
@@ -760,7 +759,7 @@
                 @forelse($our_city as $our_citys)
                 <div class="col-sm-6 col-md-6 col-lg-3">
 
-                <a href="ad-list-column3.html" class="city-card" style="background:url('{{url($our_citys['image'])}}')"  no-repeat center; background-size: cover">
+                <a href="ad-list-column3.html" class="city-card" style="background:url('{{url($our_citys['image'])}}');background-size: cover">
                     <div class="city-content">
                         <h4>{{$our_citys['city']}}</h4>
                         <p>{{$our_citys['count']}}</p>

@@ -37,4 +37,12 @@ class AdController extends Controller
     public function delete(Ads $ad){
         return $this->adInterface->delete($ad);
     }
+
+    public function approve(Ads $ad ){
+        return $this->adInterface->approve($ad);
+    }
+
+    public function reject(Ads $ad){
+        return $this->adInterface->reject($ad);
+    }
 }

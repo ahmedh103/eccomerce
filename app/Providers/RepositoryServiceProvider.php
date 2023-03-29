@@ -78,17 +78,17 @@ class RepositoryServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
+            'App\Http\Interfaces\EndUser\AdsInterface',
+            'App\Http\Repositories\EndUser\AdsRepository',
+        );
+
+        $this->app->bind(
             'App\Http\Interfaces\EndUser\ProfileInterface',
             'App\Http\Repositories\EndUser\ProfileRepository',
         );
         $this->app->bind(
             'App\Http\Interfaces\EndUser\ProfileSettingInterface',
             'App\Http\Repositories\EndUser\ProfileSettingRepository',
-        );
-
-        $this->app->bind(
-            'App\Http\Interfaces\EndUser\AdsInterface',
-            'App\Http\Repositories\EndUser\AdsRepository',
         );
 
         $this->app->bind(

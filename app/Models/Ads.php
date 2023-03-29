@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
-
+use Carbon\Carbon;
 
 class Ads extends Model
 {
@@ -16,9 +15,13 @@ class Ads extends Model
 
     const PATH = "images/adsImages";
 
-    protected $fillable = ['name','city','image','slug','user_id','category_id','type','status','price','description'];
 
-    public  $translatable = ["name"];
+    protected $fillable = ['name','slug','city','image','category_id','user_id','price','description','type','status'];
+
+    public  $translatable = ["name",'description'];
+
+    const APPROVED = 'approved';
+    const REJECTED = 'rejected';
 
     public function getImageAttribute($value): string
     {

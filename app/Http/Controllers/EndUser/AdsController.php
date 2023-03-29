@@ -5,18 +5,17 @@ namespace App\Http\Controllers\EndUser;
 use App\Http\Controllers\Controller;
 use App\Http\Interfaces\EndUser\AdsInterface;
 use App\Http\Requests\EndUser\AdsStore;
-use App\Http\Interfaces\EndUser\AdInterface;
 use App\Http\Traits\CategoryTrait;
 use App\Http\Traits\ImageTrait;
 use App\Models\Ads;
 use Illuminate\Http\Request;
 
-class AdController extends Controller
+class AdsController extends Controller
 {
-    private $adsinterface ;
+    private $adsInterface;
     public function __construct(AdsInterface $adsInterface)
     {
-        $this->adsinterface = $adsInterface;
+        $this->adsInterface = $adsInterface;
     }
 
     public function index(){
@@ -25,12 +24,12 @@ class AdController extends Controller
 
     public function create (){
 
-        return $this->adsinterface->create();
+        return $this->adsInterface->create();
 
     }
     public function store (AdsStore $request){
 
-        return $this->adsinterface->store($request);
+        return $this->adsInterface->store($request);
     }
 }
 

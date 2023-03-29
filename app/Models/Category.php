@@ -59,9 +59,6 @@ class Category extends Model
     {
         return 'slug';
     }
-    public function ads() {
-        return $this->hasMany(Ads::class);
-    }
 
 
 }

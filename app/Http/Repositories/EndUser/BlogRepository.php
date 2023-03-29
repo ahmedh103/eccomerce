@@ -93,7 +93,7 @@ class BlogRepository implements \App\Http\Interfaces\EndUser\BlogInterface
              ';
          }
          return $data = array(
-             'row_result'=>$outPut,
+             'row_result'=> $outPut,
          );
 
     }

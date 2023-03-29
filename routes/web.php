@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EndUser\AdController;
 use App\Http\Controllers\EndUser\AuthController;
 use App\Http\Controllers\EndUser\HomeController;
 use App\Http\Controllers\RegisterController;
@@ -38,6 +39,7 @@ Route::group(
             Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
         });
         Route::get('', [HomeController::class, 'index'])->name('home');
+        Route::get('/allads', [AdController::class, 'index'])->name('ads.index');
     });
 
 });

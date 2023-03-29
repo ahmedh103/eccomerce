@@ -58,6 +58,10 @@ return $this->belongsTo(Department::class);
     {
         return 'slug';
     }
+    public function ads() {
+        return $this->hasMany(Ads::class);
+    }
+
 
 
 }

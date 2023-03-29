@@ -20,7 +20,11 @@ class AdsRepository implements AdsInterface{
         $this->categoryModel = $categoryModel;
         $this->adsModel = $adsModel;
     }
-
+    public function index()
+    {
+        $ads = $this->adsModel::with('category')->get(['id', 'name', 'city', 'image', 'slug', 'price','category_id' ,'description', 'type', 'status', 'created_at']);
+        return view('EndUser.pages.ads.show', compact('ads'));
+    }
 
     public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {

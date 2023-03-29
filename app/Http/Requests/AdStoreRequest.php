@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class AdStoreRequest extends FormRequest
 {
@@ -25,9 +26,13 @@ class AdStoreRequest extends FormRequest
         return [
             'name_en'=>'required|max:255',
             'name_ar'=>'required|max:255',
-            'price'=>'required',
-            'image'=>'nullable|image|mimes:png,jpg,jpeg,webp',
-            'category_id'=>'required|exists:categories,id'
+            'city' => 'required|string|max:255',
+            'image'=>'required|image|mimes:png,jpg,jpeg,webp',
+            'price'=>'required|numeric',
+            'description_en'=>'required',
+            'description_ar'=>'required',
+            'type' => 'required|in:new,used',
+            'category_id'=>'required|exists:categories,id',
         ];
     }
 }

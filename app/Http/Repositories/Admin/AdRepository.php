@@ -8,10 +8,12 @@ use App\Models\Ads;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use App\Http\Traits\CategoryTrait;
+use Illuminate\Support\Facades\Auth;
 
 class AdRepository implements AdInterface
 {
-    use ImageTrait;
+    use ImageTrait , CategoryTrait;
 
     private $adModel;
     public function __construct(Ads $ad)
@@ -21,17 +23,26 @@ class AdRepository implements AdInterface
 
     public function index()
     {
-        $ads = $this->adModel::get(['id','name','city','image','slug']);
+
+        $ads = $this->adModel::get(['id','name','city','image','slug','price','description','type','status']);
         return view('Admin.ads.index', compact('ads'));
     }
 
     public function store($request)
     {
+//        dd(auth()->id());
         $imageName = $this->uploadImage($request->image, $this->adModel::PATH);
+//        dd($request);
         $this->adModel::create([
             'name' => ['en' => $request->name_en , 'ar' => $request->name_ar],
             'city' => $request->city,
-            'image' => $imageName
+            'image' => $imageName,
+            'category_id' => $request->category_id,
+            'user_id' => auth()->id(),
+            'price' => $request->price,
+            'description' => ['en' => $request->description_en , 'ar' => $request->description_ar],
+            'type' => $request->type,
+            'status' => $this->adModel::APPROVED
         ]);
         toast('Ad created successfully', 'success');
         return redirect(route('admin.ads.index'));
@@ -39,7 +50,9 @@ class AdRepository implements AdInterface
 
     public function create()
     {
-        return view('Admin.ads.create');
+//        $user = Auth::user();
+        $categories =  $this->getCategoryBydepartment();
+        return view('Admin.ads.create' ,compact('categories'));
     }
 
     public function edit($ad)
@@ -70,6 +83,28 @@ class AdRepository implements AdInterface
         $this->removeImage($ad->image);
         toast('Ad Deleted Successfully', 'success');
 
+        return redirect()->route('admin.ads.index');
+    }
+
+    public function approve($ad){
+
+        $ad->update([
+            'status' => $this->adModel::APPROVED
+        ]);
+        toast('Ad Approved Successfully', 'success');
+        return redirect()->route('admin.ads.index');
+
+    }
+
+    public function reject($ad){
+
+        //dd($ad);
+        $ad->update([
+            'status' => $this->adModel::REJECTED
+        ]);
+
+        //dd($ad);
+        toast('Ad Rejected Successfully', 'success');
         return redirect()->route('admin.ads.index');
     }
 }

@@ -10,4 +10,7 @@ interface AdInterface
     public function edit($ad);
     public function update($ad,$request);
     public function delete($ad);
+
+    public function approve($ad);
+    public function reject($ad);
 }

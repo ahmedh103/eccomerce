@@ -60,4 +60,5 @@ class Category extends Model
         return 'slug';
     }
 
+
 }

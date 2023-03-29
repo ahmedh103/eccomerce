@@ -32,9 +32,10 @@ class HomeRepository implements HomeInterface
         $ads = $this->getAllAds(8);
         $our_Recommend_ads = $this->getAllAds(4);
         $departments = $this->topCategoriesByAds();
+
         $our_city= $this->getTopCity();
         $popularTrendingAds = $this->getPopularTrendingAds(8);
-        return view('index', compact('our_Recommend_ads', 'ads', 'departments','popularTrendingAds','our_city'));
+        return view('index', compact('our_Recommend_ads','our_city', 'ads', 'departments','popularTrendingAds'));
 
     }
 

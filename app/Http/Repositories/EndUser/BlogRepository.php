@@ -57,16 +57,44 @@ class BlogRepository implements \App\Http\Interfaces\EndUser\BlogInterface
         ]);
 
         toast(  (__('user.edit')), 'success');
-        return redirect(route('blog.index'));
+        return redirect(route('endUser.blog.index'));
     }
 
-    public function search($request)
+    public function search()
     {
-         $keyResult = $this->articleModel::where('title','LIKE','%'.$request->search.'%')->get();
-         return response()->json([
-             'status' => 'success',
-             'data' => $keyResult
-         ]);
+        $search_content = $_GET['search_content'];
+         $blogs = $this->articleModel::where('title','LIKE','%'.$search_content.'%')->get();
+         $outPut = '';
+         foreach ($blogs as $blog){
+             $outPut.= '
+                 <div class="blog-content">
+                    <a href="#" class="blog-avatar">
+                        <img src="../../../../public/assetsEndUser/images/articles/"'.$blog->image.' alt="avatar">
+                    </a>
+                    <ul class="blog-meta">
+                        <li>
+                            <i class="fas fa-user"></i>
+                            <p><a href="#">karim</a></p>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <p>2023-03-27 15:22:45</p>
+                        </li>
+                    </ul>
+                    <div class="blog-text">
+                        <h4><a href="blog-details.html">'.$blog->title.'</a></h4>
+                        <p>'.$blog->description.'</p>
+                    </div>
+                    <a href="http://127.0.0.1:8000/ar/blog/updateForm/karim" class="blog-read">
+                        <span>للتعديل اضغط هنا</span>
+                        <i class="fas fa-long-arrow-alt-right"></i>
+                    </a>
+                  </div>
+             ';
+         }
+         return $data = array(
+             'row_result'=>$outPut,
+         );
 
     }
 }

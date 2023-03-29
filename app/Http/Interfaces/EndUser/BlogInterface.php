@@ -9,5 +9,5 @@ interface BlogInterface
     public function store($requset);
     public function updateForm($blog);
     public function update($requset , $blog);
-    public function search($request);
+    public function search();
 }

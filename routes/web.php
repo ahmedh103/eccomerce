@@ -78,7 +78,7 @@ Route::group(
             Route::post('store',[\App\Http\Controllers\EndUser\blogController::class,"store"])->name('store');
             Route::get('updateForm/{blog}',[\App\Http\Controllers\EndUser\blogController::class,"updateForm"])->name('edit');
             Route::put('edit/{blog}',[\App\Http\Controllers\EndUser\blogController::class,"update"])->name('update');
-            Route::post('search',[\App\Http\Controllers\EndUser\blogController::class,"search"]);
+            Route::get('search',[\App\Http\Controllers\EndUser\blogController::class,"search"]);
         });
     });
 

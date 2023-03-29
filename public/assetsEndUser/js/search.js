@@ -5,6 +5,7 @@ $.ajaxSetup({
 });
 
  var old_content = $('.content-reverse').html();
+ var test_alert = $('.test').html();
 $(document).on('keyup','#inputSearch',function (){
 
     var search_content = $(this).val();
@@ -15,7 +16,13 @@ $(document).on('keyup','#inputSearch',function (){
             data:{search_content},
             data_type:'json',
             success:function (data){
-                $('.allData').html(data.row_result);
+                if(test_alert != '')
+                {
+                    $('.allData').html(data.row_result);
+                }
+
+                $('.allData').html(test_alert);
+
             }
         })
     }else{

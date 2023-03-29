@@ -91,9 +91,10 @@
                             </div>
                         </div>
                             @empty
-                                <div class="alert alert-danger w-100">Sorry, there is no data for you</div>
+                                <div class="alert alert-danger w-100 test">Sorry, there is no data for you</div>
                         @endforelse
                     </div>
+
                 <div class="row showData" id="content">
 
                 </div>

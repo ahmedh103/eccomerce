@@ -14,12 +14,11 @@ use Illuminate\Foundation\Application;
 
 class HomeRepository implements HomeInterface
 {
-   const TOP_CATEGORY_ADDS_NUMBER = "8";
-    use AllAdsTrait , ShowDepartmentTrait;
+    use AllAdsTrait, ShowDepartmentTrait;
+    const TOP_CATEGORY_ADDS_NUMBER = "8";
 
-    private $department;
-    private $ad;
-    private $category;
+    private $department, $ad, $category;
+
     public function __construct(Department $department, Ads $ad, Category $category)
     {
         $this->department = $department;
@@ -27,15 +26,14 @@ class HomeRepository implements HomeInterface
         $this->category = $category;
     }
 
-    public function index():View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $ads = $this->getAllAds(8);
         $our_Recommend_ads = $this->getAllAds(4);
         $departments = $this->topCategoriesByAds();
-
-        $our_city= $this->getTopCity();
+        $our_city = $this->getTopCity();
         $popularTrendingAds = $this->getPopularTrendingAds(8);
-        return view('index', compact('our_Recommend_ads','our_city', 'ads', 'departments','popularTrendingAds'));
+        return view('index', compact('our_Recommend_ads', 'our_city', 'ads', 'departments', 'popularTrendingAds'));
 
     }
 
@@ -45,6 +43,7 @@ class HomeRepository implements HomeInterface
         $departments = $this->mappingDepartmentAndCategoryToAddAddsCount($departments);
         return $departments;
     }
+
     private function mappingDepartmentAndCategoryToAddAddsCount($departments)
     {
         $departments->map(function ($department) {

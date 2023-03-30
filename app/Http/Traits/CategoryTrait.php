@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\File;
 
 trait CategoryTrait{
 
+    private function getAllCategory()
+    {
+        return $this->categoryModel::get();
+    }
+
     private function getCategoryBydepartment()
     {
         return Department::get(['id','name']);

@@ -5,6 +5,7 @@ namespace App\Http\Repositories\Admin;
 use App\Http\Interfaces\Admin\CategoryInterface;
 use App\Http\Traits\CategoryTrait;
 use App\Http\Traits\ImageTrait;
+use App\Http\Traits\Redis\CategoryRedis;
 use App\Models\Category;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -12,7 +13,7 @@ use Illuminate\Foundation\Application;
 
 class CategoryRepository implements CategoryInterface
 {
-    use ImageTrait, CategoryTrait;
+    use ImageTrait, CategoryRedis;
 
     private $categoryModel;
 
@@ -23,7 +24,7 @@ class CategoryRepository implements CategoryInterface
 
     public  function index ()
     {
-      $categories = $this->categoryModel::get();
+      $categories = $this->getCategoriesFromRedis();
       return view('Admin.pages.category.index', compact('categories'));
     }
     public  function create ()
@@ -33,50 +34,51 @@ class CategoryRepository implements CategoryInterface
         return view('Admin.pages.category.create',compact('departments'));
     }
 
-public  function store ($request)
-{
+    public  function store ($request)
+    {
 
-    $categoryImage = $this->uploadImage($request->image, $this->categoryModel::PATH);
+        $categoryImage = $this->uploadImage($request->image, $this->categoryModel::PATH);
 
-     $this->categoryModel::create([
-        'name'=>['en'=>$request->name_en,'ar'=>$request->name_ar],
-        'department_id' =>$request->department_id,
-        'image'=> $categoryImage,
-        ]);
-
-
-    toast('Category Added Successfully', 'success');
-    return redirect(route('admin.category.index'));
-}
-
-
-public function edit($category)
-{
-    $departments =  $this->getCategoryBydepartment();
-    return view('Admin.pages.category.update', compact('category'),compact('departments'));
-}
-
-
-public function update($request, $category)
-{
-
-    if ($request->image) {
-        $categoryImage = $this->uploadImage($request->image, $this->categoryModel::PATH, $category->getRawOriginal('image'));
+         $this->categoryModel::create([
+            'name'=>['en'=>$request->name_en,'ar'=>$request->name_ar],
+            'department_id' =>$request->department_id,
+            'image'=> $categoryImage,
+            ]);
+         $this->setCategoryInRedis();
+        toast('Category Added Successfully', 'success');
+        return redirect(route('admin.category.index'));
     }
-    $category->update([
-        'name'=>['en'=>$request->name_en,'ar'=>$request->name_ar],
-        'department_id' =>$request->department_id,
-        'image'=> $categoryImage ?? $category->getRawOriginal('image')
 
 
-        ]);
-    toast('Category Updated Successfully', 'success');
-    return redirect(route('admin.category.index'));
-}
+    public function edit($category)
+    {
+        $departments =  $this->getCategoryBydepartment();
+        return view('Admin.pages.category.update', compact('category'),compact('departments'));
+    }
+
+
+    public function update($request, $category)
+    {
+
+        if ($request->image) {
+            $categoryImage = $this->uploadImage($request->image, $this->categoryModel::PATH, $category->getRawOriginal('image'));
+        }
+        $category->update([
+            'name'=>['en'=>$request->name_en,'ar'=>$request->name_ar],
+            'department_id' =>$request->department_id,
+            'image'=> $categoryImage ?? $category->getRawOriginal('image')
+
+
+            ]);
+        $this->setCategoryInRedis();
+        toast('Category Updated Successfully', 'success');
+        return redirect(route('admin.category.index'));
+    }
 
     public function delete($category)
     {
         $category->delete();
+        $this->setCategoryInRedis();
         toast('Category Deleted Successfully', 'success');
         return back();
     }

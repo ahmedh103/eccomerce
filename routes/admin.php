@@ -68,6 +68,7 @@ Route::group(
             Route::get('update/{department}', 'updateForm')->name('updateForm');
             Route::put('update/{department}', 'update')->name('update');
             Route::delete('delete/{department}', 'delete')->name('delete');
+            Route::get('departmentsSheet', 'exportDepartments')->name('export');
         });
 
         /* Article Routes */

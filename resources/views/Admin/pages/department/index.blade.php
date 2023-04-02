@@ -10,7 +10,7 @@ Departments
 
         <div class="middle-content container-xxl p-0 mt-4">
 
-
+            <a href="{{ route('admin.department.export') }}" class="btn btn-primary">Export FileSheet</a>
 
             <div class="table-responsive">
                 <table class="table table-bordered">

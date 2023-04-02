@@ -25,7 +25,7 @@ class UpdateDepartmentRequest extends FormRequest
 
         return [
 
-            'name_en'=>'required|unique:departments,name|max:255',
+            'name_en'=>'required|max:255|unique:departments,name,' . $this->department->id,
             'name_ar'=>'required|unique:departments,name|max:255',
             'image' => 'nullable|mage|mimes:jpg,png,jpeg,gif,svg|max:2048'
 

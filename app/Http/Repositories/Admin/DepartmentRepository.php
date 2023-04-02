@@ -2,10 +2,13 @@
 
 namespace App\Http\Repositories\Admin;
 
+use App\Exports\DepartmentExport;
 use App\Http\Interfaces\Admin\DepartmentInterface;
 use App\Http\Traits\ImageTrait;
 use App\Models\Department;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class DepartmentRepository implements DepartmentInterface
 {
@@ -72,5 +75,10 @@ class DepartmentRepository implements DepartmentInterface
        $department->delete();
         toast('department Deleted Successfully', 'success');
         return back();
+    }
+
+    public function exportDepartments()
+    {
+        return Excel::download(new DepartmentExport(), 'department.xlsx');
     }
 }

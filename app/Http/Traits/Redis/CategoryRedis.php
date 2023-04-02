@@ -20,7 +20,7 @@ trait CategoryRedis
     private function getCategoriesFromRedis()
     {
         $redis = Redis::connection();
-        $data = json_decode($redis->get('{categories}'));
+        $data = json_decode($redis->get('categories'), true);
         return empty($data) ? $this->getAllCategory() : $data;
 
     }

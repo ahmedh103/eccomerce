@@ -45,4 +45,9 @@ use Spatie\LaravelIgnition\Http\Requests\UpdateConfigRequest;
     {
         return $this->departmentInterface->delete($department);
     }
+
+    public function exportDepartments()
+    {
+        return $this->departmentInterface->exportDepartments();
+    }
 }

@@ -67,17 +67,17 @@
                                         <tbody>
                                         @forelse ($categories as $category)
                                             <tr>
-                                                <td>{{ $category->name }}</td>
-                                                <td>{{ $category->slug }}</td>
-                                                <td><img src=" {{ asset($category->image) }}" width="100px" height="100px"></td>
+                                                <td>{{ $category['name'][App::getLocale()] }}</td>
+                                                <td>{{ $category['slug'] }}</td>
+                                                <td><img src=" {{ asset($category['image']) }}" width="100px" height="100px"></td>
                                                 <td class="text-center">
 
                                                         <span class="badge badge-light-success"><a
-                                                                href="{{ route('admin.category.edit', $category) }}">
+                                                                href="{{ route('admin.category.edit', $category['id']) }}">
                                                                 {{__('dashboard.edit')}}</a></span>
                                                     <span class="badge badge-light-success">
                                                             <form  id="delete"
-                                                                action="{{ route('admin.category.delete', $category) }}"
+                                                                action="{{ route('admin.category.delete', $category['id']) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('delete')

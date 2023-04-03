@@ -47,4 +47,12 @@ class Department extends Model
         return 'slug';
     }
 
+    public static function sheetRules()
+    {
+        return [
+          'name_en' => 'required|string',
+          'name_ar' => 'required|string',
+          'slug'    => 'required|string',
+        ];
+    }
 }

@@ -11,4 +11,6 @@ namespace App\Http\Interfaces\Admin;
         public function update($request, $department);
         public function delete($department);
         public function exportDepartments();
+        public function uploadPage();
+        public function upload($request);
     }

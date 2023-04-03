@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use AllowDynamicProperties;
 use App\Http\Controllers\Controller;
 use App\Http\Interfaces\Admin\DepartmentInterface;
 use App\Http\Requests\Admin\department\StoreDepartmentRequest;
 use App\Http\Requests\Admin\department\UpdateDepartmentRequest;
+use App\Http\Requests\Admin\department\UploadRequest;
 use App\Models\Department;
-use Spatie\LaravelIgnition\Http\Requests\UpdateConfigRequest;
 
-#[AllowDynamicProperties] class DepartmentController extends Controller
+ class DepartmentController extends Controller
 {
    private $dapartmentInterface;
 
@@ -49,5 +48,15 @@ use Spatie\LaravelIgnition\Http\Requests\UpdateConfigRequest;
     public function exportDepartments()
     {
         return $this->departmentInterface->exportDepartments();
+    }
+
+    public function uploadPage()
+    {
+        return $this->departmentInterface->uploadPage();
+    }
+
+    public function upload(UploadRequest $request)
+    {
+        return $this->departmentInterface->upload($request);
     }
 }

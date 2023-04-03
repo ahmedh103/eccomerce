@@ -5,6 +5,7 @@ namespace App\Http\Repositories\Admin;
 use App\Exports\DepartmentExport;
 use App\Http\Interfaces\Admin\DepartmentInterface;
 use App\Http\Traits\ImageTrait;
+use App\Imports\DepartmentImport;
 use App\Models\Department;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
@@ -80,5 +81,17 @@ class DepartmentRepository implements DepartmentInterface
     public function exportDepartments()
     {
         return Excel::download(new DepartmentExport(), 'department.xlsx');
+    }
+
+    public function uploadPage()
+    {
+        return view('Admin.pages.department.uploadPage');
+    }
+
+    public function upload($request)
+    {
+        Excel::import(new DepartmentImport(), $request->file('file'));
+        toast('success Import', 'success');
+        return redirect(route('admin.department.index'));
     }
 }

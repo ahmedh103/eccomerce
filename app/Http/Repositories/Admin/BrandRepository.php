@@ -61,7 +61,7 @@ class BrandRepository implements \App\Http\Interfaces\Admin\BrandInterface
     public function destroy($brand)
     {
         $brand->delete();
-//        $brand->categories()->detach();
+        $brand->categories()->detach();
         toast('success', 'success');
         return back();
     }

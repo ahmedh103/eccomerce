@@ -42,10 +42,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             'App\Http\Interfaces\Admin\AdInterface',
             'App\Http\Repositories\Admin\AdRepository',
-
-        /*-- End admin --*/
-
-
         );
         $this->app->bind(
             'App\Http\Interfaces\Admin\AuthInterface',
@@ -61,7 +57,11 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Http\Repositories\Admin\ProductRepository',
         );
 
-
+        $this->app->bind(
+            'App\Http\Interfaces\Admin\BrandInterface',
+            'App\Http\Repositories\Admin\BrandRepository',
+        );
+        /*-- End admin --*/
         /*-- EndUser --*/
         $this->app->bind(
             'App\Http\Interfaces\EndUser\HomeInterface',

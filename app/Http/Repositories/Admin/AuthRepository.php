@@ -5,6 +5,9 @@ namespace App\Http\Repositories\Admin;
 use App\Http\Interfaces\Admin\AuthInterface;
 use App\Models\User;
 use App\Traits\AuthTrait;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 
 class AuthRepository implements AuthInterface
@@ -18,12 +21,13 @@ class AuthRepository implements AuthInterface
 
     }
 
-    public function login($request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
+    public function login($request): Application|Redirector|RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
         $credentials = $request->only(['email', 'password']);
+
         if (Auth::attempt($credentials) && Auth::user()->user_role() == 1  )
         {
-            toast('Welcome'. \auth()->user()->first_name, 'success');
+            toast('Welcome '. \auth()->user()->first_name, 'success');
             return redirect(route('admin.home'));
         }
 

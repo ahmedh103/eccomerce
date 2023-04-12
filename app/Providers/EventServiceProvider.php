@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\UserRegister;
+use App\Listeners\SendEmailNotifyUser;
+use App\Listeners\SendEmailNotifyAdmin;
 use App\Models\Profile;
 use App\Models\User;
 use App\Observers\AttachGroupByUser;
@@ -22,6 +25,10 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        UserRegister::class => [
+            SendEmailNotifyUser::class,
+            SendEmailNotifyAdmin::class,
         ],
     ];
 

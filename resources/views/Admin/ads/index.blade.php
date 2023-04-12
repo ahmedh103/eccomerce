@@ -22,6 +22,8 @@
                         <thead>
                         <tr>
                             <th scope="col">Name</th>
+{{--                            <th scope="col">Category</th>--}}
+                            <th scope="col">Department</th>
                             <th scope="col">City</th>
                             <th scope="col">Image</th>
                             <th scope="col">Slug</th>
@@ -37,6 +39,8 @@
                         @foreach($ads as $ad)
                             <tr>
                                 <td>{{$ad->name}}</td>
+{{--                                <td>{{$ad->category->name}}</td>--}}
+                                <td>{{$ad->category->Department->name}}</td>
                                 <td>{{$ad->city}}</td>
                                 <td><img src="{{ asset($ad->image) }}" width="100px" height="100px"></td>
                                 <td>{{$ad->slug}}</td>

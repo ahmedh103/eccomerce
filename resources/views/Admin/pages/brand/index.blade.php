@@ -1,7 +1,7 @@
 @extends('Admin.includes.master')
 
 @section('title')
-    categories
+    Brands
 @endsection
 
 @section('content')
@@ -58,28 +58,30 @@
                                     <table class="table table-bordered">
                                         <thead>
                                         <tr>
-                                            <th scope="col">{{__('dashboard.name')}}</th>
-                                            <th scope="col">{{__('dashboard.department')}}</th>
-                                            <th scope="col">{{__('dashboard.slug')}}</th>
-                                            <th scope="col">{{__('dashboard.image')}}</th>
+                                            <th scope="col">name</th>
+                                            <th scope="col">slug</th>
+                                            <th scope="col">categories</th>
                                             <th class="text-center" scope="col">{{__('dashboard.action')}}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @forelse ($categories as $category)
+                                        @forelse ($brands as $brand)
                                             <tr>
-                                                <td>{{ $category->name }}</td>
-                                                <td>{{ $category->Department->name }}</td>
-                                                <td>{{ $category->slug }}</td>
-                                                <td><img src=" {{ asset($category->image) }}" width="100px" height="100px"></td>
+                                                <td>{{ $brand->name }}</td>
+                                                <td>{{ $brand->slug }}</td>
+                                                <td>
+                                                    @foreach($brand->categories as $category)
+                                                        {{ $category->name }}
+                                                    @endforeach
+                                                </td>
                                                 <td class="text-center">
 
                                                         <span class="badge badge-light-success"><a
-                                                                href="{{ route('admin.category.edit', $category) }}">
+                                                                href="{{ route('admin.brand.edit', $brand) }}">
                                                                 {{__('dashboard.edit')}}</a></span>
                                                     <span class="badge badge-light-success">
                                                             <form  id="delete"
-                                                                action="{{ route('admin.category.delete', $category) }}"
+                                                                action="{{ route('admin.brand.delete', $brand) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('delete')
@@ -97,7 +99,7 @@
                                         @endforelse
                                         </tbody>
                                     </table>
-                                    {{ $categories->links() }}
+{{--                                    {{ $categories->links() }}--}}
                                 </div>
 
                             </div>

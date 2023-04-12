@@ -24,7 +24,7 @@ class AdRepository implements AdInterface
     public function index()
     {
 
-        $ads = $this->adModel::get(['id','name','city','image','slug','price','description','type','status']);
+        $ads = $this->adModel::with(['category'])->get();
         return view('Admin.ads.index', compact('ads'));
     }
 

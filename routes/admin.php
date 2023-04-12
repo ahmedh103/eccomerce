@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\ArticleController;
@@ -107,6 +108,20 @@ Route::group(
             Route::get('editForm/{product}',[ProductController::class,"editForm"])->name('edit');
             Route::put('update/{product}',[ProductController::class,"update"])->name('update');
             Route::delete('/{product}',[ProductController::class,"delete"])->name('delete');
+        });
+
+        /*  Brand Routes */
+        Route::group([
+            'controller' => BrandController::class,
+            'prefix'     => 'brands', 'as' => 'brand.',
+        ], function () {
+            Route::get('index', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+            Route::get('edit/{brand}', 'edit')->name('edit');
+            Route::put('update/{brand}', 'update')->name('update');
+            Route::delete('delete/{brand}', 'destroy')->name('delete');
+
         });
 
 

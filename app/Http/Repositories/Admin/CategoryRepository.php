@@ -9,7 +9,11 @@ use App\Http\Traits\Redis\CategoryRedis;
 use App\Models\Category;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Lang;
 
 class CategoryRepository implements CategoryInterface
 {
@@ -24,7 +28,13 @@ class CategoryRepository implements CategoryInterface
 
     public  function index ()
     {
-      $categories = $this->getCategoriesFromRedis();
+//        $collection = collect(['first', 'second']);
+//        return $collection->toUpper();
+      $categories = $this->categoryModel::with('Department')->paginate(100);
+//     $categories = DB::table('categories')
+//         ->join('departments', 'categories.department_id', '=', 'departments.id')
+//         ->select('categories.*', 'departments.name as department_name')
+//         ->paginate(100);
       return view('Admin.pages.category.index', compact('categories'));
     }
     public  function create ()

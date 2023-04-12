@@ -1,7 +1,7 @@
 @extends('Admin.includes.master')
 
 @section('title')
-    Edit Category
+    Edit Brand
 @endsection
 
 @section('content')
@@ -20,13 +20,13 @@
                             </div>
                             <div class="widget-content widget-content-area">
 
-                                <form method="post" action="{{ route('admin.category.update', $category) }}" enctype="multipart/form-data">
+                                <form method="post" action="{{ route('admin.brand.update', $brand) }}" >
                                     @csrf
                                     @method('PUT')
                                     <div class="row mb-4">
                                         <div class="form-group mb-4">
                                             <label for="exampleFormControlInput2">{{__('dashboard.english_name')}}</label>
-                                            <input type="text" class="form-control" name="name_en" value="{{$category->getTranslation('name','en')}}" id="exampleFormControlInput2" placeholder="English Name">
+                                            <input type="text" class="form-control" name="name_en" value="{{$brand->getTranslation('name','en')}}" id="exampleFormControlInput2" placeholder="English Name">
                                             @error('name_en')
                                             <div class="alert alert-danger mt-1" role="alert">
                                                 <h4 class="alert-heading">Alert Danger</h4>
@@ -38,7 +38,7 @@
                                         </div>
                                         <div class="form-group mb-4">
                                             <label for="exampleFormControlInput2">{{__('dashboard.arabic_name')}}</label>
-                                            <input type="text" class="form-control" name="name_ar" value="{{$category->getTranslation('name','ar')}}" id="exampleFormControlInput2" placeholder="Arabic Name">
+                                            <input type="text" class="form-control" name="name_ar" value="{{$brand->getTranslation('name','ar')}}" id="exampleFormControlInput2" placeholder="Arabic Name">
                                             @error('name_ar')
                                             <div class="alert alert-danger mt-1" role="alert">
                                                 <h4 class="alert-heading">Alert Danger</h4>
@@ -49,44 +49,15 @@
                                             @enderror
                                         </div>
 
-
                                         <div class="form-group mb-4">
                                             <label for="exampleFormControlInput2">dashboard Name</label>
-                                            <select name="department_id" id="" class="form-control my-2">
-                                                <option value="">Select Department</option>
-                                                @foreach ( $departments as $department )
-                                                    <option value="{{ $department->id }}" @selected('department_id')> {{$department->name}} </option>
+                                            <select name="category[]" id="" class="select2-container-multi form-control my-2" multiple>
+                                                @foreach ($categories as $category )
+                                                    <option value="{{ $category->id }}" {{ old('category') || in_array($category->id, $brand->categories->pluck('id')->toArray()) ? 'selected' : '' }}> {{$category->name}} </option>
                                                 @endforeach
                                             </select>
                                         </div>
-
-
-
-
-                                        <div class="form-group mb-4">
-                                            <div class=" input-group mb-3 mt-4">
-                                                <img src="{{$category->image}}" width="100px" height="100px">
-                                                </div>
-                                            <label for="exampleFormControlInput2">{{__('dashboard.image')}}</label>
-                                            <input type="file" class="form-control" name="image"  id="exampleFormControlInput2" >
-                                            @error('image')
-                                            <div class="alert alert-danger mt-1" role="alert">
-                                                <h4 class="alert-heading">Alert Danger</h4>
-                                                <div class="alert-body">
-                                                    {{ $message }}
-                                                </div>
-                                            </div>
-                                            @enderror
-                                        </div>
                                     </div>
-
-
-
-
-
-
-
-
 
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </form>

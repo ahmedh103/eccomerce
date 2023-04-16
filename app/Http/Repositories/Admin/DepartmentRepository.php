@@ -7,9 +7,7 @@ use App\Http\Interfaces\Admin\DepartmentInterface;
 use App\Http\Traits\ImageTrait;
 use App\Imports\DepartmentImport;
 use App\Models\Department;
-use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class DepartmentRepository implements DepartmentInterface
 {
@@ -19,7 +17,7 @@ class DepartmentRepository implements DepartmentInterface
 
    public function __construct(Department $department)
    {
-       $this->departmentModel=$department;
+       $this->departmentModel = $department;
    }
 
     public function index()
@@ -37,8 +35,7 @@ class DepartmentRepository implements DepartmentInterface
     public function store($request)
     {
 
-         $departmentImage = $this->uploadImage($request->image, $this->departmentModel::PATH);
-
+         $departmentImage = $this->upload($request->image, $this->departmentModel::PATH);
          $this->departmentModel::create([
             'name'=>['en'=>$request->name_en,'ar'=>$request->name_ar],
             'image'=>$departmentImage
@@ -57,7 +54,7 @@ class DepartmentRepository implements DepartmentInterface
     {
           if ($request->image) {
 
-              $imageName = $this->uploadImage($request->image, $this->departmentModel::PATH, $department->getRawOriginal('image'));
+              $imageName = $this->upload($request->image, $this->departmentModel::PATH, $department->getRawOriginal('image'));
         }
 
         $department->update([
@@ -72,7 +69,7 @@ class DepartmentRepository implements DepartmentInterface
 
     public function delete($department)
     {
-        Storage::delete($department->image);
+       $this->deleteFile($this->departmentModel::PATH . DIRECTORY_SEPARATOR . $department->getRawOriginal('image'));
        $department->delete();
         toast('department Deleted Successfully', 'success');
         return back();
@@ -88,7 +85,7 @@ class DepartmentRepository implements DepartmentInterface
         return view('Admin.pages.department.uploadPage');
     }
 
-    public function upload($request)
+    public function uploadDepart($request)
     {
         Excel::import(new DepartmentImport(), $request->file('file'));
         toast('success Import', 'success');

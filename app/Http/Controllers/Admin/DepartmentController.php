@@ -55,8 +55,8 @@ use App\Models\Department;
         return $this->departmentInterface->uploadPage();
     }
 
-    public function upload(UploadRequest $request)
+    public function uploadDepart(UploadRequest $request)
     {
-        return $this->departmentInterface->upload($request);
+        return $this->departmentInterface->uploadDepart($request);
     }
 }

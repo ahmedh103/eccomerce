@@ -15,14 +15,14 @@ class Department extends Model
 {
     use HasFactory, HasTranslations, HasSlug;
 
-    const PATH = 'images/departmentImages';
+    const PATH = 'departmentImages';
 
     public array $translatable = ['name'];
     protected $fillable = ['name', 'slug', 'image'];
 
     public function getImageAttribute($value)
     {
-        return $this::PATH.DIRECTORY_SEPARATOR.$value;
+        return env('AWS_S3_URL') . DIRECTORY_SEPARATOR . self::PATH . DIRECTORY_SEPARATOR . $value;
     }
 
     public function getSlugOptions():SlugOptions

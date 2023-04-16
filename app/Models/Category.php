@@ -13,7 +13,7 @@ class Category extends Model
 {
     use HasFactory, HasTranslations, HasSlug;
 
-    const PATH = 'images/gallery';
+    const PATH = 'gallery';
 
     public $translatable = ['name'];
     protected $fillable
@@ -38,7 +38,7 @@ class Category extends Model
 
     public function getImageAttribute($value):string
     {
-        return $this::PATH.DIRECTORY_SEPARATOR.$value;
+        return env('AWS_S3_URL') . DIRECTORY_SEPARATOR. self::PATH . DIRECTORY_SEPARATOR. $value;
     }
 
     /**

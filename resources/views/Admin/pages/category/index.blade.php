@@ -71,7 +71,7 @@
                                                 <td>{{ $category->name }}</td>
                                                 <td>{{ $category->Department->name }}</td>
                                                 <td>{{ $category->slug }}</td>
-                                                <td><img src=" {{ asset($category->image) }}" width="100px" height="100px"></td>
+                                                <td><img src=" {{ $category->image }}" width="100px" height="100px"></td>
                                                 <td class="text-center">
 
                                                         <span class="badge badge-light-success"><a
@@ -83,11 +83,10 @@
                                                                 method="post">
                                                                 @csrf
                                                                 @method('delete')
-                                                                <a href="javascript:void(0)" onclick="document.getElementById('delete').submit();"
-                                                                       style="background-color: unset;border-color: transparent; "
-                                                                       value="Delete">
+                                                                <button class="btn btn-danger" type="submit"
+                                                                       style="background-color: unset;border-color: transparent; ">
                                                                        {{__('dashboard.delete')}}
-                                                                </a>
+                                                                </button>
                                                             </form>
                                                         </span>
                                                 </td>

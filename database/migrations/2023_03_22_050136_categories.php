@@ -15,7 +15,7 @@ return new class extends Migration
         $table->id();
         $table->text('name');
         $table->text('slug');
-         $table->bigInteger('department_id')->unsigned();
+        $table->bigInteger('department_id')->unsigned();
         $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
         //$table->foreignId('department_id')->constrained('departments')->on('cascade');
         $table->string('image');

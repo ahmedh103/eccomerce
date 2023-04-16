@@ -47,7 +47,7 @@ class CategoryRepository implements CategoryInterface
     public  function store ($request)
     {
 
-        $categoryImage = $this->uploadImage($request->image, $this->categoryModel::PATH);
+        $categoryImage = $this->upload($request->image, $this->categoryModel::PATH);
 
          $this->categoryModel::create([
             'name'=>['en'=>$request->name_en,'ar'=>$request->name_ar],
@@ -71,7 +71,7 @@ class CategoryRepository implements CategoryInterface
     {
 
         if ($request->image) {
-            $categoryImage = $this->uploadImage($request->image, $this->categoryModel::PATH, $category->getRawOriginal('image'));
+            $categoryImage = $this->upload($request->image, $this->categoryModel::PATH, $category->getRawOriginal('image'));
         }
         $category->update([
             'name'=>['en'=>$request->name_en,'ar'=>$request->name_ar],
@@ -87,8 +87,9 @@ class CategoryRepository implements CategoryInterface
 
     public function delete($category)
     {
+        $this->deleteFile($this->categoryModel::PATH . DIRECTORY_SEPARATOR . $category->getRawOriginal('image'));
         $category->delete();
-        $this->setCategoryInRedis();
+//        $this->setCategoryInRedis();
         toast('Category Deleted Successfully', 'success');
         return back();
     }

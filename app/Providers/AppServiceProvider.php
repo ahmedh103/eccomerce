@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 
@@ -20,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
 	 */
 	public function boot():void
     {
+
         Collection::macro('toUpper', function () {
             return $this->map(function (string $value) {
                 return Str::upper($value);

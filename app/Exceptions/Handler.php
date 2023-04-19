@@ -2,13 +2,18 @@
 
 namespace App\Exceptions;
 
+use App\Http\Traits\ApiResponseTrait;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 use function response;
 use function view;
 
 class Handler extends ExceptionHandler
 {
+    use ApiResponseTrait;
     /**
      * A list of exception types with their corresponding custom log levels.
      *
@@ -49,11 +54,18 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {});
     }
 
-    public function render($request, Throwable $exception)
+    public function render($request, Throwable $e)
     {
-        if ($exception instanceof \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException) {
-            return response()->view('errors.404', [], 404);
+        if ($e instanceof NotFoundHttpException)
+        {
+            return $this->apiResponse(404,"error 404", $request->url() . ' Not Found, try with correct url');
         }
-        return parent::render($request, $exception);
+        if($e instanceof MethodNotAllowedHttpException)
+        {
+            return $this->apiResponse(405,"error 405",  $request->method() . ' method Not allow for this route, try with correct method');
+        }
+        if ($e instanceof ValidationException) {
+            return $this->apiResponse(422,'Unprocessable Content',$e->errors());
+        }
     }
 }
